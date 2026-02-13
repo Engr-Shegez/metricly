@@ -1,23 +1,21 @@
 import React from "react";
 import KPICard from "@/components/ui/KPICard";
 import { transactions } from "@/lib/mockData";
+import {
+  calculateTotalRevenue,
+  calculateTotalExpenses,
+  calculateNetProfit,
+  calculateProfitMargin,
+} from "@/lib/analytics";
 
 const DashboardPage = () => {
-  const totalRevenue = transactions
-    .filter((t) => t.type === "revenue")
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const totalExpenses = transactions
-    .filter((t) => t.type === "expense")
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const netProfit = totalRevenue - totalExpenses;
-
-  const ProfitMargin =
-    totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(2) : "0";
+  const totalRevenue = calculateTotalRevenue(transactions);
+  const totalExpenses = calculateTotalExpenses(transactions);
+  const netProfit = calculateNetProfit(totalRevenue, totalExpenses);
+  const profitMargin = calculateProfitMargin(totalRevenue, netProfit);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 m-10">
       {/* page Header */}
       <div>
         <h1 className="text-3xl font-semibold">Dashboard</h1>
@@ -27,7 +25,7 @@ const DashboardPage = () => {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-13 gap-x-2">
         <KPICard
           title="Total Revenue"
           value={`$${totalRevenue.toLocaleString()}`}
@@ -39,7 +37,7 @@ const DashboardPage = () => {
           trend="down"
         />
         <KPICard title="Net Profit" value={`$${netProfit.toLocaleString()}`} />
-        <KPICard title="Profit Margin" value={`${ProfitMargin}%`} />
+        <KPICard title="Profit Margin" value={`${profitMargin}%`} />
       </div>
     </div>
   );

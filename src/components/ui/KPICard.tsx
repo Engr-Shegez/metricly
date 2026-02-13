@@ -8,7 +8,7 @@ type KPICardProps = {
 
 const KPICardProps = ({ title, value, trend }: KPICardProps) => {
   return (
-    <div className="rounded-lg border p-6">
+    <div className="rounded-lg border lg:w-172 p-6">
       <p>{title}</p>
 
       <h2 className="text-2xl font-semibold mt-2">{value}</h2>

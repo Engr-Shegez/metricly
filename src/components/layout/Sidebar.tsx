@@ -6,7 +6,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 border-r p-6">
+    <aside className="w-65 border-r-2  p-8">
       <h2 className="text-2xl font-semibold mb-6">Metricly</h2>
 
       <nav className="flex flex-col gap-4 text-md">
