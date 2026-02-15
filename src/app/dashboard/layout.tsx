@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       <Sidebar />
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 p-5">{children}</main>
+      <main className="flex-1 p-5 bg-gray-200">{children}</main>
     </div>
   );
 };
