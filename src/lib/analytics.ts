@@ -46,5 +46,6 @@ export function calculateMonthlyBreakdown(transactions: Transaction[]) {
     month,
     revenue: values.revenue,
     expenses: values.expenses,
+    netProfit: values.revenue - values.expenses,
   }));
 }

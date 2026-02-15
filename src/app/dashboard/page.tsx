@@ -9,8 +9,9 @@ import {
   calculateMonthlyBreakdown,
 } from "@/lib/analytics";
 import {
-  BarChart,
+  ComposedChart,
   Bar,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -69,7 +70,7 @@ const DashboardPage = () => {
 
         <div className="h-75 ">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={monthlyData}>
+            <ComposedChart data={monthlyData}>
               <XAxis dataKey="month" />
               <YAxis />
               <Tooltip
@@ -87,7 +88,16 @@ const DashboardPage = () => {
                 animationDuration={800}
                 animationEasing="ease-out"
               />
-            </BarChart>
+              <Line
+                type="monotone"
+                dataKey="netProfit"
+                stroke="#2563eb"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </ComposedChart>
           </ResponsiveContainer>
         </div>
       </div>
