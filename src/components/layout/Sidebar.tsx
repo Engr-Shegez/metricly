@@ -15,7 +15,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-65 border-r-2 p-8">
+    <aside className="w-65  p-8">
       <h2
         className={`flex text-3xl pl-5 font-bold mb-12 mt-8 items-center gap-3 ${
           pathname === "/dashboard"

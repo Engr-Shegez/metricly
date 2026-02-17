@@ -22,7 +22,45 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           </thead>
 
           <tbody>
+            {transactions.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={4}
+                  className="py-10 text-center text-muted-foreground"
+                >
+                  No transaction found for this period
+                </td>
+              </tr>
+            ) : (
+              transactions.map((tx) => (
+                <tr
+                  key={tx.id}
+                  className="border-b hover:bg-gray-50 transition"
+                >
+                  <td className="py-3">{tx.date}</td>
+                  <td className="py-3">{tx.customer}</td>
+                  <td className="py-3 font-medium">
+                    ${tx.amount.toLocaleString()}
+                  </td>
+                  <td className="py-3">{tx.status}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default TransactionTable;
+
+{
+  /* <tbody>
             {transactions.map((tx) => (
+
+
+
               <tr key={tx.id} className="border-b hover:bg-gray-50 transition">
                 <td className="py-3">{tx.date}</td>
                 <td className="py-3">{tx.customer}</td>
@@ -32,11 +70,5 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                 <td className="py-3">{tx.status}</td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
-
-export default TransactionTable;
+          </tbody> */
+}

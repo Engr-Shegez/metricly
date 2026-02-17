@@ -62,13 +62,29 @@ const DashboardPage = () => {
   const monthlyData = calculateMonthlyBreakdown(filteredTransactions);
 
   return (
-    <div className="space-y-8 m-10 ">
+    <div className="space-y-10 m-10 ">
       {/* page Header */}
-      <div>
-        <h1 className="text-3xl font-semibold">Dashboard</h1>
-        <p className="text-sm text-(--color-secondary) mt-1">
-          Overview of your business performance
-        </p>
+      <div className="h-20 flex items-center justify-between">
+        <div>
+          <h1 className="text-4xl font-bold">Dashboard</h1>
+          <p className="text-lg text-(--color-secondary) mt-1">
+            Overview of your business performance
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {new Date().toDateString()}
+          </p>
+        </div>
+
+        {/*  */}
+        <div>
+          <div className=" hidden lg:block items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-gray-300" />
+            <div>
+              <p className="lg:text-xl font-medium">Engr Shegez</p>
+              <p className="lg:text-md text-muted-foreground">Sales Manager</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-3 mb-6">
@@ -92,7 +108,7 @@ const DashboardPage = () => {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-13 gap-x-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-9 gap-x-9 ">
         <KPICard
           title="Total Revenue"
           value={`$${totalRevenue.toLocaleString()}`}
