@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       {/* MAIN CONTENT */}
       <main className="flex-1  p-5 bg-gray-200">{children}</main>
 
-      <aside className="w-100 pt-50 bg-gray-200 p-6 space-y-6">
+      <aside className="w-100 pt-50 sm:hidden md:hidden lg:block bg-gray-200 p-6 space-y-6">
         {/* upgrade card */}
         <div className="bg-linear-to-br from-blue-600 to-blue-400 text-white rounded-2xl p-6">
           <h3 className="text-xl mb-3 font-semibold ">Upgrade to Pro</h3>
@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           </button>
         </div>
         {/* Meeting Widget */}
-        <div className="bg-linear-to-br mt-15 bg-amber-50 text-white rounded-2xl p-6">
+        <div className="bg-linear-to-br mt-15  bg-amber-50 text-white rounded-2xl p-6">
           <h3 className="text-xl text-black mb-3 font-semibold ">
             Daily Meetings
           </h3>
