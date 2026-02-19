@@ -4,6 +4,7 @@ import StatusBadge from "../ui/StatusBadge";
 import { formatDate } from "@/lib/format";
 import { useState, useEffect } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 
 interface TransactionTableProps {
   transactions: Transaction[];
@@ -20,6 +21,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 5;
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [openRowId, setOpenRowId] = useState<string | null>(null);
 
   const filteredTransactions = transactions.filter(
     (tx) =>
@@ -109,6 +111,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
               </th>
               <th className="py-3">Status</th>
             </tr>
+            <th className="py-3 text-right">Action</th>
           </thead>
 
           <tbody>
@@ -134,6 +137,29 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                   </td>
                   <td className="py-3">
                     <StatusBadge status={tx.status} />
+                  </td>
+                  <td className=" text-right relative">
+                    <button
+                      onClick={() =>
+                        setOpenRowId(openRowId === tx.id ? null : tx.id)
+                      }
+                      className="p-2 rounded-md hover:bg-muted"
+                    >
+                      <MoreVertical size={16} />
+                    </button>
+                    {openRowId === tx.id && (
+                      <div className="absolute right-0 mt-2 w-32 bg-white shadow-md border rounded-md z-10">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                          View
+                        </button>
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                          Edit
+                        </button>
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))
