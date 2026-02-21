@@ -2,7 +2,7 @@ import React from "react";
 import { Transaction } from "@/types/transaction";
 import StatusBadge from "../ui/StatusBadge";
 import { formatDate } from "@/lib/format";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { MoreVertical } from "lucide-react";
 
@@ -22,6 +22,27 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   const itemsPerPage = 5;
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [openRowId, setOpenRowId] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [transactions, searchQuery]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpenRowId(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const filteredTransactions = transactions.filter(
     (tx) =>
@@ -51,10 +72,6 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
     startIndex,
     startIndex + itemsPerPage,
   );
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [transactions, searchQuery]);
 
   return (
     <div className="bg-white rounded-xl shadow p-6">
@@ -148,14 +165,23 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                       <MoreVertical size={16} />
                     </button>
                     {openRowId === tx.id && (
-                      <div className="absolute right-0 mt-2 w-32 bg-white shadow-md border rounded-md z-10">
+                      <div
+                        ref={dropdownRef}
+                        className={`absolute right-0 mt-2 w-32 bg-white border rounded-md shadow-md z-10 transition-all duration-150 ease-out ${openRowId === tx.id ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+                      >
                         <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                           View
                         </button>
                         <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
                           Edit
                         </button>
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                        <button
+                          onClick={() => {
+                            setDeleteTarget(tx.id);
+                            setOpenRowId(null);
+                          }}
+                          className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
+                        >
                           Delete
                         </button>
                       </div>
@@ -166,6 +192,36 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
             )}
           </tbody>
         </table>
+        {deleteTarget && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+            <div className="bg-white rounded-lg shadow-lg w-80 p-6">
+              <h3 className="text-lg font-semibold mb-4">Confirm Delete</h3>
+
+              <p className="text-sm text-gray-6000 mb-6">
+                Are you sure you want to delete this transaction?
+              </p>
+
+              <div className="flex justify-end gap-3">
+                <button
+                  onClick={() => setDeleteTarget(null)}
+                  className="px-4 py-2 rounded-md border"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  onClick={() => {
+                    console.log("Deleteed:", deleteTarget);
+                    setDeleteTarget(null);
+                  }}
+                  className="px-4 py-2 rounded-md bg-red-600 text-white"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {/* pagination control Ui */}
       <div className="flex items-center justify-between mt-6">
