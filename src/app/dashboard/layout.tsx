@@ -4,15 +4,13 @@ import { ReactNode } from "react";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex dark:bg-gray-900 transition-colors duration-300 min-h-screen bg-background">
       {/* sidebar */}
-
       <Sidebar />
-
       {/* MAIN CONTENT */}
-      <main className="flex-1  p-5 bg-gray-200">{children}</main>
+      <main className=" flex-1  p-5 bg-gray-200">{children}</main>
 
-      <aside className="w-100 pt-50 sm:hidden md:hidden lg:block bg-gray-200 p-6 space-y-6">
+      <aside className="0 w-100 pt-50 sm:hidden md:hidden lg:block bg-gray-200 p-6 space-y-6">
         {/* upgrade card */}
         <div className="bg-linear-to-br from-blue-600 to-blue-400 text-white rounded-2xl p-6">
           <h3 className="text-xl mb-3 font-semibold ">Upgrade to Pro</h3>

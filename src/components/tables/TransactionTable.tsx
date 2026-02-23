@@ -5,6 +5,9 @@ import { formatDate } from "@/lib/format";
 import { useState, useEffect, useRef } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { MoreVertical } from "lucide-react";
+import ConfirmModal from "../ConfirmModal";
+import { toast } from "sonner";
+import { transactions } from "@/lib/mockData";
 
 interface TransactionTableProps {
   transactions: Transaction[];
@@ -15,8 +18,17 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   type SortDirection = "asc" | "desc";
 
   const [sortField, setSortField] = useState<SortField>("date");
-
+  const [tableData, setTableData] = useState<Transaction[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("transactions");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    }
+    return transactions;
+  });
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [lastDeleted, setLastDeleted] = useState<Transaction | null>(null);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 5;
@@ -27,7 +39,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [transactions, searchQuery]);
+  }, [tableData, searchQuery]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -44,7 +56,11 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
     };
   }, []);
 
-  const filteredTransactions = transactions.filter(
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(tableData));
+  }, [tableData]);
+
+  const filteredTransactions = tableData.filter(
     (tx) =>
       tx.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tx.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -132,7 +148,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           </thead>
 
           <tbody>
-            {transactions.length === 0 ? (
+            {tableData.length === 0 ? (
               <tr>
                 <td
                   colSpan={4}
@@ -193,34 +209,32 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           </tbody>
         </table>
         {deleteTarget && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-            <div className="bg-white rounded-lg shadow-lg w-80 p-6">
-              <h3 className="text-lg font-semibold mb-4">Confirm Delete</h3>
+          <ConfirmModal
+            title="Confirm Deletion"
+            message="Are you sure you want to delete this transaction?"
+            onCancel={() => setDeleteTarget(null)}
+            onConfirm={() => {
+              const deletedItem = tableData.find(
+                (tx) => tx.id === deleteTarget,
+              );
+              if (!deletedItem) return;
 
-              <p className="text-sm text-gray-6000 mb-6">
-                Are you sure you want to delete this transaction?
-              </p>
+              setLastDeleted(deletedItem);
 
-              <div className="flex justify-end gap-3">
-                <button
-                  onClick={() => setDeleteTarget(null)}
-                  className="px-4 py-2 rounded-md border"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  onClick={() => {
-                    console.log("Deleteed:", deleteTarget);
-                    setDeleteTarget(null);
-                  }}
-                  className="px-4 py-2 rounded-md bg-red-600 text-white"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
+              setTableData((prev) =>
+                prev.filter((tx) => tx.id !== deleteTarget),
+              );
+              toast.success("Transaction deleted successfully", {
+                action: {
+                  label: "undo",
+                  onClick: () => {
+                    setTableData((prev) => [deletedItem, ...prev]);
+                  },
+                },
+              });
+              setDeleteTarget(null);
+            }}
+          />
         )}
       </div>
       {/* pagination control Ui */}
