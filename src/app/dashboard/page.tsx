@@ -99,7 +99,7 @@ const DashboardPage = () => {
             className={`px-4 py-2 rounded-md text-sm transition-colors ${
               dateFilter === filter.value
                 ? "bg-emerald-800 text-white"
-                : "border hover:bg-gray-100"
+                : "border hover:bg-gray-700"
             }`}
           >
             {filter.label}
@@ -124,7 +124,7 @@ const DashboardPage = () => {
       </div>
 
       {/* chart Section */}
-      <div className="rounded-lg border p-6 bg-white">
+      <div className="rounded-lg border p-6 ">
         <h2 className="text-2xl font-semibold mb-4">Revenue vs Expenses</h2>
 
         <div className="h-75  ">

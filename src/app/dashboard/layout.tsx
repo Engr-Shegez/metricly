@@ -1,35 +1,42 @@
 import Sidebar from "@/components/layout/Sidebar";
-
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { ReactNode } from "react";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex dark:bg-gray-900 transition-colors duration-300 min-h-screen bg-background">
-      {/* sidebar */}
+    <div className="flex min-h-screen bg-background text-foreground transition-colors duration-300">
       <Sidebar />
-      {/* MAIN CONTENT */}
-      <main className=" flex-1  p-5 bg-gray-200">{children}</main>
 
-      <aside className="0 w-100 pt-50 sm:hidden md:hidden lg:block bg-gray-200 p-6 space-y-6">
-        {/* upgrade card */}
-        <div className="bg-linear-to-br from-blue-600 to-blue-400 text-white rounded-2xl p-6">
-          <h3 className="text-xl mb-3 font-semibold ">Upgrade to Pro</h3>
-          <p className="text-2xl font-bold mb-5">$4.20 / Month</p>
-          <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium">
+      <main className="flex-1 p-5">
+        <header className="mb-6 flex items-center justify-between">
+          <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
+          <ThemeToggle />
+        </header>
+        <div className="rounded-2xl border bg-card p-4 shadow-soft-card">
+          {children}
+        </div>
+      </main>
+
+      <aside className="hidden w-80 space-y-6 bg-card p-6 shadow-soft-card lg:block">
+        <div className="rounded-2xl border bg-linear-to-br from-primary to-primary/70 p-6 text-foreground">
+          <h3 className="mb-3 text-xl font-semibold">Upgrade to Pro</h3>
+          <p className="mb-5 text-2xl font-bold">$4.20 / Month</p>
+          <button className="rounded-lg bg-primary-foreground px-4 py-2 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-card">
             Upgrade Now
           </button>
         </div>
-        {/* Meeting Widget */}
-        <div className="bg-linear-to-br mt-15  bg-amber-50 text-white rounded-2xl p-6">
-          <h3 className="text-xl text-black mb-3 font-semibold ">
+
+        <div className="rounded-2xl border bg-card p-6">
+          <h3 className="mb-3 text-xl font-semibold text-foreground">
             Daily Meetings
           </h3>
-          <p className="text-2xl text-black font-bold mb-5">$4.20 / Month</p>
-          <button className="bg-black text-white px-4 py-2 rounded-lg font-medium">
-            Click For meeting Link
+          <p className="mb-5 text-2xl font-bold text-foreground">
+            9:30 AM Standup
+          </p>
+          <button className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">
+            Join Meeting
           </button>
         </div>
-        {/* Team Widget */}
       </aside>
     </div>
   );

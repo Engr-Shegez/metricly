@@ -90,7 +90,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   );
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
+    <div className=" rounded-xl shadow p-6">
       <h2 className="text-lg font-semibold mb-4">Recent Transaction</h2>
 
       <div>
@@ -161,7 +161,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
               paginatedTransactions.map((tx) => (
                 <tr
                   key={tx.id}
-                  className="border-b hover:bg-gray-50 transition"
+                  className="border-b hover:bg-gray-700 transition"
                 >
                   <td className="py-3">{formatDate(tx.date)}</td>
                   <td className="py-3">{tx.customer}</td>
@@ -183,12 +183,12 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                     {openRowId === tx.id && (
                       <div
                         ref={dropdownRef}
-                        className={`absolute right-0 mt-2 w-32 bg-white border rounded-md shadow-md z-10 transition-all duration-150 ease-out ${openRowId === tx.id ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+                        className={`absolute right-0 mt-2 w-32 bg-gray-900 border rounded-md shadow-md z-10 transition-all duration-150 ease-out ${openRowId === tx.id ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                       >
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-700">
                           View
                         </button>
-                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                        <button className="block w-full text-left px-4 py-2 hover:bg-gray-700">
                           Edit
                         </button>
                         <button
@@ -196,7 +196,7 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
                             setDeleteTarget(tx.id);
                             setOpenRowId(null);
                           }}
-                          className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
+                          className="block w-full text-left px-4 py-2 hover:bg-gray-700 text-red-600"
                         >
                           Delete
                         </button>
