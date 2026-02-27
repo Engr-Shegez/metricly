@@ -4,17 +4,17 @@ export default function Home() {
   return (
     <main className="min-h-screen ">
       {/* NAVBAR */}
-      <nav className=" w-full border-b bg-white/70 backdrop-blur-md sticky top-0 z-50">
+      <nav className=" w-full border-b bg-white/60 backdrop-blur-md sticky top-0 z-50 px-4 py-2 border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* LOGO */}
-          <div className="text-lg  text-gray-900 font-semibold">Metricly</div>
+          <div className="text-lg  text-gray-900 font-semibold">Ὡ Metricly</div>
 
           {/* LINKS */}
           <div className="hidden md:flex items-center gap-8 text-lg text-gray-900">
             <a href="#features" className="hover:text-black">
               Features
             </a>
-            <a href="#Pricing" className="hover:text-black">
+            <a href="#pricing" className="hover:text-black">
               Pricing
             </a>
             <a href="#dashboard" className="hover:text-black">
@@ -35,10 +35,16 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      <section className="px-6 py-28">
-        <div className="max-w-6xl mx-auto text-center">
+
+      <section className="px-6 py-32 relative overflow-hidden">
+        {/* glow element */}
+        <div className="absolute inset-0 flex justify-center">
+          <div className="w-100 h-100 bg-emerald-500 opacity-15 blur-3xl rounded-full"></div>
+        </div>
+        {/* hero wrapper */}
+        <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
           {/* Badge */}
-          <div className="inline-block mb-6 px-4 py-2 text-sm bg-gray-700 rounded-full">
+          <div className="inline-block mb-6 px-4 py-2 text-md bg-black text-white font-semibold rounded-full">
             Modern Business Analytics Platform
           </div>
 
@@ -61,11 +67,11 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <a
               href="/dashboard"
-              className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium"
+              className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
             >
               Get Started
             </a>
-            <button className="px-6 py-3 border rounded-lg text-sm font-medium">
+            <button className="px-6 py-3 border rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg">
               View Demo
             </button>
           </div>
@@ -80,7 +86,7 @@ export default function Home() {
           </div>
 
           {/* Features Section */}
-          <section id="features" className="px-6 py-28 border-orange-500">
+          <section id="features" className="px-6 py-24 border-orange-500">
             <div className="max-w-6xl mx-auto">
               {/* Section Header */}
               <div className="text-center mt-10 mb-16">
@@ -99,9 +105,9 @@ export default function Home() {
               </div>
 
               {/* Feature Grid */}
-              <div className="grid md:grid-cols-3 border rounded-xl gap-9">
+              <div className="grid md:grid-cols-3 rounded-xl gap-9 fade-up">
                 {/* Feature 1*/}
-                <div className="bg-amber-400 p-8 rounded-xl border shadow-sm">
+                <div className="bg-amber-400 p-8 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <h3 className="text-lg text-blue-950 font-semibold mb-3">
                     Real-Time Insights
                   </h3>
@@ -112,7 +118,7 @@ export default function Home() {
                 </div>
 
                 {/* FEATURE 2 */}
-                <div className="bg-blue-400 p-8 rounded-xl border shadow-md">
+                <div className="bg-blue-400 p-8 rounded-xl border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <h3 className="text-lg text-black font-semibold mb-3">
                     Advance Filtering
                   </h3>
@@ -123,7 +129,7 @@ export default function Home() {
                 </div>
 
                 {/* FEATURE 3 */}
-                <div className="bg-emerald-600 p-8 rounded-xl border shadow-md">
+                <div className="bg-emerald-600 p-8 rounded-xl border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <h3 className="text-lg text-amber-950 font-semibold mb-3">
                     Actionable Reports
                   </h3>
@@ -137,7 +143,7 @@ export default function Home() {
           </section>
 
           {/* Pricing section */}
-          <section id="pricing" className="px-6 py-24 border-orange-500">
+          <section id="pricing" className="px-6 py-20 border-orange-500">
             <div className="max-w-6xl mx-auto">
               {/* HEADER */}
 
@@ -150,10 +156,10 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* PRiicing Grid */}
-              <div className="grid md:grid-cols-3 gap-8">
+              {/* PRicing Grid */}
+              <div className="grid md:grid-cols-3 gap-8 fade-up">
                 {/* STARTER PLAN */}
-                <div className="border rounded-xl p-8">
+                <div className="border rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <h3 className="text-xl text-gray-500 font-semibold mb-2">
                     Starter
                   </h3>
@@ -165,13 +171,13 @@ export default function Home() {
                     <li>✓ Up to 1,000 transactions</li>
                     <li>✓ Email support</li>
                   </ul>
-                  <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl">
+                  <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg">
                     Get Started
                   </button>
                 </div>
 
                 {/* pro plan (highlighted) */}
-                <div className="border-2 border-emerald-500 rounded-xl p-8 shadow-lg relative">
+                <div className="border-2 border-emerald-500 rounded-xl p-8 shadow-lg relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-gray-500 text-sm px-3 py-1 rounded-full">
                     Most Popular
                   </div>
@@ -184,13 +190,13 @@ export default function Home() {
                     <li>✓ Unlimited transactions</li>
                     <li>✓ Priority support</li>
                   </ul>
-                  <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl">
+                  <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg">
                     Get Started
                   </button>
                 </div>
 
                 {/* ENTERPRIZE */}
-                <div className="border rounded-xl p-8">
+                <div className="border rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   <h3 className="text-lg text-gray-500 font-bold mb-6">
                     Enterprise
                   </h3>
@@ -200,13 +206,104 @@ export default function Home() {
                     <li>✓ Custom reporting</li>
                     <li>✓ Dedicated account manager</li>
                   </ul>
-                  <button className="w-full text-black font-semibold bg-orange-900 py-2 border rounded-md text-xl">
+                  <button className="w-full text-black font-semibold bg-orange-900 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-orange-800 hover:-translate-y-2 hover:shadow-lg">
                     Contact sales
                   </button>
                 </div>
               </div>
             </div>
           </section>
+          {/* Final Cta */}
+          <section className="px-6 py-20 rounded-xl border bg-emerald-600 text-white">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-6">
+                Start Making Smarter Business Decisions Today
+              </h2>
+              <p className="text-emerald-100 mb-100">
+                Join modern businesses using data to drive growth, improve
+                efficiency, and maximize profitability.
+              </p>
+              <a
+                href="/dashboard"
+                className="inline-block px-8 py-3 bg-cyan-600 text-black rounded-lg font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
+              >
+                Get Started Now
+              </a>
+            </div>
+          </section>
+          {/* Footer */}
+          <footer className="border-orange-500 mt-24 px-6 py-24">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-12">
+              {/* BRAND */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Metricly</h3>
+                <p className="text-sm text-gray-600">
+                  A modearn business analytics platform designed to help you
+                  turn data into confident growth decisions.
+                </p>
+              </div>
+              {/* product links */}
+              <div>
+                <h4 className="font-medium mb-4"> Product</h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>
+                    <a href="#features" className="hover:text-black">
+                      {" "}
+                      Features
+                    </a>
+                    <a href="#pricing" className="hover:text-black">
+                      {" "}
+                      Pricing
+                    </a>
+                    <a href="/dashboard" className="hover:text-black">
+                      {" "}
+                      Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              {/* Company Links */}
+              <div>
+                <h4 className="font-medium mb-4">Company</h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>
+                    <a href="#" className="hover:text-black">
+                      {" "}
+                      About
+                    </a>
+                    <a href="#" className="hover:text-black">
+                      {" "}
+                      Careers
+                    </a>
+                    <a href="#" className="hover:text-black">
+                      {" "}
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              {/* Legal Links */}
+              <div>
+                <h4 className="font-medium mb-4">Legal</h4>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>
+                    <a href="#" className="hover:text-black">
+                      {" "}
+                      Privacy Policy
+                    </a>
+                    <a href="#" className="hover:text-black">
+                      {" "}
+                      Terms of service
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {/* Bottom Bar */}
+            <div className="mt-16 text-center text-sm text-gray-500">
+              © {new Date().getFullYear()} Metricly. All rights reserved.
+            </div>
+          </footer>
         </div>
       </section>
     </main>
