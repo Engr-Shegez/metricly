@@ -60,7 +60,6 @@ const DashboardPage = () => {
   ];
 
   const monthlyData = calculateMonthlyBreakdown(filteredTransactions);
-
   return (
     <div className="space-y-10 m-10 ">
       {/* page Header */}

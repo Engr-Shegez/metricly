@@ -1,3 +1,4 @@
+import Hero from "@/components/layout/Hero";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
@@ -36,57 +37,46 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-6 py-32 relative overflow-hidden">
+      <section className="px-6 py-32 relative overflow-hidden text-xl tracking-tight">
         {/* glow element */}
         <div className="absolute inset-0 flex justify-center">
           <div className="w-100 h-100 bg-emerald-500 opacity-15 blur-3xl rounded-full"></div>
         </div>
+
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
-          {/* Badge */}
-          <div className="inline-block mb-6 px-4 py-2 text-md bg-black text-white font-semibold rounded-full">
-            Modern Business Analytics Platform
-          </div>
+          <Hero />
+          <section className="px-6 py-16">
+            <div className="max-w-6xl mx-auto text-center">
+              <p className="text-md text-gray-500 mb-8 tracking-wide uppercase">
+                Trusted by innovative teams Worldwide
+              </p>
 
-          {/* Headlines */}
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            Turn Your Business Data{" "}
-            <span className="bg-linear-to-r from-emerald-500 to-red-600 bg-clip-text text-transparent">
-              {" "}
-              Into Smart Growth Decision
-            </span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
-            Track revenue,monitor transactions, and gain actionable insights
-            with a powerful analytics dashboard built for modern business
-          </p>
-
-          {/* CTA BUTTONS */}
-          <div className="flex justify-center gap-4">
-            <a
-              href="/dashboard"
-              className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
-            >
-              Get Started
-            </a>
-            <button className="px-6 py-3 border rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg">
-              View Demo
-            </button>
-          </div>
-
-          {/* PRODUCT PREVIEW */}
-          <div className="mt-20 relative">
-            <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
-
-            <div className="rounded-2xl overflow-hidden border shadow-2xl">
-              <iframe src="/dashboard" className="w-full h-120 bg-white" />
+              <div className="flex flex-wrap items-center justify-center gap-10 opacity-60">
+                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                  Strips
+                </span>
+                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                  Notion
+                </span>
+                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                  Vercel
+                </span>
+                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                  Linear
+                </span>
+                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                  Supabase
+                </span>
+              </div>
             </div>
-          </div>
+          </section>
 
           {/* Features Section */}
-          <section id="features" className="px-6 py-24 border-orange-500">
+          <section
+            id="features"
+            className="px-6 py-5 bg-linear-to-b from-orange-200 mt-10 border rounded-4xl  to-black"
+          >
             <div className="max-w-6xl mx-auto">
               {/* Section Header */}
               <div className="text-center mt-10 mb-16">
@@ -107,7 +97,7 @@ export default function Home() {
               {/* Feature Grid */}
               <div className="grid md:grid-cols-3 rounded-xl gap-9 fade-up">
                 {/* Feature 1*/}
-                <div className="bg-amber-400 p-8 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="bg-amber-400 p-8 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
                   <h3 className="text-lg text-blue-950 font-semibold mb-3">
                     Real-Time Insights
                   </h3>
@@ -143,7 +133,10 @@ export default function Home() {
           </section>
 
           {/* Pricing section */}
-          <section id="pricing" className="px-6 py-20 border-orange-500">
+          <section
+            id="pricing"
+            className="px-6 py-20 mt-20 border rounded-4xl bg-orange-50/60 backdrop-blur-sm"
+          >
             <div className="max-w-6xl mx-auto">
               {/* HEADER */}
 
@@ -163,7 +156,7 @@ export default function Home() {
                   <h3 className="text-xl text-gray-500 font-semibold mb-2">
                     Starter
                   </h3>
-                  <p className="text-3xl text-black  font-bold mb-6">
+                  <p className="text-3xl text-gray-700  font-bold mb-6">
                     $19<span className="text-sm text-gray-700">/month</span>
                   </p>
                   <ul className="space-y-3 text-sm text-gray-600 mb-3">
@@ -181,8 +174,8 @@ export default function Home() {
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-gray-500 text-sm px-3 py-1 rounded-full">
                     Most Popular
                   </div>
-                  <h3 className="text-lg text-black font-bold mb-6">Pro</h3>
-                  <p className="text-3xl text-black font-bold mb-6">
+                  <h3 className="text-2xl text-gray-700 font-bold mb-6">Pro</h3>
+                  <p className="text-3xl  text-gray-700 font-bold mb-6">
                     $49<span className="text-sm text-gray-700">/month</span>
                   </p>
                   <ul className="space-y-3 text-sm text-gray-600 mb-8">
@@ -200,7 +193,9 @@ export default function Home() {
                   <h3 className="text-lg text-gray-500 font-bold mb-6">
                     Enterprise
                   </h3>
-                  <p className="text-3xl text-black font-bold mb-6">Custom</p>
+                  <p className="text-3xl text-gray-700 font-bold mb-6">
+                    Custom
+                  </p>
                   <ul className="space-y-3 text-sm text-gray-600 mb-4">
                     <li>✓ Dedictated infrastructure</li>
                     <li>✓ Custom reporting</li>
@@ -213,8 +208,9 @@ export default function Home() {
               </div>
             </div>
           </section>
+
           {/* Final Cta */}
-          <section className="px-6 py-20 rounded-xl border bg-emerald-600 text-white">
+          <section className="px-6 py-20 mt-20 rounded-4xl border bg-emerald-50/70 backdrop-blur-sm text-gray-700">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl font-bold mb-6">
                 Start Making Smarter Business Decisions Today
@@ -232,7 +228,9 @@ export default function Home() {
             </div>
           </section>
           {/* Footer */}
-          <footer className="border-orange-500 mt-24 px-6 py-24">
+
+          <footer className="border-orange-500 mt-14  px-6 ">
+            <div className="border-t border-gray-200"></div>
             <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-12">
               {/* BRAND */}
               <div>
@@ -300,7 +298,7 @@ export default function Home() {
               </div>
             </div>
             {/* Bottom Bar */}
-            <div className="mt-16 text-center text-sm text-gray-500">
+            <div className="mt-10 text-center text-sm text-gray-500">
               © {new Date().getFullYear()} Metricly. All rights reserved.
             </div>
           </footer>
