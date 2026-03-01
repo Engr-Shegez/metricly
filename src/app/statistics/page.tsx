@@ -9,6 +9,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar } from "recharts";
 
 const StatisticsPage = () => {
   const revenueData = [
@@ -20,6 +22,14 @@ const StatisticsPage = () => {
     { day: "Sat", revenue: 3970 },
     { day: "Sun", revenue: 5200 },
   ];
+
+  const distributionData = [
+    { name: "Website", value: 12400 },
+    { name: "Mobile App", value: 8900 },
+    { name: "Direct Sales", value: 5400 },
+    { name: "Affiliates", value: 3200 },
+  ];
+  const PIE_COLORS = ["#6366F1", "#22C55E", "#F59E0B", "#ef4444"];
   return (
     <div className="p-6 space-y-10">
       {/* Header */}
@@ -111,6 +121,49 @@ const StatisticsPage = () => {
         </div>
       </div>
       {/* Secondary Analytics */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        {/* PIE CHART CARD */}
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+          <div>
+            <h2 className="text-lg font-semibold">Revenue Distribution</h2>
+            <p className="text-sm text-gray-500">
+              Breakdown by acquisition channel
+            </p>
+          </div>
+          {/* pie CHART GOES HERE  */}
+          <div className="h-70">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={distributionData}
+                  dataKey="value"
+                  nameKey="name"
+                  innerRadius={80}
+                  outerRadius={120}
+                  paddingAngle={4}
+                >
+                  {distributionData.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={PIE_COLORS[index % PIE_COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        {/* bar chart card */}
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+          <div>
+            <h2 className="text-lg font-semibold">Monthly Comparison</h2>
+            <p className="text-md text-gray-500">
+              Revenue comparison over recent months
+            </p>
+          </div>
+          {/* Bar goes here  */}
+        </div>
+      </div>
     </div>
   );
 };
