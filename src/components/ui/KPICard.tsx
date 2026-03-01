@@ -15,7 +15,7 @@ const KPICardProps = ({ title, value, trend }: KPICardProps) => {
 
       {trend && (
         <p
-          className={`text-sm mt-2 ${trend === "up" ? "text-(--color-success)" : "text-(--color-danger)"}`}
+          className={`text-sm mt-2 ${trend === "up" ? "text-green-600" : "text-red-600"}`}
         >
           {trend === "up" ? "▲ Increasing" : "▼ Decreasing"}
         </p>
