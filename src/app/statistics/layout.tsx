@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       <Sidebar />
       <main className="flex-1 p-5">
         <header className="mb-6 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
+          <h1 className="text-xl font-semibold text-foreground">Statistics</h1>
           <ThemeToggle />
         </header>
         <div className="rounded-2xl border bg-card p-4 shadow-soft-card">

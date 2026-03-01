@@ -1,4 +1,5 @@
 "use client";
+import Sidebar from "@/components/layout/Sidebar";
 import React from "react";
 import {
   LineChart,
@@ -30,13 +31,21 @@ const StatisticsPage = () => {
     { name: "Affiliates", value: 3200 },
   ];
   const PIE_COLORS = ["#6366F1", "#22C55E", "#F59E0B", "#ef4444"];
+
+  const monthlyData = [
+    { month: "Jan", revenue: 18000 },
+    { month: "Feb", revenue: 21000 },
+    { month: "Mar", revenue: 10600 },
+    { month: "Apr", revenue: 14500 },
+    { month: "May", revenue: 45000 },
+  ];
   return (
-    <div className="p-6 space-y-10">
+    <div className="p-6 space-y-10 ">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Statictics</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-md font-semibold text-gray-200 mt-1">
             Detailed insights into revenue, performance and growth.
           </p>
         </div>
@@ -92,7 +101,7 @@ const StatisticsPage = () => {
         </div>
       </div>
       {/* Revenue Trend */}
-      <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+      <div className=" border border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg font-sembold"> Revenue Trend</h2>
@@ -123,7 +132,7 @@ const StatisticsPage = () => {
       {/* Secondary Analytics */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* PIE CHART CARD */}
-        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+        <div className=" border border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
           <div>
             <h2 className="text-lg font-semibold">Revenue Distribution</h2>
             <p className="text-sm text-gray-500">
@@ -154,7 +163,7 @@ const StatisticsPage = () => {
           </div>
         </div>
         {/* bar chart card */}
-        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+        <div className=" border border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
           <div>
             <h2 className="text-lg font-semibold">Monthly Comparison</h2>
             <p className="text-md text-gray-500">
@@ -162,6 +171,17 @@ const StatisticsPage = () => {
             </p>
           </div>
           {/* Bar goes here  */}
+          <div className="h-70">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={monthlyData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="f0f0f0" />
+                <XAxis dataKey="month" stroke="#9ca3af" fontSize={15} />
+                <YAxis stroke="#9ca3af" fontSize={15} />
+                <Tooltip />
+                <Bar dataKey="revenue" fill="#35b83E" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>
