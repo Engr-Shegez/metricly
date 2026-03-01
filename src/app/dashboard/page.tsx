@@ -107,7 +107,7 @@ const DashboardPage = () => {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-9 gap-x-9 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-9 gap-x-9    ">
         <KPICard
           title="Total Revenue"
           value={`$${totalRevenue.toLocaleString()}`}
