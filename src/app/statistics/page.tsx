@@ -23,6 +23,16 @@ const StatisticsPage = () => {
   };
 
   const revenueData = generateRevenueData(Number(range));
+  const totalRevenue = revenueData.reduce((sum, item) => sum + item.revenue, 0);
+  const avgRevenue = totalRevenue / revenueData.length;
+  const previousRevenueData = generateRevenueData(Number(range));
+  const previousTotal = previousRevenueData.reduce(
+    (sum, items) => sum + items.revenue,
+    0,
+  );
+  const growth = ((totalRevenue - previousTotal) / previousTotal) * 100;
+  const conversionRate = (Math.random() * 2 + 2).toFixed(2);
+
   const distributionData = [
     { name: "Website", value: 12400 },
     { name: "Mobile App", value: 8900 },
@@ -73,7 +83,7 @@ const StatisticsPage = () => {
         <div className="p-6  rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Total Revenue</p>
           <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
-            $24,580
+            ${totalRevenue.toLocaleString()}
           </h2>
           <p className="mt-1 text-md text-green-600 font-medium">
             +12.5% from last period
@@ -83,7 +93,7 @@ const StatisticsPage = () => {
         <div className="p-6 rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Avg Order Value</p>
           <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
-            $128.40
+            ${avgRevenue.toFixed(2)}
           </h2>
           <p className="mt-1 text-md text-green-600 font-medium">
             +4.2% improvement
@@ -92,14 +102,20 @@ const StatisticsPage = () => {
         {/* Conversion */}
         <div className="p-6  rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Conversion Rate</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">3.84%</h2>
+          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
+            {conversionRate}%
+          </h2>
           <p className="mt-1 text-md text-green-600 font-medium">-0.6% drop</p>
         </div>
         {/* Growth */}
         <div className="p-6  rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Net Growth</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">+18.3%</h2>
-          <p className="mt-1 text-md text-green-600 font-medium">
+          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
+            {growth.toFixed(1)}%
+          </h2>
+          <p
+            className={`mt-1 text-md  ${growth >= 0 ? "text-green-600" : "text-red-500"} font-medium`}
+          >
             Strong Upward trend
           </p>
         </div>
