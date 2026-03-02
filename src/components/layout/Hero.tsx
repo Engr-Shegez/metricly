@@ -12,15 +12,16 @@ const Hero = () => {
           transform: `translate(${position.x - 100}px, ${position.y - 100}px)`,
         }}
       ></div>
+
       {/* Badge */}
-      <div className="inline-block mb-6 px-4 py-2 text-md bg-black text-white font-semibold rounded-full">
+      <div className="inline-block mb-6 px-4 py-2 text-md bg-orange-300 text-black font-semibold rounded-full">
         Modern Business Analytics Platform
       </div>
 
       {/* Headlines */}
       <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
         Turn Your Business Data{" "}
-        <span className="bg-linear-to-r from-emerald-500 to-red-600 bg-clip-text text-transparent">
+        <span className=" text-orange-600 bg-clip-text ">
           {" "}
           Into Smart Growth Decision
         </span>
@@ -36,11 +37,11 @@ const Hero = () => {
       <div className="flex justify-center gap-4">
         <a
           href="/dashboard"
-          className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
+          className="px-6 py-3 bg-orange-400 text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
         >
           Get Started
         </a>
-        <button className="px-6 py-3 border rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg">
+        <button className="px-6 py-3 border rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg">
           View Demo
         </button>
       </div>
@@ -49,7 +50,7 @@ const Hero = () => {
       <div className="mt-20 relative">
         <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
 
-        <div className="rounded-2xl overflow-hidden border shadow-2xl">
+        <div className="rounded-2xl relative z-10 overflow-hidden border shadow-2xl">
           <iframe src="/dashboard" className="w-full h-120 bg-white" />
         </div>
       </div>

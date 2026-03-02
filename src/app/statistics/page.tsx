@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "@/components/layout/Sidebar";
+import { useState } from "react";
 import React from "react";
 import {
   LineChart,
@@ -14,16 +14,15 @@ import { PieChart, Pie, Cell } from "recharts";
 import { BarChart, Bar } from "recharts";
 
 const StatisticsPage = () => {
-  const revenueData = [
-    { day: "Mon", revenue: 2400 },
-    { day: "Tue", revenue: 1398 },
-    { day: "Wed", revenue: 3800 },
-    { day: "Thu", revenue: 2908 },
-    { day: "Fri", revenue: 4800 },
-    { day: "Sat", revenue: 3970 },
-    { day: "Sun", revenue: 5200 },
-  ];
+  const [range, setRange] = useState("30");
+  const generateRevenueData = (days: number) => {
+    return Array.from({ length: days }).map((_, i) => ({
+      day: `Day ${i + 1}`,
+      revenue: Math.floor(Math.random() * 5000 + 1000),
+    }));
+  };
 
+  const revenueData = generateRevenueData(Number(range));
   const distributionData = [
     { name: "Website", value: 12400 },
     { name: "Mobile App", value: 8900 },
@@ -39,6 +38,7 @@ const StatisticsPage = () => {
     { month: "Apr", revenue: 14500 },
     { month: "May", revenue: 45000 },
   ];
+
   return (
     <div className="p-6 space-y-10 ">
       {/* Header */}
@@ -51,7 +51,11 @@ const StatisticsPage = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <select className="px-3 py-2 text-sm border border-gray-500 text-white rounded-lg bg-gray-800">
+          <select
+            value={range}
+            onChange={(e) => setRange(e.target.value)}
+            className="px-3 py-2 text-sm border border-gray-500 text-white rounded-lg bg-gray-800"
+          >
             <option>Last 7 days</option>
             <option>Last 30 days</option>
             <option>Last 90 days</option>
@@ -115,7 +119,12 @@ const StatisticsPage = () => {
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={revenueData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="day" stroke="#9ca3af" fontSize={12} />
+              <XAxis
+                dataKey="day"
+                tick={{ fontSize: 10 }}
+                interval={Math.floor(Number(range) / 10)}
+                stroke="#9ca3af"
+              />
               <YAxis stroke="#9ca3af" fontSize={12} />
               <Tooltip />
               <Line

@@ -39,9 +39,9 @@ export default function Home() {
 
       <section className="px-6 py-32 relative overflow-hidden text-xl tracking-tight">
         {/* glow element */}
-        <div className="absolute inset-0 flex justify-center">
+        {/* <div className="absolute inset-0 flex justify-center">
           <div className="w-100 h-100 bg-emerald-500 opacity-15 blur-3xl rounded-full"></div>
-        </div>
+        </div> */}
 
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
