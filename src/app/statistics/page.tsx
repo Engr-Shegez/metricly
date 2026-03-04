@@ -33,6 +33,26 @@ const StatisticsPage = () => {
   const growth = ((totalRevenue - previousTotal) / previousTotal) * 100;
   const conversionRate = (Math.random() * 2 + 2).toFixed(2);
 
+  const categories = ["Subscriptions", "One-time", "Upgrades", "Refunds"];
+  const categoryData = categories.map((cat) => ({
+    name: cat,
+    value: Math.floor(
+      (totalRevenue / categories.length) * (Math.random() + 0.5),
+    ),
+  }));
+  const groupByweek = () => {
+    const weeks = Math.ceil(revenueData.length / 7);
+    return Array.from({ length: weeks }).map((_, i) => {
+      const slice = revenueData.slice(i * 7, i * 7 + 7);
+
+      return {
+        week: `Week ${i + 1}`,
+        revenue: slice.reduce((sum, d) => sum + d.revenue, 0),
+      };
+    });
+  };
+  const weeklyData = groupByweek();
+
   const distributionData = [
     { name: "Website", value: 12400 },
     { name: "Mobile App", value: 8900 },
@@ -105,6 +125,7 @@ const StatisticsPage = () => {
           <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
             {conversionRate}%
           </h2>
+          npm run dev
           <p className="mt-1 text-md text-green-600 font-medium">-0.6% drop</p>
         </div>
         {/* Growth */}
@@ -116,7 +137,7 @@ const StatisticsPage = () => {
           <p
             className={`mt-1 text-md  ${growth >= 0 ? "text-green-600" : "text-red-500"} font-medium`}
           >
-            Strong Upward trend
+            Strong upward trend
           </p>
         </div>
       </div>
@@ -169,7 +190,7 @@ const StatisticsPage = () => {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={distributionData}
+                  data={categoryData}
                   dataKey="value"
                   nameKey="name"
                   innerRadius={80}
@@ -198,9 +219,9 @@ const StatisticsPage = () => {
           {/* Bar goes here  */}
           <div className="h-70">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={monthlyData}>
+              <BarChart data={weeklyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="f0f0f0" />
-                <XAxis dataKey="month" stroke="#9ca3af" fontSize={15} />
+                <XAxis dataKey="week" stroke="#9ca3af" fontSize={15} />
                 <YAxis stroke="#9ca3af" fontSize={15} />
                 <Tooltip />
                 <Bar dataKey="revenue" fill="#35b83E" radius={[6, 6, 0, 0]} />
