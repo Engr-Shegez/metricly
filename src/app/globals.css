@@ -20,6 +20,8 @@
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 47.4% 11.2%;
+
+    --tooltip-bg: white;
   }
 
   .dark {
@@ -41,6 +43,8 @@
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
+
+    --tooltip-bg: #111827;
   }
 
   *,

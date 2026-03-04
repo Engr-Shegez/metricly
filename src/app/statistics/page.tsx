@@ -33,6 +33,12 @@ const StatisticsPage = () => {
   const growth = ((totalRevenue - previousTotal) / previousTotal) * 100;
   const conversionRate = (Math.random() * 2 + 2).toFixed(2);
 
+  const isPositive = growth >= 0;
+
+  const trendText = isPositive ? "Strong upward trend" : "Downward trend";
+
+  const trendColor = isPositive ? "text-green-600" : "text-red-500";
+
   const categories = ["Subscriptions", "One-time", "Upgrades", "Refunds"];
   const categoryData = categories.map((cat) => ({
     name: cat,
@@ -135,9 +141,10 @@ const StatisticsPage = () => {
             {growth.toFixed(1)}%
           </h2>
           <p
-            className={`mt-1 text-md  ${growth >= 0 ? "text-green-600" : "text-red-500"} font-medium`}
+            className={`mt-1 items-center gap-1 text-md ${trendColor} font-medium`}
           >
-            Strong upward trend
+            {isPositive ? "↑" : "↓"}
+            {trendText}
           </p>
         </div>
       </div>
@@ -152,7 +159,7 @@ const StatisticsPage = () => {
           </div>
         </div>
         {/* Chart */}
-        <div className="h-80">
+        <div className="h-80 rounded-2xl border border-border/50 bg-background/60 backdrop-blur-md p-6 shadow-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={revenueData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -163,13 +170,23 @@ const StatisticsPage = () => {
                 stroke="#9ca3af"
               />
               <YAxis stroke="#9ca3af" fontSize={12} />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "var(--tooltip-bg)",
+                  borderRadius: "12px",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                }}
+                labelStyle={{ fontWeight: 600 }}
+              />
               <Line
-                type="monotone"
+                type="monotoneX"
                 dataKey="revenue"
                 stroke="#6366f1"
                 strokeWidth={3}
                 dot={false}
+                isAnimationActive={true}
+                animationDuration={600}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -178,7 +195,7 @@ const StatisticsPage = () => {
       {/* Secondary Analytics */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* PIE CHART CARD */}
-        <div className=" border border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
+        <div className=" border-border/50 bg-background/60 backdrop-blur-md  shadow-lg border border-gray-700 rounded-2xl  p-6 space-y-6  transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
           <div>
             <h2 className="text-lg font-semibold">Revenue Distribution</h2>
             <p className="text-sm text-gray-500">
@@ -196,6 +213,8 @@ const StatisticsPage = () => {
                   innerRadius={80}
                   outerRadius={120}
                   paddingAngle={4}
+                  isAnimationActive={true}
+                  animationDuration={600}
                 >
                   {distributionData.map((_, index) => (
                     <Cell
@@ -209,7 +228,7 @@ const StatisticsPage = () => {
           </div>
         </div>
         {/* bar chart card */}
-        <div className=" border border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
+        <div className="  border-gray-700 space-y-6 rounded-2xl border border-border/50 bg-background/60 backdrop-blur-md p-6 shadow-lg  transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
           <div>
             <h2 className="text-lg font-semibold">Monthly Comparison</h2>
             <p className="text-md text-gray-500">
@@ -224,7 +243,13 @@ const StatisticsPage = () => {
                 <XAxis dataKey="week" stroke="#9ca3af" fontSize={15} />
                 <YAxis stroke="#9ca3af" fontSize={15} />
                 <Tooltip />
-                <Bar dataKey="revenue" fill="#35b83E" radius={[6, 6, 0, 0]} />
+                <Bar
+                  dataKey="revenue"
+                  fill="#35b83E"
+                  radius={[6, 6, 0, 0]}
+                  isAnimationActive={true}
+                  animationDuration={600}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
