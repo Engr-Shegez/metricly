@@ -43,9 +43,9 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
           <Link
-            href="/statistics"
+            href="/dashboard/statistics"
             className={`flex items-center gap-3 ${
-              pathname === "/statistics"
+              pathname === "/dashboard/statistics"
                 ? "font-semibold text-(--color-accent)"
                 : "text-(--color-secondary)"
             }`}
@@ -56,9 +56,9 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
           <Link
-            href="/transaction"
+            href="/dashboard/transaction"
             className={`flex items-center gap-3 ${
-              pathname === "/transaction"
+              pathname === "/dashboard/transaction"
                 ? "font-semibold text-(--color-accent)"
                 : "text-(--color-secondary)"
             }`}
