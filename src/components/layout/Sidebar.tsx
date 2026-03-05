@@ -18,9 +18,7 @@ const Sidebar = () => {
     <aside className="w-65  p-8">
       <h2
         className={`flex text-3xl pl-5 font-bold mb-12 mt-8 items-center gap-3 ${
-          pathname === "/dashboard"
-            ? " text-(--color-accent)"
-            : "text-(--color-secondary)"
+          pathname === "/dashboard" ? " text-black" : "text-gray-400"
         }`}
       >
         <Omega size={30} />
@@ -33,8 +31,8 @@ const Sidebar = () => {
             href="/dashboard"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold text-black"
+                : "text-gray-400"
             }`}
           >
             <LayoutDashboard size={20} />
@@ -46,21 +44,21 @@ const Sidebar = () => {
             href="/dashboard/statistics"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/statistics"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold  text-black"
+                : "text-gray-400"
             }`}
           >
             <BarChart3 size={20} />
             Statistics
           </Link>
         </nav>
-        <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
+        <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
           <Link
             href="/dashboard/transaction"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/transaction"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold  text-black"
+                : "text-gray-400"
             }`}
           >
             <ArrowLeftRight size={20} />
@@ -72,8 +70,8 @@ const Sidebar = () => {
             href="/team"
             className={`flex items-center gap-3 ${
               pathname === "/team"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold  text-black"
+                : "text-gray-400"
             }`}
           >
             <Users size={20} />
@@ -85,8 +83,8 @@ const Sidebar = () => {
             href="/reports"
             className={`flex items-center gap-3 ${
               pathname === "/reports"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold  text-black"
+                : "text-gray-400"
             }`}
           >
             <FileText size={20} />
@@ -98,8 +96,8 @@ const Sidebar = () => {
             href="/settings"
             className={`flex items-center gap-3 ${
               pathname === "/settings"
-                ? "font-semibold text-(--color-accent)"
-                : "text-(--color-secondary)"
+                ? "font-semibold text-black"
+                : "text-gray-400"
             }`}
           >
             <Settings size={20} />
