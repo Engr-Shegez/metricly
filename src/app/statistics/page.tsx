@@ -131,7 +131,7 @@ const StatisticsPage = () => {
           <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
             {conversionRate}%
           </h2>
-          npm run dev
+
           <p className="mt-1 text-md text-green-600 font-medium">-0.6% drop</p>
         </div>
         {/* Growth */}
@@ -182,7 +182,7 @@ const StatisticsPage = () => {
               <Line
                 type="monotoneX"
                 dataKey="revenue"
-                stroke="#6366f1"
+                stroke="#ffa500"
                 strokeWidth={3}
                 dot={false}
                 isAnimationActive={true}

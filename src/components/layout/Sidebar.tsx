@@ -56,7 +56,7 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
           <Link
-            href="/transactions"
+            href="/transaction"
             className={`flex items-center gap-3 ${
               pathname === "/transaction"
                 ? "font-semibold text-(--color-accent)"
