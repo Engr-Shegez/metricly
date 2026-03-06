@@ -1,7 +1,18 @@
 import Hero from "@/components/layout/Hero";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import Image from "next/image";
 
 export default function Home() {
+  const logos = [
+    "/logos/stripe.svg",
+    "/logos/notion.svg",
+    "/logos/linear.svg",
+    "/logos/vercel.svg",
+    "/logos/supabase.svg",
+    "/logos/company-logo-1.png",
+    "/logos/vercel.svg",
+    "/logos/supabase.svg",
+  ];
   return (
     <main className="min-h-screen ">
       {/* NAVBAR */}
@@ -48,26 +59,25 @@ export default function Home() {
           <Hero />
           <section className="px-6 py-16">
             <div className="max-w-6xl mx-auto text-center">
-              <p className="text-md text-gray-500 mb-8 tracking-wide uppercase">
+              <p className="text-md text-gray-800 mb-8 tracking-wide font-bold uppercase">
                 Trusted by innovative teams Worldwide
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-10 opacity-60">
-                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                  Strips
-                </span>
-                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                  Notion
-                </span>
-                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                  Vercel
-                </span>
-                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                  Linear
-                </span>
-                <span className="text-xl font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                  Supabase
-                </span>
+              <div className="relative overflow-hidden w-full py-4">
+                <div className="absolute left-0 top-0 h-full w-32 bg-linear-to-r from-background to-transparent z-10" />
+                <div className="absolute right-0 top-0 h-full w-32 bg-linear-to-l from-background to-transparent z-10" />
+                <div className="flex animate-marquee whitespace-nowrap min-w-max  gap-16 opacity-60 will-change-transform">
+                  {[...companies, ...companies].map((logo, i) => (
+                    <Image
+                      key={i}
+                      alt="company logo"
+                      src={logo}
+                      width={120}
+                      height={40}
+                      className="h-8 w-auto opacity-100 hover:opacity-700 transition"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -75,7 +85,7 @@ export default function Home() {
           {/* Features Section */}
           <section
             id="features"
-            className="px-6 py-5 bg-linear-to-b from-orange-200 mt-10 border rounded-4xl  to-black"
+            className="px-6 py-2 bg-linear-to-b from-orange-200 mt-10 border rounded-4xl  to-black"
           >
             <div className="max-w-6xl mx-auto">
               {/* Section Header */}
