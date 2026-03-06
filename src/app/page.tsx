@@ -8,10 +8,12 @@ export default function Home() {
     "/logos/notion.svg",
     "/logos/linear.svg",
     "/logos/vercel.svg",
-    "/logos/supabase.svg",
-    "/logos/company-logo-1.png",
-    "/logos/vercel.svg",
-    "/logos/supabase.svg",
+    "/logos/adobe.svg",
+    "/logos/loom.svg",
+    "/logos/microsoft.svg",
+    "/logos/Nvidia.svg",
+
+    "/logos/shopify.svg",
   ];
   return (
     <main className="min-h-screen ">
@@ -49,11 +51,6 @@ export default function Home() {
       </nav>
 
       <section className="px-6 py-32 relative overflow-hidden text-xl tracking-tight">
-        {/* glow element */}
-        {/* <div className="absolute inset-0 flex justify-center">
-          <div className="w-100 h-100 bg-emerald-500 opacity-15 blur-3xl rounded-full"></div>
-        </div> */}
-
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
           <Hero />
@@ -66,15 +63,15 @@ export default function Home() {
               <div className="relative overflow-hidden w-full py-4">
                 <div className="absolute left-0 top-0 h-full w-32 bg-linear-to-r from-background to-transparent z-10" />
                 <div className="absolute right-0 top-0 h-full w-32 bg-linear-to-l from-background to-transparent z-10" />
-                <div className="flex animate-marquee whitespace-nowrap min-w-max  gap-16 opacity-60 will-change-transform">
-                  {[...companies, ...companies].map((logo, i) => (
+                <div className="flex animate-marquee whitespace-nowrap min-w-max  gap-16 opacity-60 will-change-transform ">
+                  {[...logos, ...logos].map((logo, i) => (
                     <Image
                       key={i}
                       alt="company logo"
                       src={logo}
                       width={120}
-                      height={40}
-                      className="h-8 w-auto opacity-100 hover:opacity-700 transition"
+                      height={50}
+                      className="h-15 w-auto grayscale opacity-100 hover:opacity-700 hover:grayscale-0 transition"
                     />
                   ))}
                 </div>
