@@ -18,7 +18,7 @@ const Sidebar = () => {
     <aside className="w-65  p-8">
       <h2
         className={`flex text-3xl pl-5 font-bold mb-12 mt-8 items-center gap-3 ${
-          pathname === "/dashboard" ? " text-black" : "text-gray-400"
+          pathname === "/dashboard" ? " text-black" : "text-orange-700"
         }`}
       >
         <Omega size={30} />
@@ -32,7 +32,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/dashboard"
                 ? "font-semibold text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <LayoutDashboard size={20} />
@@ -45,7 +45,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/statistics"
                 ? "font-semibold  text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <BarChart3 size={20} />
@@ -58,7 +58,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/transaction"
                 ? "font-semibold  text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <ArrowLeftRight size={20} />
@@ -71,7 +71,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/team"
                 ? "font-semibold  text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <Users size={20} />
@@ -84,7 +84,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/reports"
                 ? "font-semibold  text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <FileText size={20} />
@@ -97,7 +97,7 @@ const Sidebar = () => {
             className={`flex items-center gap-3 ${
               pathname === "/settings"
                 ? "font-semibold text-black"
-                : "text-gray-400"
+                : "text-gray-500"
             }`}
           >
             <Settings size={20} />

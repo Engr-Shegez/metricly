@@ -31,7 +31,7 @@ export default function Home() {
             <a href="#pricing" className="hover:text-black">
               Pricing
             </a>
-            <a href="#dashboard" className="hover:text-black">
+            <a href="/dashboard" className="hover:text-black">
               Dashboard
             </a>
           </div>
@@ -54,15 +54,15 @@ export default function Home() {
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
           <Hero />
-          <section className="px-6 py-16">
+          <section className="px-6 py-16 mt-10">
             <div className="max-w-6xl mx-auto text-center">
-              <p className="text-md text-gray-800 mb-8 tracking-wide font-bold uppercase">
+              <p className="text-md  mb-8 tracking-wide font-bold uppercase">
                 Trusted by innovative teams Worldwide
               </p>
 
               <div className="relative overflow-hidden w-full py-4">
-                <div className="absolute left-0 top-0 h-full w-32 bg-linear-to-r from-background to-transparent z-10" />
-                <div className="absolute right-0 top-0 h-full w-32 bg-linear-to-l from-background to-transparent z-10" />
+                <div className="absolute left-0 top-0 h-full w-20 bg-linear-to-r from-background to-transparent z-10" />
+                <div className="absolute right-0 top-0 h-full w-20 bg-linear-to-l from-background to-transparent z-10" />
                 <div className="flex animate-marquee whitespace-nowrap min-w-max  gap-16 opacity-60 will-change-transform ">
                   {[...logos, ...logos].map((logo, i) => (
                     <Image
@@ -82,7 +82,7 @@ export default function Home() {
           {/* Features Section */}
           <section
             id="features"
-            className="px-6 py-2 bg-linear-to-b from-orange-200 mt-10 border rounded-4xl  to-black"
+            className="px-16 py-12 bg-linear-to-b  mt-10   "
           >
             <div className="max-w-6xl mx-auto">
               {/* Section Header */}
@@ -142,7 +142,7 @@ export default function Home() {
           {/* Pricing section */}
           <section
             id="pricing"
-            className="px-6 py-20 mt-20 border rounded-4xl bg-orange-50/60 backdrop-blur-sm"
+            className="px-6 py-20 mt-20  backdrop-blur-sm mb-30"
           >
             <div className="max-w-6xl mx-auto">
               {/* HEADER */}

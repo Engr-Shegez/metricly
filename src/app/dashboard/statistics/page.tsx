@@ -81,7 +81,7 @@ const StatisticsPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Statictics</h1>
-          <p className="text-md font-semibold text-gray-200 mt-1">
+          <p className="text-md font-semibold text-gray-500 mt-1">
             Detailed insights into revenue, performance and growth.
           </p>
         </div>

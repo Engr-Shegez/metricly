@@ -66,7 +66,7 @@ const DashboardPage = () => {
       <div className="h-20 flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold">Dashboard</h1>
-          <p className="text-lg text-(--color-secondary) mt-1">
+          <p className="text-lg text-gray-500 mt-1">
             Overview of your business performance
           </p>
           <p className="text-sm text-muted-foreground">
@@ -107,7 +107,7 @@ const DashboardPage = () => {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-9 gap-x-9    ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols_4 gap-y-9 gap-x-9">
         <KPICard
           title="Total Revenue"
           value={`$${totalRevenue.toLocaleString()}`}
