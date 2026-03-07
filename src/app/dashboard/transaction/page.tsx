@@ -1,4 +1,6 @@
+"use client";
 import { Card } from "@/components/ui/card";
+import { useState } from "react";
 
 const transactions = [
   {
@@ -27,6 +29,19 @@ const transactions = [
 ];
 
 export default function TransactionsPage() {
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+
+  const filterTransactions = transactions.filter((txn) => {
+    const matchesSearch =
+      txn.customer.toLowerCase().includes(search.toLowerCase()) ||
+      txn.id.toLowerCase().includes(search.toLowerCase());
+
+    const matchesStatus = status ? txn.status === status : true;
+
+    return matchesSearch && matchesStatus;
+  });
+
   return (
     <div className="flex flex-col gap-8 border-none">
       {/* Page Header */}
@@ -43,15 +58,17 @@ export default function TransactionsPage() {
       <Card className="p-6 border-none">
         <h2 className="font-semibold mb-4">Filters</h2>
 
-        <div className="grid grid-cols-4  gap-4">
+        <div className="grid grid-cols-4   gap-4">
           {/* Search */}
           <input
             type="text"
             placeholder="Search transactions..."
-            className="h-10 rounded-md border px-3 text-sm"
+            className="h-10 rounded-md border px-3 text-sm font-semibold"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           {/* status filter */}
-          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm font-semibold text-black bg-gray-500">
             <option value="">All Status</option>
             <option value="completed">Completed</option>
             <option value="pending">Pending</option>
@@ -59,7 +76,7 @@ export default function TransactionsPage() {
           </select>
 
           {/* Type filter */}
-          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm font-semibold text-black bg-gray-500">
             <option value="">All Types</option>
             <option value="payment">Payments</option>
             <option value="refund">Refund</option>
@@ -67,7 +84,7 @@ export default function TransactionsPage() {
           </select>
 
           {/* Date filter */}
-          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm font-semibold text-black bg-gray-500">
             <option value="7">Last 7 days</option>
             <option value="30">Last 30 days </option>
             <option value="90">Last 90 days</option>
@@ -92,19 +109,30 @@ export default function TransactionsPage() {
             </thead>
 
             <tbody>
-              {transactions.map((txn) => (
-                <tr key={txn.id} className="border-b">
-                  <td className="py-3">{txn.id}</td>
-                  <td>{txn.customer}</td>
-                  <td>{txn.amount}</td>
+              {filterTransactions.length === 0 ? (
+                <tr>
                   <td
-                    className={`font-medium ${txn.status === "completed" ? "text-green-600" : txn.status === "pending" ? "text-yellow-600" : "text-red-600"}`}
+                    colSpan={5}
+                    className="py-10 text-center text-muted-foreground"
                   >
-                    {txn.status}
+                    No transactions found
                   </td>
-                  <td>{txn.date}</td>
                 </tr>
-              ))}
+              ) : (
+                filterTransactions.map((txn) => (
+                  <tr key={txn.id} className="border-b">
+                    <td className="py-3">{txn.id}</td>
+                    <td>{txn.customer}</td>
+                    <td>{txn.amount}</td>
+                    <td
+                      className={`font-medium ${txn.status === "completed" ? "text-green-600" : txn.status === "pending" ? "text-yellow-600" : "text-red-600"}`}
+                    >
+                      {txn.status}
+                    </td>
+                    <td>{txn.date}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
