@@ -18,10 +18,34 @@ export default function TransactionsPage() {
         <h2 className="font-semibold mb-4">Filters</h2>
 
         <div className="grid grid-cols-4  gap-4">
-          <div className="h-10 rounded-md bg-muted"></div>
-          <div className="h-10 rounded-md bg-muted"></div>
-          <div className="h-10 rounded-md bg-muted"></div>
-          <div className="h-10 rounded-md bg-muted"></div>
+          {/* Search */}
+          <input
+            type="text"
+            placeholder="Search transactions..."
+            className="h-10 rounded-md border px-3 text-sm"
+          />
+          {/* status filter */}
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+            <option value="">All Status</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+            <option value="failed">Failed</option>
+          </select>
+
+          {/* Type filter */}
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+            <option value="">All Types</option>
+            <option value="payment">Payments</option>
+            <option value="refund">Refund</option>
+            <option value="withdrawal">Withdrawal</option>
+          </select>
+
+          {/* Date filter */}
+          <select className="h-10 w-auto rounded-lg border px-3 text-sm">
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days </option>
+            <option value="90">Last 90 days</option>
+          </select>
         </div>
       </Card>
 
