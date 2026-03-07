@@ -1,5 +1,31 @@
 import { Card } from "@/components/ui/card";
 
+const transactions = [
+  {
+    id: "TXN-10231",
+    customer: "John Doe",
+    amount: 120,
+    status: "completed",
+    date: "Mar 4, 2026",
+  },
+
+  {
+    id: "TXN-10232",
+    customer: "Jane Smith",
+    amount: 85,
+    status: "pending",
+    date: "Mar 5, 2026",
+  },
+
+  {
+    id: "TXN-10233",
+    customer: "David Lee",
+    amount: 250,
+    status: "failed",
+    date: "Mar 6, 2026",
+  },
+];
+
 export default function TransactionsPage() {
   return (
     <div className="flex flex-col gap-8 border-none">
@@ -66,29 +92,19 @@ export default function TransactionsPage() {
             </thead>
 
             <tbody>
-              <tr className="border-b">
-                <td className="py-3">TXN-102231</td>
-                <td>John Doe</td>
-                <td>$120.00</td>
-                <td className="text-green-600 font-medium">Completed</td>
-                <td>March 4, 2026</td>
-              </tr>
-
-              <tr className="border-b">
-                <td className="py-3">TXN-102232</td>
-                <td>Jane Smith</td>
-                <td>$85.00</td>
-                <td className="text-yellow-600 font-medium">Pending</td>
-                <td>March 5, 2026</td>
-              </tr>
-
-              <tr className="border-b">
-                <td className="py-3">TXN-102233</td>
-                <td>David Lee</td>
-                <td>$250.00</td>
-                <td className="text-red-600 font-medium">Failed</td>
-                <td>March 4, 2026</td>
-              </tr>
+              {transactions.map((txn) => (
+                <tr key={txn.id} className="border-b">
+                  <td className="py-3">{txn.id}</td>
+                  <td>{txn.customer}</td>
+                  <td>{txn.amount}</td>
+                  <td
+                    className={`font-medium ${txn.status === "completed" ? "text-green-600" : txn.status === "pending" ? "text-yellow-600" : "text-red-600"}`}
+                  >
+                    {txn.status}
+                  </td>
+                  <td>{txn.date}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
