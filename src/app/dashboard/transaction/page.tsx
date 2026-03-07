@@ -53,7 +53,45 @@ export default function TransactionsPage() {
       <Card className="p-6">
         <h2 className="font-semibold mb-4">Transaction History</h2>
 
-        <div className="h-100 rounded-md bg-muted"></div>
+        <div className="overflow-w-auto">
+          <table className="w-full text-md">
+            <thead className="text-left border-b">
+              <tr className="text-muted-foreground">
+                <th className="py-3">Transaction</th>
+                <th className="py-3">Customer</th>
+                <th className="py-3">Amount</th>
+                <th className="py-3">Status</th>
+                <th className="py-3">Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr className="border-b">
+                <td className="py-3">TXN-102231</td>
+                <td>John Doe</td>
+                <td>$120.00</td>
+                <td className="text-green-600 font-medium">Completed</td>
+                <td>March 4, 2026</td>
+              </tr>
+
+              <tr className="border-b">
+                <td className="py-3">TXN-102232</td>
+                <td>Jane Smith</td>
+                <td>$85.00</td>
+                <td className="text-yellow-600 font-medium">Pending</td>
+                <td>March 5, 2026</td>
+              </tr>
+
+              <tr className="border-b">
+                <td className="py-3">TXN-102233</td>
+                <td>David Lee</td>
+                <td>$250.00</td>
+                <td className="text-red-600 font-medium">Failed</td>
+                <td>March 4, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </Card>
     </div>
   );
