@@ -10,6 +10,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const transactions = [
   {
@@ -102,6 +110,11 @@ export default function TransactionsPage() {
     link.click();
   };
 
+  const revenueData = transactions.map((txn) => ({
+    date: txn.date,
+    revenue: txn.status === "completed" ? txn.amount : 0,
+  }));
+
   return (
     <div className="flex flex-col gap-8 border-none">
       {/* Page Header */}
@@ -143,6 +156,25 @@ export default function TransactionsPage() {
           <p className="text-2xl font-bold mt-2 ">{failedPayments}</p>
         </Card>
       </div>
+
+      <Card className="p-6">
+        <h2 className="font-semibold mb-4">Revenue Trend</h2>
+        <div className="h-90">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={revenueData}>
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#ffa500"
+                strokeWidth="2"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </Card>
 
       <Card className="p-6 border-none">
         <h2 className="font-semibold mb-4">Filters</h2>
