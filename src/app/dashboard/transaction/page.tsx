@@ -3,6 +3,13 @@ import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const transactions = [
   {
@@ -132,37 +139,78 @@ export default function TransactionsPage() {
                 </tr>
               ) : (
                 currentTransactions.map((txn) => (
-                  <tr key={txn.id} className="border-b">
-                    <td className="py-3">{txn.id}</td>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <Avatar className="h-8 w-8">
-                          <AvatarImage
-                            src={`https://avatar.vercel.sh/${txn.customer}`}
-                          />
-                          <AvatarFallback>
-                            {txn.customer.slice(0, 2).toUpperCase()}
-                          </AvatarFallback>
-                        </Avatar>
-                        <span>{txn.customer}</span>
+                  <Sheet key={txn.id}>
+                    <SheetTrigger asChild>
+                      <tr className="border-b cursor-pointer hover:bg-muted/40">
+                        <td className="py-3">{txn.id}</td>
+                        <td>
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-8 w-8">
+                              <AvatarImage
+                                src={`https://avatar.vercel.sh/${txn.customer}`}
+                              />
+                              <AvatarFallback>
+                                {txn.customer.slice(0, 2).toUpperCase()}
+                              </AvatarFallback>
+                            </Avatar>
+                            <span>{txn.customer}</span>
+                          </div>
+                        </td>
+                        <td>${txn.amount}</td>
+                        <td>
+                          <Badge
+                            variant={
+                              txn.status === "completed"
+                                ? "default"
+                                : txn.status === "pending"
+                                  ? "secondary"
+                                  : "destructive"
+                            }
+                          >
+                            {txn.status}
+                          </Badge>
+                        </td>
+                        <td>{txn.date}</td>
+                      </tr>
+                    </SheetTrigger>
+                    <SheetContent className="bg-gray-800 font-semibold text-white px-6 border-none ">
+                      <SheetHeader>
+                        <SheetTitle className="text-xl py-4 text-orange-500">
+                          Transaction Details
+                        </SheetTitle>
+                      </SheetHeader>
+                      <div className="mt-6 space-y-4 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">
+                            Transaction ID
+                          </span>
+                          <span>{txn.id}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">
+                            Customer
+                          </span>
+                          <span>{txn.customer}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Amount</span>
+                          <span>${txn.amount}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Status</span>
+                          <span>{txn.status}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Date</span>
+                          <span>{txn.date}</span>
+                        </div>
                       </div>
-                    </td>
-                    <td>${txn.amount}</td>
-                    <td>
-                      <Badge
-                        variant={
-                          txn.status === "completed"
-                            ? "default"
-                            : txn.status === "pending"
-                              ? "secondary"
-                              : "destructive"
-                        }
-                      >
-                        {txn.status}
-                      </Badge>
-                    </td>
-                    <td>{txn.date}</td>
-                  </tr>
+                    </SheetContent>
+                  </Sheet>
                 ))
               )}
             </tbody>
