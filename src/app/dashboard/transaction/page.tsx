@@ -33,6 +33,8 @@ const transactions = [
 export default function TransactionsPage() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const transactionsPerPage = 5;
 
   const filterTransactions = transactions.filter((txn) => {
     const matchesSearch =
@@ -43,6 +45,14 @@ export default function TransactionsPage() {
 
     return matchesSearch && matchesStatus;
   });
+
+  const indexOfLast = currentPage * transactionsPerPage;
+  const indexOfFirst = indexOfLast - transactionsPerPage;
+
+  const currentTransactions = filterTransactions.slice(
+    indexOfFirst,
+    indexOfLast,
+  );
 
   return (
     <div className="flex flex-col gap-8 border-none">
@@ -121,7 +131,7 @@ export default function TransactionsPage() {
                   </td>
                 </tr>
               ) : (
-                filterTransactions.map((txn) => (
+                currentTransactions.map((txn) => (
                   <tr key={txn.id} className="border-b">
                     <td className="py-3">{txn.id}</td>
                     <td>
@@ -157,6 +167,29 @@ export default function TransactionsPage() {
               )}
             </tbody>
           </table>
+          <div className="flex justify-between items-center mt-6">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              className="px-4 py-2 border rounded-md text-md"
+            >
+              Previous
+            </button>
+            <span className="text-md text-muted-foreground">
+              Page {currentPage}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage((prev) =>
+                  prev * transactionsPerPage < filterTransactions.length
+                    ? prev + 1
+                    : prev,
+                )
+              }
+              className="px-4 py-2 border rounded-md text-md"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </Card>
     </div>
