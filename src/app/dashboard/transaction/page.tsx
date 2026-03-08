@@ -2,6 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const transactions = [
   {
@@ -123,7 +124,19 @@ export default function TransactionsPage() {
                 filterTransactions.map((txn) => (
                   <tr key={txn.id} className="border-b">
                     <td className="py-3">{txn.id}</td>
-                    <td>{txn.customer}</td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-8 w-8">
+                          <AvatarImage
+                            src={`https://avatar.vercel.sh/${txn.customer}`}
+                          />
+                          <AvatarFallback>
+                            {txn.customer.slice(0, 2).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span>{txn.customer}</span>
+                      </div>
+                    </td>
                     <td>${txn.amount}</td>
                     <td>
                       <Badge
