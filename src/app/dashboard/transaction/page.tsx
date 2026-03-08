@@ -61,16 +61,48 @@ export default function TransactionsPage() {
     indexOfLast,
   );
 
+  const exportCSV = () => {
+    const headers = ["Transaction ID", "Customer", "Amount", "Status", "Date"];
+
+    const rows = filterTransactions.map((txn) => [
+      txn.id,
+      txn.customer,
+      txn.amount,
+      txn.status,
+      txn.date,
+    ]);
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      [headers, ...rows].map((e) => e.join(",")).join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "transactions.csv");
+
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <div className="flex flex-col gap-8 border-none">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-medium">Transactions</h1>
+          <h1 className="text-3xl font-bold">Transactions</h1>
           <p className="text-sm text-muted-foreground">
             Track and manage all financial activity
           </p>
         </div>
+
+        <button
+          onClick={exportCSV}
+          className="px-4 py-2 text-sm border rounded-md hover:bg-muted"
+        >
+          Export CSV
+        </button>
       </div>
 
       {/* Filters Section */}

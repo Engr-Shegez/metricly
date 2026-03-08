@@ -71,7 +71,7 @@ export default function Home() {
                       src={logo}
                       width={120}
                       height={50}
-                      className="h-15 w-auto grayscale opacity-100 hover:opacity-700 hover:grayscale-0 transition"
+                      className="h-15 w-auto opacity-100 hover:opacity-700 hover:grayscale-0 transition"
                     />
                   ))}
                 </div>
