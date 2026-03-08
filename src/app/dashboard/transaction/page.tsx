@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const transactions = [
   {
@@ -123,11 +124,19 @@ export default function TransactionsPage() {
                   <tr key={txn.id} className="border-b">
                     <td className="py-3">{txn.id}</td>
                     <td>{txn.customer}</td>
-                    <td>{txn.amount}</td>
-                    <td
-                      className={`font-medium ${txn.status === "completed" ? "text-green-600" : txn.status === "pending" ? "text-yellow-600" : "text-red-600"}`}
-                    >
-                      {txn.status}
+                    <td>${txn.amount}</td>
+                    <td>
+                      <Badge
+                        variant={
+                          txn.status === "completed"
+                            ? "default"
+                            : txn.status === "pending"
+                              ? "secondary"
+                              : "destructive"
+                        }
+                      >
+                        {txn.status}
+                      </Badge>
                     </td>
                     <td>{txn.date}</td>
                   </tr>
