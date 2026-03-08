@@ -61,6 +61,22 @@ export default function TransactionsPage() {
     indexOfLast,
   );
 
+  const totalRevenue = transactions
+    .filter((t) => t.status === "completed")
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const successfulPayments = transactions.filter(
+    (t) => t.status === "completed",
+  ).length;
+
+  const pendingPayments = transactions.filter(
+    (t) => t.status === "pending",
+  ).length;
+
+  const failedPayments = transactions.filter(
+    (t) => t.status === "failed",
+  ).length;
+
   const exportCSV = () => {
     const headers = ["Transaction ID", "Customer", "Amount", "Status", "Date"];
 
@@ -106,6 +122,28 @@ export default function TransactionsPage() {
       </div>
 
       {/* Filters Section */}
+      <div className="grid grid-cols-4 gap-6">
+        <Card className="p-5">
+          <p className="text-sm text-muted-foreground">Total Revenue</p>
+          <p className="text-2xl font-bold mt-2 ">${totalRevenue}</p>
+        </Card>
+
+        <Card className="p-5">
+          <p className="text-sm text-muted-foreground">Successful Payments</p>
+          <p className="text-2xl font-bold mt-2 ">{successfulPayments}</p>
+        </Card>
+
+        <Card className="p-5">
+          <p className="text-sm text-muted-foreground">Pending Payments</p>
+          <p className="text-2xl font-bold mt-2 ">{pendingPayments}</p>
+        </Card>
+
+        <Card className="p-5">
+          <p className="text-sm text-muted-foreground">Failed Payments</p>
+          <p className="text-2xl font-bold mt-2 ">{failedPayments}</p>
+        </Card>
+      </div>
+
       <Card className="p-6 border-none">
         <h2 className="font-semibold mb-4">Filters</h2>
 
