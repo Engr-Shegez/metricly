@@ -1,3 +1,4 @@
+"use client";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useState } from "react";
 
 const teamMembers = [
   { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
@@ -19,7 +21,37 @@ const teamMembers = [
   { id: 1, name: "Alex Lee", email: "alex@company.com", role: "viewer" },
 ];
 
+type TeamMember = {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+};
+
 const MyTeamPage = () => {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("member");
+
+  const inviteMember = () => {
+    if (!email) return;
+
+    const newMember = {
+      id: Date.now(),
+      name: email.split("@")[0],
+      email,
+      role,
+    };
+    setTeamMembers((prev) => [...prev, newMember]);
+
+    setEmail("");
+    setRole("member");
+  };
+
+  const removeMember = (id) => {
+    setTeamMembers((prev) => prev.filter((member) => member.id !== id));
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between ">
@@ -45,15 +77,24 @@ const MyTeamPage = () => {
               <input
                 type="email"
                 placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border rounded-md p-2"
               />
 
-              <select className="w-full bg-gray-300 border rounded-md text-black font-semibold p-2">
+              <select
+                className="w-full bg-gray-300 border rounded-md text-black font-semibold p-2"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
                 <option value="member">Member</option>
                 <option value="admin">Admin</option>
                 <option value="viewer">Viewer</option>
               </select>
-              <Button className="w-full shadow-md  hover:bg-green-600">
+              <Button
+                className="w-full shadow-md  hover:bg-green-600"
+                onClick={inviteMember}
+              >
                 Send Invitation
               </Button>
             </div>
@@ -95,7 +136,11 @@ const MyTeamPage = () => {
                 </td>
 
                 <td className="text-right">
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeMember(member.id)}
+                  >
                     Remove
                   </Button>
                 </td>
