@@ -3,7 +3,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AvatarFallback } from "@radix-ui/react-avatar";
-import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const teamMembers = [
   { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
@@ -23,7 +29,36 @@ const MyTeamPage = () => {
           <p>Manage Your Team Members roles</p>
         </div>
 
-        <Button>Invite members</Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-orange-400 hover:bg-orange-800 font-semibold text-black">
+              Invite members
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent className="bg-gray-800 text-white font-semibold">
+            <DialogHeader>
+              <DialogTitle>Invite Team Member</DialogTitle>
+            </DialogHeader>
+
+            <div className="space-y-4 mt-4">
+              <input
+                type="email"
+                placeholder="Enter email"
+                className="w-full border rounded-md p-2"
+              />
+
+              <select className="w-full bg-gray-300 border rounded-md text-black font-semibold p-2">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+                <option value="viewer">Viewer</option>
+              </select>
+              <Button className="w-full shadow-md  hover:bg-green-600">
+                Send Invitation
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
       {/* team table */}
       <Card className="p-6 mt-6">
