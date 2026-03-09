@@ -38,10 +38,42 @@ const transactions = [
 
   {
     id: "TXN-10233",
-    customer: "David Lee",
-    amount: 250,
-    status: "failed",
+    customer: "Victor Moses",
+    amount: 850,
+    status: "pending",
     date: "Mar 6, 2026",
+  },
+
+  {
+    id: "TXN-10234",
+    customer: "Fate Judith",
+    amount: 640,
+    status: "completed",
+    date: "Mar 7, 2026",
+  },
+
+  {
+    id: "TXN-10235",
+    customer: "Akpan lewis",
+    amount: 150,
+    status: "failed",
+    date: "Mar 8, 2026",
+  },
+
+  {
+    id: "TXN-10236",
+    customer: "Stewie Grant",
+    amount: 320,
+    status: "completed",
+    date: "Mar 9, 2026",
+  },
+
+  {
+    id: "TXN-10237",
+    customer: "Mark Brian",
+    amount: 2509,
+    status: "pending",
+    date: "Mar 10, 2026",
   },
 ];
 
@@ -137,23 +169,31 @@ export default function TransactionsPage() {
       {/* Filters Section */}
       <div className="grid grid-cols-4 gap-6">
         <Card className="p-5">
-          <p className="text-sm text-muted-foreground">Total Revenue</p>
-          <p className="text-2xl font-bold mt-2 ">${totalRevenue}</p>
+          <p className="text-md text-muted-foreground">Total Revenue</p>
+          <p className="text-2xl font-bold mt-2 text-orange-500 ">
+            ${totalRevenue}
+          </p>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm text-muted-foreground">Successful Payments</p>
-          <p className="text-2xl font-bold mt-2 ">{successfulPayments}</p>
+          <p className="text-md text-muted-foreground">Successful Payments</p>
+          <p className="text-2xl font-bold mt-2 text-green-600 ">
+            {successfulPayments}
+          </p>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm text-muted-foreground">Pending Payments</p>
-          <p className="text-2xl font-bold mt-2 ">{pendingPayments}</p>
+          <p className="text-md text-muted-foreground">Pending Payments</p>
+          <p className="text-2xl font-bold mt-2 text-yellow-500 ">
+            {pendingPayments}
+          </p>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm text-muted-foreground">Failed Payments</p>
-          <p className="text-2xl font-bold mt-2 ">{failedPayments}</p>
+          <p className="text-md text-muted-foreground">Failed Payments</p>
+          <p className="text-2xl font-bold mt-2 text-red-600 ">
+            {failedPayments}
+          </p>
         </Card>
       </div>
 

@@ -31,7 +31,7 @@ const Sidebar = () => {
             href="/dashboard"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard"
-                ? "font-semibold text-black"
+                ? "font-semibold text-orange-500"
                 : "text-gray-500"
             }`}
           >
@@ -44,7 +44,7 @@ const Sidebar = () => {
             href="/dashboard/statistics"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/statistics"
-                ? "font-semibold  text-black"
+                ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
           >
@@ -57,7 +57,7 @@ const Sidebar = () => {
             href="/dashboard/transaction"
             className={`flex items-center gap-3 ${
               pathname === "/dashboard/transaction"
-                ? "font-semibold  text-black"
+                ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
           >
@@ -67,10 +67,10 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
           <Link
-            href="/team"
+            href="/dashboard/team"
             className={`flex items-center gap-3 ${
               pathname === "/team"
-                ? "font-semibold  text-black"
+                ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
           >
@@ -83,7 +83,7 @@ const Sidebar = () => {
             href="/reports"
             className={`flex items-center gap-3 ${
               pathname === "/reports"
-                ? "font-semibold  text-black"
+                ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
           >
@@ -96,7 +96,7 @@ const Sidebar = () => {
             href="/settings"
             className={`flex items-center gap-3 ${
               pathname === "/settings"
-                ? "font-semibold text-black"
+                ? "font-semibold text-orange-500"
                 : "text-gray-500"
             }`}
           >
