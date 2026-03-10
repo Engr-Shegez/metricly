@@ -32,6 +32,13 @@ const MyTeamPage = () => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("member");
+  const [search, setSearch] = useState("");
+
+  const filteredMembers = teamMembers.filter(
+    (member) =>
+      member.name.toLowerCase().includes(search.toLowerCase()) ||
+      member.email.toLowerCase().includes(search.toLowerCase()),
+  );
 
   const inviteMember = () => {
     if (!email) return;
@@ -110,6 +117,16 @@ const MyTeamPage = () => {
         </Dialog>
       </div>
       {/* team table */}
+      <div className="mt-6 mb-4">
+        <input
+          type="text"
+          placeholder="Search members..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full test-sm max-w-sm border rounded-md p-2"
+        />
+      </div>
+
       <Card className="p-6 mt-6">
         <table className="w-full text-sm">
           <thead className="text-left text-muted-foreground border-b">
@@ -122,7 +139,7 @@ const MyTeamPage = () => {
           </thead>
 
           <tbody>
-            {teamMembers.map((member) => (
+            {filteredMembers.map((member) => (
               <tr key={member.id} className="border-b">
                 <td className="py-3">
                   <div className="flex items-center gap-3">
