@@ -13,13 +13,13 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 
-const teamMembers = [
-  { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
+// const teamMembers = [
+//   { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
 
-  { id: 2, name: "Jane Smith", email: "jane@company.com", role: "member" },
+//   { id: 2, name: "Jane Smith", email: "jane@company.com", role: "member" },
 
-  { id: 1, name: "Alex Lee", email: "alex@company.com", role: "viewer" },
-];
+//   { id: 1, name: "Alex Lee", email: "alex@company.com", role: "viewer" },
+// ];
 
 type TeamMember = {
   id: number;
@@ -50,6 +50,14 @@ const MyTeamPage = () => {
 
   const removeMember = (id) => {
     setTeamMembers((prev) => prev.filter((member) => member.id !== id));
+  };
+
+  const updateRole = (id: number, newRole: string) => {
+    setTeamMembers((prev) =>
+      prev.map((member) =>
+        member.id === id ? { ...member, role: newRole } : member,
+      ),
+    );
   };
 
   return (
@@ -132,7 +140,16 @@ const MyTeamPage = () => {
 
                 <td>{member.email}</td>
                 <td>
-                  <Badge variant="secondary">{member.role}</Badge>
+                  <select
+                    value={member.role}
+                    onChange={(e) => updateRole(member.id, e.target.value)}
+                    className="border rounded-md px-2 py-1 text-sm bg-background"
+                  >
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                    <option value="viewer">Viewer</option>
+                  </select>
+                  {/* <Badge variant="secondary">{member.role}</Badge> */}
                 </td>
 
                 <td className="text-right">
