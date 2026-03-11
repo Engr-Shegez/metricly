@@ -8,6 +8,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  BarChart,
+  Bar,
 } from "recharts";
 
 const SalesPage = () => {
@@ -26,6 +28,41 @@ const SalesPage = () => {
   const totalOrders = salesData.reduce((sum, day) => sum + day.orders, 0);
 
   const avgOrderValue = Math.round(totalRevenue / totalOrders);
+
+  const sales = [
+    {
+      id: "ORD-1023",
+      customer: "John Doe",
+      product: "Pro Subscription",
+      amount: 120,
+      status: "completed",
+      date: "Mar 10",
+    },
+    {
+      id: "ORD-1024",
+      customer: "Jane Smith",
+      product: "Starter Plan",
+      amount: 49,
+      status: "Pending",
+      date: "Mar 10",
+    },
+    {
+      id: "ORD-1025",
+      customer: "Alex Lee",
+      product: "Enterprise Plan",
+      amount: 290,
+      status: "completed",
+      date: "Mar 9",
+    },
+    {
+      id: "ORD-1026",
+      customer: "Micheal Chen",
+      product: "Pro Subscription",
+      amount: 120,
+      status: "Failed",
+      date: "Mar 8",
+    },
+  ];
 
   return (
     <div className="space-y-8">
@@ -59,6 +96,7 @@ const SalesPage = () => {
         </Card>
       </div>
 
+      {/* chart */}
       <div className="grid grid-cols-2 gap-6">
         <Card className="p-6">
           <h2 className="font-semibold mb-4">Revenue Trend</h2>
@@ -72,14 +110,66 @@ const SalesPage = () => {
                 <Line
                   type="monotone"
                   dataKey="revenue"
-                  stroke="#6366f1"
+                  stroke="#00ff00"
                   strokeWidth={3}
                 />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </Card>
+
+        <Card className="p-6">
+          <h2 className="font-semibold mb-4">Orders Per Day</h2>
+
+          <div className="h-75">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={salesData}>
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="orders" fill="#f97316" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
       </div>
+
+      {/* table card */}
+      <Card className="p-6">
+        <h2 className="font-semibold mb-4">Recent Sales</h2>
+
+        <table className="w-full text-sm">
+          <thead className="text-left text-muted-foreground border-b">
+            <tr>
+              <th className="py-3">Order</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {sales.map((sale) => (
+              <tr key={sale.id} className="border-b">
+                <td className="py-3 font-medium">{sales.id}</td>
+                <td>{sales.customer}</td>
+                <td>{sales.product}</td>
+                <td>{sales.amount}</td>
+                <td>
+                  <span
+                    className={`px-2 py-1 rounded text-xs ${sale.status === "completed" ? "bg-green-100 text-green-700" : sale.status === "pending" ? "bg-orange-100 text-orange-700" : "bg-red-100 text-red-700"}`}
+                  >
+                    {sales.status}
+                  </span>
+                  <td>{sales.date}</td>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
     </div>
   );
 };
