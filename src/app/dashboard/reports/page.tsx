@@ -29,7 +29,16 @@ const SalesPage = () => {
 
   const avgOrderValue = Math.round(totalRevenue / totalOrders);
 
-  const sales = [
+  type Sale = {
+    id: string;
+    customer: string;
+    product: string;
+    amount: number;
+    status: string;
+    date: string;
+  };
+
+  const sales: Sale[] = [
     {
       id: "ORD-1023",
       customer: "John Doe",
@@ -43,7 +52,7 @@ const SalesPage = () => {
       customer: "Jane Smith",
       product: "Starter Plan",
       amount: 49,
-      status: "Pending",
+      status: "pending",
       date: "Mar 10",
     },
     {
@@ -59,7 +68,7 @@ const SalesPage = () => {
       customer: "Micheal Chen",
       product: "Pro Subscription",
       amount: 120,
-      status: "Failed",
+      status: "failed",
       date: "Mar 8",
     },
   ];
@@ -113,6 +122,7 @@ const SalesPage = () => {
                   stroke="#00ff00"
                   strokeWidth={3}
                 />
+                <CartesianGrid strokeDasharray="3 3" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -153,18 +163,18 @@ const SalesPage = () => {
           <tbody>
             {sales.map((sale) => (
               <tr key={sale.id} className="border-b">
-                <td className="py-3 font-medium">{sales.id}</td>
-                <td>{sales.customer}</td>
-                <td>{sales.product}</td>
-                <td>{sales.amount}</td>
+                <td className="py-3 font-medium">{sale.id}</td>
+                <td>{sale.customer}</td>
+                <td>{sale.product}</td>
+                <td>{sale.amount}</td>
                 <td>
                   <span
                     className={`px-2 py-1 rounded text-xs ${sale.status === "completed" ? "bg-green-100 text-green-700" : sale.status === "pending" ? "bg-orange-100 text-orange-700" : "bg-red-100 text-red-700"}`}
                   >
-                    {sales.status}
+                    {sale.status}
                   </span>
-                  <td>{sales.date}</td>
                 </td>
+                <td>{sale.date}</td>
               </tr>
             ))}
           </tbody>
