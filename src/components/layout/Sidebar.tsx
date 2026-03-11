@@ -80,9 +80,9 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
           <Link
-            href="/reports"
+            href="/dashboard/reports"
             className={`flex items-center gap-3 ${
-              pathname === "/reports"
+              pathname === "/dashboard/reports"
                 ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
@@ -93,9 +93,9 @@ const Sidebar = () => {
         </nav>
         <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
           <Link
-            href="/settings"
+            href="/dashboard/settings"
             className={`flex items-center gap-3 ${
-              pathname === "/settings"
+              pathname === "/dashboard/settings"
                 ? "font-semibold text-orange-500"
                 : "text-gray-500"
             }`}
