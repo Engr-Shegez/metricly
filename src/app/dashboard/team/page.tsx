@@ -12,6 +12,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 // const teamMembers = [
 //   { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
@@ -170,13 +181,37 @@ const MyTeamPage = () => {
                 </td>
 
                 <td className="text-right">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeMember(member.id)}
-                  >
-                    Remove
-                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <Button variant="ghost" size="sm">
+                        Remove
+                      </Button>
+                    </AlertDialogTrigger>
+
+                    <AlertDialogContent className="bg-gray-800">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle className="font-semibold text-lg">
+                          Remove this Member
+                        </AlertDialogTitle>
+
+                        <AlertDialogDescription>
+                          This member will be removed from your team, and they
+                          will lose access to the workspace.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+                        <AlertDialogAction
+                          onClick={() => removeMember(member.id)}
+                          className="bg-red-600 hover:bg-red-700"
+                        >
+                          Remove
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </td>
               </tr>
             ))}

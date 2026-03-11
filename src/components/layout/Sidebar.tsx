@@ -69,7 +69,7 @@ const Sidebar = () => {
           <Link
             href="/dashboard/team"
             className={`flex items-center gap-3 ${
-              pathname === "/team"
+              pathname === "/dashboard/team"
                 ? "font-semibold  text-orange-500"
                 : "text-gray-500"
             }`}
