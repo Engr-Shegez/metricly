@@ -181,6 +181,13 @@ const MyTeamPage = () => {
                 </td>
 
                 <td className="text-right">
+                  {/* <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeMember(member.id)}
+                  >
+                    Remove
+                  </Button> */}
                   <AlertDialog>
                     <AlertDialogTrigger>
                       <Button variant="ghost" size="sm">
