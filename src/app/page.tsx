@@ -70,11 +70,13 @@ export default function Home() {
             </ScrollReveal>
           </StackedScrollSection>
           {/* Final Cta */}
+
           <StackedScrollSection>
-            <ScrollReveal>
+            <ScrollReveal direction="right">
               <CtaSection />
             </ScrollReveal>
           </StackedScrollSection>
+
           {/* Footer */}
 
           <FooterSection />

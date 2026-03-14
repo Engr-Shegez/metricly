@@ -5,9 +5,7 @@ const RightFooter = () => {
     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-10">
       {/* Column 1 */}
       <div className="space-y-5 min-w-35">
-        <h1 className="font-semibold text-white whitespace-nowrap">
-          Main Pages
-        </h1>
+        <h1 className="font-semibold whitespace-nowrap">Main Pages</h1>
         <div className=" space-y-5 text-gray-500">
           <p>Home</p>
           <p>About</p>

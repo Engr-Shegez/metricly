@@ -13,7 +13,7 @@ const ScrollReveal = ({ children, direction = "left" }: Props) => {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "end 50%"],
+    offset: ["start 130%", "end 80%"],
   });
 
   const xStart = direction === "left" ? -100 : 100;

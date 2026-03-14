@@ -1,23 +1,84 @@
-import React from "react";
+"use client";
+
+import { motion } from "framer-motion";
+import CtaCard from "../cta-card";
+import { Variants } from "framer-motion";
+import ScrollReveal from "../scroll-reveal";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
 
 const CtaSection = () => {
   return (
-    <section className="px-6 py-20 mt-20 rounded-4xl border bg-emerald-50/70 backdrop-blur-sm text-gray-700">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-6">
-          Start Making Smarter Business Decisions Today
-        </h2>
-        <p className="text-emerald-100 mb-100">
-          Join modern businesses using data to drive growth, improve efficiency,
-          and maximize profitability.
-        </p>
-        <a
-          href="/dashboard"
-          className="inline-block px-8 py-3 bg-cyan-600 text-black rounded-lg font-medium transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
-        >
-          Get Started Now
-        </a>
-      </div>
+    <section className="py-32 px-6">
+      {/* HEADER */}
+
+      <ScrollReveal>
+        <div className="text-center  mb-16">
+          <h2 className="text-4xl font-bold mb-4">Insights & Inspiration</h2>
+          <p className="text-gray-600 text-2xl max-w-2xl mx-auto">
+            Dive into the heart of innovation with our Coding Chronicles blog
+            section. Explore a rich tapestry of articles, tutorials and insights
+            that unravel
+          </p>
+        </div>
+      </ScrollReveal>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="grid md:grid-cols-3 gap-8"
+      >
+        <ScrollReveal direction="left">
+          <motion.div variants={cardVariants}>
+            <CtaCard
+              image="/images/card-img-3.png"
+              title="Product design"
+              description="Design beautiful, intuitive product interfaces that combine clarity, functionality, and modern aesthetics. We focus on user-centered design principles, seamless interactions, and responsive layouts to deliver engaging digital experiences that enhance usability, strengthen brand identity, and improve overall customer satisfaction."
+            />
+          </motion.div>
+        </ScrollReveal>
+
+        <motion.div variants={cardVariants}>
+          <CtaCard
+            image="/images/card-img-5.png"
+            title="Web Design"
+            description="Design and develop powerful, responsive websites that deliver seamless experiences across all devices and screen sizes. Our approach combines modern design principles with robust development practices to create fast, secure, and scalable digital platforms."
+          />
+        </motion.div>
+
+        <ScrollReveal direction="right">
+          <motion.div variants={cardVariants}>
+            <CtaCard
+              image="/images/card-img-6.png"
+              title="Analytics"
+              description="Monitor your product performance with real-time analytics, actionable insights, and clear reporting tools. Understand user behavior, measure growth metrics, and make data-driven decisions that drive continuous improvement and business success."
+            />
+          </motion.div>
+        </ScrollReveal>
+      </motion.div>
     </section>
   );
 };
