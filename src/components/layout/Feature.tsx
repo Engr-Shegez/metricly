@@ -2,6 +2,7 @@
 import React from "react";
 import FeatureText from "../feature-text";
 import FeatureVisual from "../feature-visual";
+import ScrollReveal from "../scroll-reveal";
 
 const FeatureSection = () => {
   return (
@@ -25,7 +26,10 @@ const FeatureSection = () => {
         {/* Feature Grid */}
         <div className="grid md:grid-cols-2 items-center rounded-xl gap-16 fade-up">
           {/* Feature 1*/}
-          <FeatureText />
+          <ScrollReveal direction="left">
+            <FeatureText />
+          </ScrollReveal>
+
           {/* <div className="bg-amber-400 p-8 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
             <h3 className="text-lg text-blue-950 font-semibold mb-3">
               Real-Time Insights
@@ -37,7 +41,10 @@ const FeatureSection = () => {
           </div> */}
 
           {/* FEATURE 2 */}
-          <FeatureVisual />
+          <ScrollReveal direction="right">
+            <FeatureVisual />
+          </ScrollReveal>
+
           {/* <div className="bg-blue-400 p-8 rounded-xl border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
             <h3 className="text-lg text-black font-semibold mb-3">
               Advance Filtering

@@ -48,7 +48,7 @@ export default function Home() {
 
       <section className="px-6 py-32 relative overflow-hidden text-xl tracking-tight">
         {/* hero wrapper */}
-        <div className="max-w-6xl mx-auto text-center fade-up relative z-10">
+        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-0">
           {/* Hero */}
 
           <Hero />
@@ -76,9 +76,8 @@ export default function Home() {
             </ScrollReveal>
           </StackedScrollSection>
           {/* Footer */}
-          <ScrollReveal direction="left">
-            <FooterSection />
-          </ScrollReveal>
+
+          <FooterSection />
         </div>
       </section>
     </main>

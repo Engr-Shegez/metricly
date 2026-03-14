@@ -15,14 +15,14 @@ const StackedScrollSection = ({ children }: Props) => {
     offset: ["start start", "end start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0.3, 0.9], [1, 0]);
 
   return (
-    <section ref={ref} className="h-[120vh] relative">
+    <section ref={ref} className="h-[95vh] relative">
       <motion.div
         style={{ scale, opacity }}
-        className="sticky top-0 h-screen flex items-center justify-center"
+        className="sticky top-0 h-[95vh] flex items-center justify-center"
       >
         {children}
       </motion.div>

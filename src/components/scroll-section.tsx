@@ -18,7 +18,10 @@ const ScrollSection = ({ children }: Props) => {
   const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
   const y = useTransform(scrollYProgress, [0, 5], [0, -30]);
   return (
-    <section ref={ref} className=" flex items-center justify-center relative">
+    <section
+      ref={ref}
+      className="h-[95vh]  flex items-center justify-center relative"
+    >
       <motion.div
         style={{
           scale,
