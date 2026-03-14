@@ -20,7 +20,7 @@ const PricingSection = () => {
         <div className="grid md:grid-cols-3 gap-8 fade-up">
           {/* STARTER PLAN */}
           <ScrollReveal direction="left">
-            <div className="border rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <div className="border w-70 h-100 mt-15 rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <h3 className="text-xl text-gray-500 font-semibold mb-2">
                 Starter
               </h3>
@@ -60,7 +60,7 @@ const PricingSection = () => {
 
           {/* ENTERPRIZE */}
           <ScrollReveal direction="right">
-            <div className="border rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <div className="border w-70 mt-15 h-100 rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <h3 className="text-lg text-gray-500 font-bold mb-6">
                 Enterprise
               </h3>
