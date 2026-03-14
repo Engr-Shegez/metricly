@@ -2,7 +2,7 @@ import React from "react";
 
 const RightFooter = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-10">
+    <div className="grid grid-cols-2 md:grid-cols-4  gap-y-20">
       {/* Column 1 */}
       <div className="space-y-5 min-w-35">
         <h1 className="font-semibold whitespace-nowrap">Main Pages</h1>
@@ -15,7 +15,7 @@ const RightFooter = () => {
       </div>
 
       {/* Column 2 */}
-      <div className="space-y-5 min-w-35 ml-6  text-gray-500">
+      <div className="space-y-5 min-w-35 text-gray-500 mr-10">
         <p className="whitespace-nowrap mt-12">Blog Post</p>
 
         <p>Contact</p>
@@ -25,7 +25,7 @@ const RightFooter = () => {
       </div>
 
       {/* Column 3 */}
-      <div className="space-y-5 min-w-35 ml-10">
+      <div className="space-y-5 min-w-35 mr-10">
         <h1 className="font-semibold whitespace-nowrap">Social Media</h1>
         <div className=" space-y-5 text-gray-500">
           <p>Instagram</p>
@@ -36,7 +36,7 @@ const RightFooter = () => {
       </div>
 
       {/* Column 4 */}
-      <div className="space-y-5 min-w-35 ml-15">
+      <div className="space-y-5 min-w-35 mr-10">
         <h1 className="font-semibold whitespace-nowrap">Webflow Stuff</h1>
         <div className=" space-y-5 text-gray-500">
           <p>Style Guide</p>

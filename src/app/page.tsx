@@ -20,6 +20,9 @@ export default function Home() {
 
           {/* LINKS */}
           <div className="hidden md:flex items-center gap-8 text-lg text-gray-900">
+            <a href="#" className="hover:text-black">
+              Home
+            </a>
             <a href="#features" className="hover:text-black">
               Features
             </a>
@@ -28,6 +31,9 @@ export default function Home() {
             </a>
             <a href="/dashboard" className="hover:text-black">
               Dashboard
+            </a>
+            <a href="#about" className="hover:text-black">
+              About
             </a>
           </div>
           {/* right action */}

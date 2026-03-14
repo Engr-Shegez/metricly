@@ -4,12 +4,14 @@ import RightFooter from "../rightFooter";
 
 const FooterSection = () => {
   return (
-    <footer className="border-orange-500 mt-14 px-6 ">
+    <footer className="border-orange-500 mt-14 px-10 ">
       <div className="border-t border-gray-200"></div>
 
-      <div className="grid md:grid-cols-2 items-center rounded-xl gap-16 ">
+      <div className="grid md:grid-cols-2 items-center rounded-xl gap-5 ">
         <LeftFooter />
-        <RightFooter />
+        <div className="-ml-10">
+          <RightFooter />
+        </div>
       </div>
 
       {/* Bottom Bar */}

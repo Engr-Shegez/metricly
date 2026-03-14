@@ -11,7 +11,7 @@ const LeftFooter = () => {
         Transform Your Work With Metricly
       </p>
 
-      <p className="text-left mt-4 text-gray-500 max-w-xl leading-relaxed">
+      <p className="text-left mt-4 text-gray-500 w-sm max-w-md leading-relaxed">
         Transform your business with Metricly. Our platform helps teams turn raw
         data into clear, actionable insights so you can track performance,
         understand trends, and make smarter decisions faster. From real-time
