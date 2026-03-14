@@ -11,7 +11,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="min-h-screen ">
+    <main className="min-h-[150vh] ">
       {/* NAVBAR */}
       <nav className=" w-full border-b bg-white/60 backdrop-blur-md sticky top-0 z-50 px-4 py-2 border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">

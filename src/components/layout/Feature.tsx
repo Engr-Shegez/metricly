@@ -6,10 +6,10 @@ import ScrollReveal from "../scroll-reveal";
 
 const FeatureSection = () => {
   return (
-    <section id="features" className="px-16 py-12 bg-linear-to-b  mt-10   ">
+    <section id="features" className="px-16 py-12 bg-linear-to-b min-h-screen">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mt-10 mb-16">
+        <div className="text-center mt-70 mb-16 ">
           <h2 className="text-5xl font-bold mb-4">
             Everything You Need to
             <span className="bg-linear-to-r from-emerald-500 to-red-600 bg-clip-text text-transparent">
@@ -24,47 +24,27 @@ const FeatureSection = () => {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid md:grid-cols-2 items-center rounded-xl gap-16 fade-up">
+        <div className="grid md:grid-cols-2 items-center rounded-xl gap-16 fade-up  ">
           {/* Feature 1*/}
           <ScrollReveal direction="left">
             <FeatureText />
           </ScrollReveal>
 
-          {/* <div className="bg-amber-400 p-8 rounded-xl border shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
-            <h3 className="text-lg text-blue-950 font-semibold mb-3">
-              Real-Time Insights
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Monitor revenue, transactions, and KPIs instantly with live data
-              visualization and intelligent summaries.
-            </p>
-          </div> */}
-
           {/* FEATURE 2 */}
           <ScrollReveal direction="right">
             <FeatureVisual />
           </ScrollReveal>
+        </div>
 
-          {/* <div className="bg-blue-400 p-8 rounded-xl border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <h3 className="text-lg text-black font-semibold mb-3">
-              Advance Filtering
-            </h3>
-            <p className="text-gray-600 text-lg">
-              Slice and analyse data by category, status, or timeframe to
-              uncover patterns that drive growth.
-            </p>
-          </div> */}
+        <div className="grid md:grid-cols-2 items-center rounded-xl gap-16 fade-up mt-30 mb-50">
+          <ScrollReveal direction="right">
+            <FeatureVisual />
+          </ScrollReveal>
 
-          {/* FEATURE 3 */}
-          {/* <div className="bg-emerald-600 p-8 rounded-xl border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <h3 className="text-lg text-amber-950 font-semibold mb-3">
-              Actionable Reports
-            </h3>
-            <p className="text-gray-600 text-lg">
-              Transform raw numbers into clear reports that help you optimize
-              operations and improve profitability
-            </p>
-          </div> */}
+          {/* Feature 4*/}
+          <ScrollReveal direction="left">
+            <FeatureText />
+          </ScrollReveal>
         </div>
       </div>
     </section>

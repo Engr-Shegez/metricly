@@ -3,7 +3,10 @@ import ScrollReveal from "../scroll-reveal";
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="px-6 py-20 mt-20  backdrop-blur-sm mb-30">
+    <section
+      id="pricing"
+      className="px-6 py-20 mt-100  backdrop-blur-sm mb-30 "
+    >
       <div className="max-w-6xl mx-auto">
         {/* HEADER */}
 
