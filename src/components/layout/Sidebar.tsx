@@ -9,103 +9,135 @@ import {
   FileText,
   Settings,
   Omega,
+  X,
 } from "lucide-react";
 
-const Sidebar = () => {
+type Props = {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+};
+
+const Sidebar = ({ open, setOpen }: Props) => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-65  p-8">
-      <h2
-        className={`flex text-3xl pl-5 font-bold mb-12 mt-8 items-center gap-3 ${
-          pathname === "/dashboard" ? " text-black" : "text-orange-700"
-        }`}
+    <>
+      {/* Overlay */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black/40 lg:hidden"
+        />
+      )}
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-0 z-50 h-full w-64  p-8 transform transition-transform duration-300
+        ${open ? "translate-x-0 bg-white" : "-translate-x-full"}
+        lg:translate-x-0 lg:static`}
       >
-        <Omega size={30} />
-        Metricly
-      </h2>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-3">
+          <Link
+            href="/"
+            className={`flex text-xl pl-5 font-bold mb-8 mt-8 items-center gap-3 ${
+              pathname === "/dashboard" ? " text-black" : "text-orange-700"
+            }`}
+          >
+            <Omega size={26} />
+            Metricly
+          </Link>
 
-      <div className="gap-10 m-5  pt-12 text-xl ">
-        <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard"
-                ? "font-semibold text-orange-500"
-                : "text-gray-500"
-            }`}
+          {/* Close button mobile */}
+          <button
+            onClick={() => setOpen(false)}
+            className="lg:hidden text-black"
           >
-            <LayoutDashboard size={20} />
-            Dashboard
-          </Link>
-        </nav>
-        <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard/statistics"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard/statistics"
-                ? "font-semibold  text-orange-500"
-                : "text-gray-500"
-            }`}
-          >
-            <BarChart3 size={20} />
-            Statistics
-          </Link>
-        </nav>
-        <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard/transaction"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard/transaction"
-                ? "font-semibold  text-orange-500"
-                : "text-gray-500"
-            }`}
-          >
-            <ArrowLeftRight size={20} />
-            Transaction
-          </Link>
-        </nav>
-        <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard/team"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard/team"
-                ? "font-semibold  text-orange-500"
-                : "text-gray-500"
-            }`}
-          >
-            <Users size={20} />
-            My Team
-          </Link>
-        </nav>
-        <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard/reports"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard/reports"
-                ? "font-semibold  text-orange-500"
-                : "text-gray-500"
-            }`}
-          >
-            <FileText size={20} />
-            Sell Reports
-          </Link>
-        </nav>
-        <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-          <Link
-            href="/dashboard/settings"
-            className={`flex items-center gap-3 ${
-              pathname === "/dashboard/settings"
-                ? "font-semibold text-orange-500"
-                : "text-gray-500"
-            }`}
-          >
-            <Settings size={20} />
-            Settings
-          </Link>
-        </nav>
-      </div>
-    </aside>
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="gap-10 m-5  pt-12 text-xl ">
+          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard"
+                  ? "font-semibold text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <LayoutDashboard size={20} />
+              Dashboard
+            </Link>
+          </nav>
+          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard/statistics"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard/statistics"
+                  ? "font-semibold  text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <BarChart3 size={20} />
+              Statistics
+            </Link>
+          </nav>
+          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard/transaction"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard/transaction"
+                  ? "font-semibold  text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <ArrowLeftRight size={20} />
+              Transaction
+            </Link>
+          </nav>
+          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard/team"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard/team"
+                  ? "font-semibold  text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <Users size={20} />
+              My Team
+            </Link>
+          </nav>
+          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard/reports"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard/reports"
+                  ? "font-semibold  text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <FileText size={20} />
+              Sell Reports
+            </Link>
+          </nav>
+          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
+            <Link
+              href="/dashboard/settings"
+              className={`flex items-center gap-3 ${
+                pathname === "/dashboard/settings"
+                  ? "font-semibold text-orange-500"
+                  : "text-gray-500"
+              }`}
+            >
+              <Settings size={20} />
+              Settings
+            </Link>
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 };
 

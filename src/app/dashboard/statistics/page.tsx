@@ -108,7 +108,7 @@ const StatisticsPage = () => {
         {/* Revenue */}
         <div className="p-6  rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Total Revenue</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
+          <h2 className="mt-2 text-2xl font-semibold">
             ${totalRevenue.toLocaleString()}
           </h2>
           <p className="mt-1 text-md text-green-600 font-medium">
@@ -118,7 +118,7 @@ const StatisticsPage = () => {
         {/* AOV */}
         <div className="p-6 rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Avg Order Value</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
+          <h2 className="mt-2 text-2xl font-semibold">
             ${avgRevenue.toFixed(2)}
           </h2>
           <p className="mt-1 text-md text-green-600 font-medium">
@@ -128,18 +128,14 @@ const StatisticsPage = () => {
         {/* Conversion */}
         <div className="p-6  rounded-xl border  shadow-md">
           <p className="text-md text-gray-500">Conversion Rate</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
-            {conversionRate}%
-          </h2>
+          <h2 className="mt-2 text-2xl   font-semibold">{conversionRate}%</h2>
 
           <p className="mt-1 text-md text-green-600 font-medium">-0.6% drop</p>
         </div>
         {/* Growth */}
         <div className="p-6  rounded-xl border  shadow-md">
-          <p className="text-md text-gray-500">Net Growth</p>
-          <h2 className="mt-2 text-2xl text-gray-500  font-semibold">
-            {growth.toFixed(1)}%
-          </h2>
+          <p className="text-lg text-gray-500">Net Growth</p>
+          <h2 className="mt-2 text-2xl font-semibold">{growth.toFixed(1)}%</h2>
           <p
             className={`mt-1 items-center gap-1 text-md ${trendColor} font-medium`}
           >

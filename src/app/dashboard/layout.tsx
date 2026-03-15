@@ -1,16 +1,33 @@
+"use client";
+
 import Sidebar from "@/components/layout/Sidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { Menu } from "lucide-react";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="flex min-h-screen bg-background text-foreground transition-colors duration-300">
-      <Sidebar />
+    <div className="flex min-h-screen bg-background text-foreground">
+      {/* Sidebar */}
+      <Sidebar open={open} setOpen={setOpen} />
+
       <main className="flex-1 p-5">
         <header className="mb-6 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
+          {/* Left section */}
+          <div className="flex items-center gap-3">
+            {/* Hamburger (mobile only) */}
+            <button onClick={() => setOpen(true)} className="lg:hidden">
+              <Menu size={26} />
+            </button>
+
+            <h1 className="text-xl font-semibold">Dashboard</h1>
+          </div>
+
           <ThemeToggle />
         </header>
+
         <div className="rounded-2xl border bg-card p-4 shadow-soft-card">
           {children}
         </div>
