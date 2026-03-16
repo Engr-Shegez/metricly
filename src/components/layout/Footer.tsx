@@ -4,7 +4,7 @@ import RightFooter from "../rightFooter";
 
 const FooterSection = () => {
   return (
-    <footer className="border-orange-500 mt-14 px-10 ">
+    <footer className="border-orange-500  mt-170  lg:mt-14 lg:px-10 ">
       <div className="border-t border-gray-200"></div>
 
       <div className="grid md:grid-cols-2 items-center rounded-xl gap-5 ">

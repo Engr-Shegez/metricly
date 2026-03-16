@@ -16,7 +16,7 @@ const RightFooter = () => {
 
       {/* Column 2 */}
       <div className="space-y-5 min-w-35 text-gray-500 mr-10">
-        <p className="whitespace-nowrap mt-12">Blog Post</p>
+        <p className="whitespace-nowrap lg:mt-12">Blog Post</p>
 
         <p>Contact</p>
         <p>Pricing</p>

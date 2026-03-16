@@ -1,3 +1,4 @@
+import FinalCta from "@/components/final-cta";
 import CtaSection from "@/components/layout/Cta";
 import FeatureSection from "@/components/layout/Feature";
 import FooterSection from "@/components/layout/Footer";
@@ -82,6 +83,12 @@ export default function Home() {
               <CtaSection />
             </ScrollReveal>
           </StackedScrollSection>
+
+          <section className="py-32 px-6">
+            <div className="max-w-7xl mx-auto">
+              <FinalCta />
+            </div>
+          </section>
 
           {/* Footer */}
 

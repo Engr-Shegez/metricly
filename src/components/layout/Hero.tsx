@@ -51,7 +51,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
 
         <div className="rounded-2xl relative z-10 overflow-hidden border shadow-2xl">
-          <iframe src="/dashboard" className="w-5xl h-150 " />
+          <iframe
+            src="/dashboard"
+            className="w-full pointer-events-none h-150  "
+          />
         </div>
       </div>
     </div>
