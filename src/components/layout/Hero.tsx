@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -47,16 +48,25 @@ const Hero = () => {
       </div>
 
       {/* PRODUCT PREVIEW */}
-      <div className="mt-20 relative">
-        <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
+      <motion.div
+        animate={{ y: [0, -12, 0] }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <div className="mt-20 relative">
+          <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
 
-        <div className="rounded-2xl relative z-10 overflow-hidden border shadow-2xl">
-          <iframe
-            src="/dashboard"
-            className="w-full pointer-events-none h-150  "
-          />
+          <div className="rounded-2xl relative z-10 overflow-hidden border shadow-2xl">
+            <iframe
+              src="/dashboard-preview"
+              className="w-full pointer-events-none h-150  "
+            />
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
