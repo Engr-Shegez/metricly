@@ -56,14 +56,27 @@ const Hero = () => {
           ease: "easeInOut",
         }}
       >
-        <div className="mt-20 relative">
-          <div className="absolute inset-0 bg-linear-to-r from-emerald-500/20 to-red-500/20 blur-3xl -z-10" />
+        <div className="mt-20 max-w-6xl mx-auto relative">
+          {/* glow background */}
+          <div className="absolute inset-0 opacity-40  bg-linear-to-r from-emerald-500/20  to-red-500/20 blur-3xl -z-10" />
+          {/* frame */}
+          <div className="relative rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl shadow-2xl overflow-hidden" />
 
-          <div className="rounded-2xl relative z-10 overflow-hidden border shadow-2xl">
+          {/* top fake browser bar */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+            <div className="w-3 h-3 rounded-full bg-red-500" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <div className="w-3 h-3 rounded-full bg-green-500" />
+          </div>
+
+          <div className="rounded-2xl relative z-10 overflow-hidden h-125 md:h-125  w-full border shadow-2xl">
             <iframe
-              src="/dashboard-preview"
-              className="w-full pointer-events-none h-150  "
+              src="/dashboard"
+              className="w-full border-0 md:scale-[]0.9 pointer-events-none h-150 "
             />
+
+            {/* gradient mask */}
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black via-transparent to black opacity-60" />
           </div>
         </div>
       </motion.div>
