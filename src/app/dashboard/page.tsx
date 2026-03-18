@@ -63,16 +63,11 @@ const DashboardPage = () => {
   const monthlyData = calculateMonthlyBreakdown(filteredTransactions);
   console.log("Monthly Data:", monthlyData);
 
-  const revenueTrend = monthlyData.length
-    ? monthlyData.map((m) => m.revenue)
-    : [0];
-  const expenseTrend = monthlyData.length
-    ? monthlyData.map((m) => m.expenses)
-    : [0];
+  const ensureTrend = (data: number[]) => (data.length > 1 ? data : [0, 1]); // small variation
 
-  const profitTrend = monthlyData.length
-    ? monthlyData.map((m) => m.netProfit)
-    : [0];
+  const revenueTrend = ensureTrend(monthlyData.map((m) => m.revenue));
+  const expenseTrend = ensureTrend(monthlyData.map((m) => m.expenses));
+  const profitTrend = ensureTrend(monthlyData.map((m) => m.netProfit));
 
   return (
     <div className="space-y-10 max-w-7xl mx-auto px-6 m-10 ">

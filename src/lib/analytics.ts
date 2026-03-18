@@ -22,30 +22,50 @@ export function calculateProfitMargin(revenue: number, netProfit: number) {
 }
 
 // Monthly Aggregation Function
-export function calculateMonthlyBreakdown(transactions: Transaction[]) {
-  const monthlyData: Record<string, { revenue: number; expenses: number }> = {};
+export const calculateMonthlyBreakdown = (transactions: any[]) => {
+  const monthsOrder = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-  transactions.forEach((transaction) => {
-    const month = transaction.date.slice(0, 7);
+  const monthlyMap: Record<
+    string,
+    { month: string; revenue: number; expenses: number; netProfit: number }
+  > = {};
 
-    if (!monthlyData[month]) {
-      monthlyData[month] = {
-        revenue: 0,
-        expenses: 0,
-      };
-    }
-
-    if (transaction.type === "revenue") {
-      monthlyData[month].revenue += transaction.amount;
-    } else {
-      monthlyData[month].expenses += transaction.amount;
-    }
+  // Initialize ALL months
+  monthsOrder.forEach((m) => {
+    monthlyMap[m] = {
+      month: m,
+      revenue: 0,
+      expenses: 0,
+      netProfit: 0,
+    };
   });
 
-  return Object.entries(monthlyData).map(([month, values]) => ({
-    month,
-    revenue: values.revenue,
-    expenses: values.expenses,
-    netProfit: values.revenue - values.expenses,
-  }));
-}
+  transactions.forEach((t) => {
+    const date = new Date(t.date);
+    const month = date.toLocaleString("default", { month: "short" });
+
+    if (t.type === "revenue") {
+      monthlyMap[month].revenue += t.amount;
+    } else {
+      monthlyMap[month].expenses += t.amount;
+    }
+
+    monthlyMap[month].netProfit =
+      monthlyMap[month].revenue - monthlyMap[month].expenses;
+  });
+
+  return monthsOrder.map((m) => monthlyMap[m]);
+};

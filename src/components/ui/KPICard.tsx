@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 type KPICardProps = {
   title: string;
@@ -30,10 +30,11 @@ const KPICard = ({ title, value, trend, trendData = [] }: KPICardProps) => {
       </div>
 
       {/* RIGHT MINI GRAPH */}
-      <div className="w-24 h-12">
+      <div className="w-32 h-20">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData}>
+          <LineChart data={chartData} margin={{ top: 5, bottom: 5 }}>
             <XAxis dataKey="i" hide />
+            <YAxis hide domain={["auto", "auto"]} />
             <Line
               type="monotone"
               dataKey="value"
@@ -46,7 +47,8 @@ const KPICard = ({ title, value, trend, trendData = [] }: KPICardProps) => {
               }
               strokeWidth={2}
               dot={false}
-              strokeOpacity={0.9}
+              strokeOpacity={1}
+              isAnimationActive={true}
             />
           </LineChart>
         </ResponsiveContainer>
