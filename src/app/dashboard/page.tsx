@@ -119,22 +119,32 @@ const DashboardPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-9 gap-x-9">
         <KPICard
           title="Total Revenue"
-          value={`$${totalRevenue.toLocaleString()}`}
+          value={totalRevenue}
+          prefix="$"
           trend="up"
           trendData={revenueTrend}
         />
+
         <KPICard
           title="Total Expenses"
-          value={`$${totalExpenses.toLocaleString()}`}
+          value={totalExpenses}
+          prefix="$"
           trend="down"
           trendData={expenseTrend}
         />
+
         <KPICard
           title="Net Profit"
-          value={`$${netProfit.toLocaleString()}`}
+          value={netProfit}
+          prefix="$"
           trendData={profitTrend}
         />
-        <KPICard title="Profit Margin" value={`${profitMargin}%`} />
+
+        <KPICard
+          title="Profit Margin"
+          value={Number(profitMargin)}
+          suffix="%"
+        />
       </div>
 
       {/* chart Section */}
