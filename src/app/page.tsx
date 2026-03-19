@@ -1,4 +1,4 @@
-import FinalCta from "@/components/final-cta";
+import FinalCta from "@/components/layout/final-cta";
 import CtaSection from "@/components/layout/Cta";
 import FeatureSection from "@/components/layout/Feature";
 import FooterSection from "@/components/layout/Footer";
@@ -53,13 +53,13 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-6 py-32 relative overflow-hidden text-xl tracking-tight">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-32 relative overflow-hidden text-xl tracking-tight">
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-0">
           {/* Hero */}
-
-          <Hero />
-
+          <div className="relative overflow-hidden">
+            <Hero />
+          </div>
           {/* Marquee */}
           <Marquee />
           {/* Features Section */}

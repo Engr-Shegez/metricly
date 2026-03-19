@@ -5,9 +5,9 @@ const PricingSection = () => {
   return (
     <section
       id="pricing"
-      className="px-6 py-20 mt-100  backdrop-blur-sm mb-30 "
+      className=" px-4 sm:px-6 md:px-12 lg:px-16 py-20   backdrop-blur-sm mb-30 mt-100 "
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto mt-100">
         {/* HEADER */}
 
         <div className="text-center  mb-16">

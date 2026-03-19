@@ -31,11 +31,11 @@ const cardVariants: Variants = {
 
 const CtaSection = () => {
   return (
-    <section id="about" className="py-32 px-6">
+    <section id="about" className="py-32 px-6 mt-100">
       {/* HEADER */}
 
       <ScrollReveal>
-        <div className="text-center  mb-16">
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Insights & Inspiration</h2>
           <p className="text-gray-600 text-2xl max-w-2xl mx-auto">
             Dive into the heart of innovation with our Coding Chronicles blog
