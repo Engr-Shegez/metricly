@@ -29,7 +29,7 @@ const ChartsVisual = () => {
     .join(" ");
 
   const areaPath = `${linePath} L ${points[points.length - 1].x.toFixed(
-    2
+    2,
   )} ${(topPad + chartH).toFixed(2)} L ${points[0].x.toFixed(2)} ${(
     topPad + chartH
   ).toFixed(2)} Z`;
@@ -57,9 +57,7 @@ const ChartsVisual = () => {
             <p className="text-white font-semibold">
               {Math.round(series[series.length - 1])}k
             </p>
-            <p className="text-sm text-emerald-400">
-              +{trendPct.toFixed(1)}%
-            </p>
+            <p className="text-sm text-emerald-400">+{trendPct.toFixed(1)}%</p>
           </div>
         </div>
 
@@ -67,7 +65,7 @@ const ChartsVisual = () => {
         <div className="mt-6">
           <svg
             viewBox="0 0 100 60"
-            className="w-full h-44 sm:h-48 md:h-56"
+            className="w-full h-40 sm:h-44 md:h-52"
             role="img"
             aria-label="Weekly revenue trend"
           >
