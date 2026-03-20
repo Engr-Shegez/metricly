@@ -1,6 +1,23 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const CTAContent = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+
+  const onGetStarted = () => {
+    if (!email.trim()) {
+      toast.error("Please enter your email to continue.");
+      return;
+    }
+
+    const url = `/register?email=${encodeURIComponent(email.trim())}`;
+    router.push(url);
+  };
+
   return (
     <div>
       <h2 className="text-4xl font-bold leading-tight">
@@ -15,10 +32,16 @@ const CTAContent = () => {
       <div className="flex mt-8 gap-3 justify-center sm:justify-start">
         <input
           placeholder="Enter email here"
-          className="bg-zinc-9000 border border-white/10 px-4 py-3 rounded-md flex-1"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-zinc-900 border border-white/10 px-4 py-3 rounded-md flex-1"
         />
 
-        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-md font-medium">
+        <button
+          type="button"
+          onClick={onGetStarted}
+          className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-md font-medium whitespace-nowrap"
+        >
           Get Started
         </button>
       </div>

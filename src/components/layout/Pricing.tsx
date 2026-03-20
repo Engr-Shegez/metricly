@@ -1,5 +1,6 @@
 import React from "react";
 import ScrollReveal from "../scroll-reveal";
+import Link from "next/link";
 
 const PricingSection = () => {
   return (
@@ -35,9 +36,12 @@ const PricingSection = () => {
                 <li>✓ Up to 1,000 transactions</li>
                 <li>✓ Email support</li>
               </ul>
-              <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg">
+              <Link
+                href="/register"
+                className="block w-full text-center text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg"
+              >
                 Get Started
-              </button>
+              </Link>
             </div>
           </ScrollReveal>
 
@@ -56,9 +60,12 @@ const PricingSection = () => {
               <li>✓ Unlimited transactions</li>
               <li>✓ Priority support</li>
             </ul>
-            <button className="w-full text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg">
+            <Link
+              href="/register"
+              className="block w-full text-center text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* ENTERPRIZE */}

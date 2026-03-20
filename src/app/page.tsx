@@ -43,7 +43,7 @@ export default function Home() {
               Login
             </button>
             <a
-              href="/dashboard"
+              href="/register"
               className="px-3 sm:px-4 py-2 bg-black text-white rounded-md text-sm sm:text-base"
             >
               Get Started
@@ -83,14 +83,17 @@ export default function Home() {
             </ScrollReveal>
           </StackedScrollSection>
 
-          <section className="py-24 sm:py-32 px-4 sm:px-6">
-            <div className="max-w-7xl mx-auto">
-              <FinalCta />
-            </div>
-          </section>
+          <StackedScrollSection>
+            <ScrollReveal direction="right">
+              <section className="py-24 sm:py-32 px-4 sm:px-6">
+                <div className="max-w-7xl mx-auto">
+                  <FinalCta />
+                </div>
+              </section>
+            </ScrollReveal>
+          </StackedScrollSection>
 
           {/* Footer */}
-
           <FooterSection />
         </div>
       </section>

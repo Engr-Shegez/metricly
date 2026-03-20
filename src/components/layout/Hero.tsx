@@ -37,7 +37,7 @@ const Hero = () => {
       {/* CTA BUTTONS */}
       <div className="flex justify-center gap-4">
         <a
-          href="/dashboard"
+          href="/register"
           className="px-6 py-3 bg-orange-400 text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
         >
           Get Started
@@ -69,7 +69,7 @@ const Hero = () => {
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
 
-          <div className="rounded-2xl relative z-10 overflow-hidden h-100 md:h-125  w-full border shadow-2xl ">
+          <div className="rounded-2xl relative z-10 overflow-hidden h-150 md:h-125  w-full border shadow-2xl ">
             <iframe
               src="/dashboard"
               className="w-full border-0 md:scale-[0.9] pointer-events-none h-full "
