@@ -12,7 +12,7 @@ const CTAContent = () => {
       </p>
 
       {/* email form */}
-      <div className="flex mt-8 gap-3">
+      <div className="flex mt-8 gap-3 justify-center sm:justify-start">
         <input
           placeholder="Enter email here"
           className="bg-zinc-9000 border border-white/10 px-4 py-3 rounded-md flex-1"

@@ -17,7 +17,7 @@ const DashboardPreview = () => {
         <div className="absolute -inset-10 bg-orange-500/20 blur-3xl rounded-full" />
 
         {/* iframe wrapper */}
-        <div className="adsolute inset-0 scale-[0.50] origin-top-left w-[200%] h-[253%]">
+        <div className="absolute inset-0 scale-[0.50] origin-top-left w-[200%] h-[253%]">
           <iframe
             src="/dashboard"
             className="w-full h-full border-0 pointer-events-none"

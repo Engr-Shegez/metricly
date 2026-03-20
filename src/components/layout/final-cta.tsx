@@ -7,7 +7,7 @@ const FinalCta = () => {
     <div className="relative rounded-2xl border border-orange-500/20 overflow-hidden mt-30">
       <div className="absolute inset-0 bg-orange-500/10 blur-3xl" />
       {/* glow background */}
-      <div className="relative grid md:grid-cols-2 gap-12 items-center p-16">
+      <div className="relative grid md:grid-cols-2 gap-6 sm:gap-12 items-center p-8 sm:p-16 text-center md:text-left justify-items-center md:justify-items-stretch">
         {/* left side */}
         <CTAContent />
 
