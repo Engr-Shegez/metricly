@@ -13,12 +13,15 @@ export function ThemeToggle() {
   }, []);
 
   const resolvedTheme = theme === "system" ? systemTheme : theme;
+  const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
 
   if (!mounted) {
     return (
       <button
+        type="button"
         aria-label="Toggle theme"
-        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors"
+        onClick={() => setTheme(nextTheme)}
+        className="inline-flex h-10 w-10 sm:h-9 sm:w-9 z-10 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors"
       >
         <span className="h-4 w-4 rounded-full bg-muted" />
       </button>
@@ -27,9 +30,10 @@ export function ThemeToggle() {
 
   return (
     <button
+      type="button"
       aria-label="Toggle theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="group relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-border bg-card text-foreground shadow-sm transition-colors duration-300 hover:bg-secondary"
+      className="group relative inline-flex h-10 w-10 sm:h-9 sm:w-9 z-10 items-center justify-center overflow-hidden rounded-full border border-border bg-card text-foreground shadow-sm transition-colors duration-300 hover:bg-secondary"
     >
       <span className="absolute inset-0 bg-linear-to-br from-primary/10 to-secondary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <span className="relative flex items-center justify-center">

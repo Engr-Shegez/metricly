@@ -6,16 +6,15 @@ import Hero from "@/components/layout/Hero";
 import Marquee from "@/components/layout/Marquee";
 import PricingSection from "@/components/layout/Pricing";
 import ScrollReveal from "@/components/scroll-reveal";
-import ScrollSection from "@/components/scroll-section";
 import StackedScrollSection from "@/components/StackedScrollSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="min-h-[150vh] ">
+    <main className="min-h-[150vh] overflow-x-hidden pt-12 sm:pt-0">
       {/* NAVBAR */}
-      <nav className=" w-full border-b bg-white/60 backdrop-blur-md sticky top-0 z-50 px-4 py-2 border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
+        <div className="max-w-6xl mx-auto px-2 sm:px-6 py-2 sm:py-4 flex items-center justify-between">
           {/* LOGO */}
           <div className="text-lg  text-gray-900 font-semibold">Ὡ Metricly</div>
 
@@ -38,14 +37,14 @@ export default function Home() {
             </a>
           </div>
           {/* right action */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-end gap-3 sm:gap-4 flex-wrap sm:flex-nowrap">
             <ThemeToggle />
-            <button className="text-lg text-gray-900 hover:text-gray-700">
+            <button className="text-sm sm:text-lg text-gray-900 hover:text-gray-700">
               Login
             </button>
             <a
               href="/dashboard"
-              className="px-4 py-2 bg-black text-white rounded-md text-md"
+              className="px-3 sm:px-4 py-2 bg-black text-white rounded-md text-sm sm:text-base"
             >
               Get Started
             </a>
@@ -53,9 +52,9 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-32 relative overflow-hidden text-xl tracking-tight">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-32 relative overflow-hidden text-lg sm:text-xl tracking-tight">
         {/* hero wrapper */}
-        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-0">
+        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-4 sm:space-y-0">
           {/* Hero */}
           <div className="relative overflow-hidden">
             <Hero />
@@ -84,7 +83,7 @@ export default function Home() {
             </ScrollReveal>
           </StackedScrollSection>
 
-          <section className="py-32 px-6">
+          <section className="py-24 sm:py-32 px-4 sm:px-6">
             <div className="max-w-7xl mx-auto">
               <FinalCta />
             </div>
