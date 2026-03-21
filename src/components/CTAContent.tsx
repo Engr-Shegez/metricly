@@ -34,7 +34,7 @@ const CTAContent = () => {
           placeholder="Enter email here"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-zinc-900 border border-white/10 px-4 py-3 rounded-md flex-1"
+          className=" border border-black/10 px-4 py-3 rounded-md flex-1"
         />
 
         <button
