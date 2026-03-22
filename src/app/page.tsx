@@ -11,12 +11,14 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="min-h-[150vh] overflow-x-hidden pt-12 sm:pt-0">
+    <main className="min-h-[150vh] overflow-x-hidden pt-8 sm:pt-0">
       {/* NAVBAR */}
-      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
+      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 sm:pt-5 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
         <div className="max-w-6xl mx-auto px-2 sm:px-6 py-2 sm:py-4 flex items-center justify-between">
           {/* LOGO */}
-          <div className="text-lg  text-gray-900 font-semibold">Ὡ Metricly</div>
+          <div className="text-lg mt-4 text-gray-900 font-semibold">
+            Ὡ Metricly
+          </div>
 
           {/* LINKS */}
           <div className="hidden md:flex items-center gap-8 text-lg text-gray-900">
@@ -37,9 +39,11 @@ export default function Home() {
             </a>
           </div>
           {/* right action */}
-          <div className="flex items-center justify-end gap-3 sm:gap-4 flex-wrap sm:flex-nowrap">
-            <ThemeToggle />
-            <button className="text-sm sm:text-lg text-gray-900 hover:text-gray-700">
+          <div className="flex items-center mt-4 justify-end gap-3  sm:gap-4 flex-wrap sm:flex-nowrap">
+            <div className="hidden md:flex">
+              <ThemeToggle />
+            </div>
+            <button className="text-sm sm:text-lg  text-gray-900 hover:text-gray-700">
               Login
             </button>
             <a
