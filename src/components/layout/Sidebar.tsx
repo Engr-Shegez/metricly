@@ -66,7 +66,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <LayoutDashboard size={20} />
+              <LayoutDashboard size={25} />
               Dashboard
             </Link>
           </nav>
@@ -79,7 +79,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <BarChart3 size={20} />
+              <BarChart3 size={25} />
               Statistics
             </Link>
           </nav>
@@ -92,7 +92,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <ArrowLeftRight size={20} />
+              <ArrowLeftRight size={25} />
               Transaction
             </Link>
           </nav>
@@ -105,7 +105,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <Users size={20} />
+              <Users size={25} />
               My Team
             </Link>
           </nav>
@@ -118,7 +118,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <FileText size={20} />
+              <FileText size={25} />
               Sell Reports
             </Link>
           </nav>
@@ -131,7 +131,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                   : "text-gray-500"
               }`}
             >
-              <Settings size={20} />
+              <Settings size={25} />
               Settings
             </Link>
           </nav>

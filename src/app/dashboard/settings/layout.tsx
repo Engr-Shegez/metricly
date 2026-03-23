@@ -6,7 +6,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex ">
       {/* desktop sidebar */}
-      <div className="border-r w-44">
+      <div className=" w-44">
         <SettingsSidebar />
       </div>
       <div className=" flex flex-col">

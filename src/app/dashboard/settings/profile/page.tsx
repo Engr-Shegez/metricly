@@ -3,12 +3,12 @@ import React from "react";
 
 const SettingsContent = () => {
   const user = {
-    name: "Engr Shegez",
-    email: "shegez@gmail.com",
+    name: "John Doe",
+    email: "johndoe@gmail.com",
   };
   return (
-    <div className="space-y-6">
-      <div className="border w-full">
+    <div className="rounded-xl border p-6 border-gray-200 shadow-md space-y-6 ">
+      <div className="w-full">
         <h1 className="text-4xl font-semibold">Profiles</h1>
         <p className="text-muted-foreground text-xl mt-1">
           Update your personal information

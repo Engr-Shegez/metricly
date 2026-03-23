@@ -23,13 +23,13 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <Menu size={26} />
             </button>
 
-            <h1 className="text-xl font-semibold">Dashboard</h1>
+            {/* <h1 className="text-xl font-semibold">Dashboard</h1> */}
           </div>
 
           <ThemeToggle />
         </header>
 
-        <div className="rounded-2xl border bg-card p-4 shadow-soft-card">
+        <div className="rounded-2xl  border-gray-200 shadow-2xl bg-card p-4 shadow-soft-card">
           {children}
         </div>
       </main>

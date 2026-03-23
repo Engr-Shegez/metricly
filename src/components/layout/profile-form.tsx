@@ -34,13 +34,13 @@ export default function ProfileForm({ user }: Props) {
     <div className="space-y-8 ">
       {/* Avatar Section */}
       <div className="flex items-center gap-4">
-        <div className="h-16 w-16 rounded-full p-4 bg-muted flex items-center justify-center text-sm">
+        <div className="h-16 w-16 rounded-full p-4 bg-muted flex items-center font-semibold justify-center text-sm">
           IMG
         </div>
 
         <div>
           <p className="text-lg font-medium">Profile picture</p>
-          <p className="text-xs text-muted-foreground">PNG, JPG up to 2MB</p>
+          <p className="text-sm text-muted-foreground">PNG, JPG up to 2MB</p>
 
           <Button variant="outline" size="sm" className="mt-2">
             Upload
@@ -49,7 +49,7 @@ export default function ProfileForm({ user }: Props) {
       </div>
 
       {/* Form Card */}
-      <div className="rounded-xl border p-6 space-y-6">
+      <div className="rounded-xl border border-gray-200 shadow-xs p-6 space-y-6">
         {/* Name */}
         <div className="space-y-2">
           <label className="text-sm font-medium">Full Name</label>
