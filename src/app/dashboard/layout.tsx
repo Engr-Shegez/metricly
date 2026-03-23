@@ -10,10 +10,11 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
-      {/* Sidebar */}
+      {/*Left Sidebar */}
       <Sidebar open={open} setOpen={setOpen} />
 
-      <main className="flex-1 p-5">
+      {/* Main content */}
+      <main className="flex-1 flex flex-col  p-5">
         <header className="mb-6 flex items-center justify-between">
           {/* Left section */}
           <div className="flex items-center gap-3">
@@ -28,12 +29,21 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <ThemeToggle />
         </header>
 
-        <div className="rounded-2xl border bg-card p-4 shadow-soft-card">
+        <div className="rounded-2xl border bg-card p-4 shadow-soft-card ">
           {children}
         </div>
       </main>
+    </div>
+  );
+};
 
-      <aside className="hidden w-80 space-y-6 bg-card p-6 shadow-soft-card lg:block">
+export default DashboardLayout;
+
+{
+  /* right widget */
+}
+{
+  /* <aside className="hidden w-80 space-y-6 bg-card p-6 shadow-soft-card lg:block">
         <div className="rounded-2xl border bg-linear-to-br from-primary to-primary/70 p-6 text-foreground">
           <h3 className="mb-3 text-xl font-semibold">Upgrade to Pro</h3>
           <p className="mb-5 text-2xl font-bold">$4.20 / Month</p>
@@ -53,9 +63,5 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
             Join Meeting
           </button>
         </div>
-      </aside>
-    </div>
-  );
-};
-
-export default DashboardLayout;
+      </aside> */
+}
