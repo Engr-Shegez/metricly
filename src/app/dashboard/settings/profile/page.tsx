@@ -7,8 +7,8 @@ const SettingsContent = () => {
     email: "shegez@gmail.com",
   };
   return (
-    <div className="w-full space-y-6">
-      <div>
+    <div className="space-y-6">
+      <div className="border w-full">
         <h1 className="text-4xl font-semibold">Profiles</h1>
         <p className="text-muted-foreground text-xl mt-1">
           Update your personal information

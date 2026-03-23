@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-// import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   user: {
@@ -57,7 +57,7 @@ export default function ProfileForm({ user }: Props) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your full name"
-            className="h-12 w-75"
+            className="h-12 max-w-md"
           />
         </div>
 
@@ -69,19 +69,19 @@ export default function ProfileForm({ user }: Props) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="h-12 w-75"
+            className="h-12 max-w-md"
           />
         </div>
 
         {/* Bio */}
         <div className="space-y-2">
           <label className="text-sm font-medium">Bio</label>
-          {/* <Textarea
+          <Textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             placeholder="Tell us a little about yourself"
-            className="min-h-[100px]"
-          /> */}
+            className="min-h-25 max-w-md"
+          />
         </div>
 
         {/* Actions */}

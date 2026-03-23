@@ -1,27 +1,5 @@
-import SettingsMobileNav from "@/components/settings/settings-mobile-nav";
+import { redirect } from "next/navigation";
 
-import SettingsSidebar from "../../../components/settings/settingsSidebar";
-
-const SettingsPage = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex ">
-      {/* desktop sidebar */}
-      <div className="border-r w-44">
-        <SettingsSidebar />
-      </div>
-      <div className=" flex flex-col">
-        {/* mobile header */}
-        {/* <div className="flex items-center gap-3 p-4 border-b lg:hidden">
-          <SettingsMobileNav />
-          <h2 className="font-semibold">Settings</h2>
-        </div> */}
-        {/* coontent */}
-        <div className="p-6">{children}</div>
-      </div>
-      {children}
-      {/* <SettingsContent /> */}
-    </div>
-  );
-};
-
-export default SettingsPage;
+export default function SettingsIndex() {
+  redirect("/dashboard/settings/profile");
+}
