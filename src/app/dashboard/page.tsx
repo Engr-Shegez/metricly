@@ -200,6 +200,7 @@ const DashboardPage = () => {
 
         {/* right widget */}
         <aside className="hidden w-80 space-y-6 bg-card p-6 shadow-soft-card lg:block">
+          {/* Upgrade card */}
           <div className="rounded-2xl border bg-linear-to-br from-primary to-primary/70 p-6 text-foreground">
             <h3 className="mb-3 text-xl font-semibold">Upgrade to Pro</h3>
             <p className="mb-5 text-2xl font-bold">$4.20 / Month</p>
@@ -207,7 +208,7 @@ const DashboardPage = () => {
               Upgrade Now
             </button>
           </div>
-
+          {/* Meeting card */}
           <div className="rounded-2xl border bg-card p-6">
             <h3 className="mb-3 text-xl font-semibold text-foreground">
               Daily Meetings
@@ -219,6 +220,7 @@ const DashboardPage = () => {
               Join Meeting
             </button>
           </div>
+          {/* Alert Card */}
         </aside>
       </div>
     </div>

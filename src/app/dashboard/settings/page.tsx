@@ -1,10 +1,14 @@
-import React from "react";
+import SettingsContent from "./settingsContent";
+import SettingsSidebar from "./settingsSidebar";
 
-const SettingsPage = () => {
+const SettingsPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <h1 className="text-2xl font-semibold"> Profile</h1>
-      <p className="text-muted-foreground mt-2">Manage your account settings</p>
+      <SettingsSidebar>
+        {children}
+        <SettingsContent />
+      </SettingsSidebar>
+      ;
     </div>
   );
 };

@@ -30,8 +30,8 @@ const NavLinks = ({ pathname, onNavigate }: NavLinksProps) => (
         className={cn(
           "text-sm px-3 py-2 rounded-md transition-colors",
           pathname.startsWith(item.href)
-            ? "bg-muted font-medium"
-            : "hover:bg-muted",
+            ? "bg-black text-white dark:bg-white dark:text-black"
+            : "text-muted-foreground hover:bg-muted hover:text-foreground",
         )}
       >
         {item.name}
@@ -39,26 +39,29 @@ const NavLinks = ({ pathname, onNavigate }: NavLinksProps) => (
     ))}
   </nav>
 );
-const SettingsLayouts = ({ children }: { children: React.ReactNode }) => {
+const SettingsSidebar = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
   return (
     <div className="flex min-h-screen">
-      {/*Desktop sidebar */}
-      <aside className="hidden md:flex w-64 border-r p-6 flex-col">
-        <h2 className="text-lg font-semibold mb-6">Settings</h2>
+      {/* Desktop sidebar */}
+      <aside className="hidden md:flex w-64 border-r bg-white/60 dark:bg-background backdrop-blur p-6 flex-col">
+        <h2 className="text-sm font-semibold text-muted-foreground mb-6 uppercase tracking-wide">
+          Settings
+        </h2>
         <NavLinks pathname={pathname} />
       </aside>
 
-      {/* Main content bar */}
+      {/* Right Content Area */}
       <div className="flex-1 flex flex-col">
         {/* Mobile Top Bar */}
-        <div className="md:hidden flex  items-center justify-between p-4 border-b">
-          <h2 className="font-semibold">Settings</h2>
+        <div className="md:hidden flex items-center justify-between p-4 py-3 border-b bg-background/80 backdrop-blur">
+          <h2 className=" text-sm font-semibold">Settings</h2>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <button className="p-2 rounded-md hover:bg-muted transition">
+              <button className="px-4 py-2 rounded-md bg-black text-white text-sm hover:opacity-90 transition">
                 <Menu className="w-5 h-5" />
               </button>
             </SheetTrigger>
@@ -69,11 +72,16 @@ const SettingsLayouts = ({ children }: { children: React.ReactNode }) => {
             </SheetContent>
           </Sheet>
         </div>
-        {/* Content Area */}
-        <main className="flex-1 p-4 md:p-8 overflow-y-auto">{children}</main>
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="max-w-3xl mx-auto w-full py-8 px-4 md:px-0">
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   );
 };
 
-export default SettingsLayouts;
+export default SettingsSidebar;

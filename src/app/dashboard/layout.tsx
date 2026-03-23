@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       <Sidebar open={open} setOpen={setOpen} />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col  p-5">
+      <main className="flex-1 flex flex-col p-5">
         <header className="mb-6 flex items-center justify-between">
           {/* Left section */}
           <div className="flex items-center gap-3">
@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <ThemeToggle />
         </header>
 
-        <div className="rounded-2xl border bg-card p-4 shadow-soft-card ">
+        <div className="rounded-2xl border bg-card p-4 shadow-soft-card">
           {children}
         </div>
       </main>
