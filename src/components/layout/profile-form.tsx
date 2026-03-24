@@ -85,8 +85,12 @@ export default function ProfileForm({ user }: Props) {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end">
-          <Button onClick={handleSave} disabled={loading}>
+        <div className="flex justify-end ">
+          <Button
+            className="hover:bg-gray-500 shadow-md"
+            onClick={handleSave}
+            disabled={loading}
+          >
             {loading ? "Saving..." : "Save Changes"}
           </Button>
         </div>
