@@ -40,7 +40,7 @@ export default function ProfileForm({ user }: Props) {
 
         <div>
           <p className="text-lg font-medium">Profile picture</p>
-          <p className="text-sm text-muted-foreground">PNG, JPG up to 2MB</p>
+          <p className="text-sm text-muted-foreground">PNG, JPG up to 3MB</p>
 
           <Button variant="outline" size="sm" className="mt-2">
             Upload
