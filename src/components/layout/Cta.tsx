@@ -31,10 +31,7 @@ const cardVariants: Variants = {
 
 const CtaSection = () => {
   return (
-    <section
-      id="about"
-      className="py-20 sm:py-32 px-4 sm:px-6 mt-12 sm:mt-100"
-    >
+    <section id="about" className="py-20 sm:py-32 px-4 sm:px-6 mt-6 sm:mt-10">
       {/* HEADER */}
 
       <ScrollReveal>

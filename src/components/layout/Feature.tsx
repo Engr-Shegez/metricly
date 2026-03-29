@@ -10,9 +10,9 @@ const FeatureSection = () => {
   return (
     <section
       id="features"
-      className="px-4 sm:px-6 md:px-12 lg:px-16 py-12 bg-linear-to-b min-h-0 sm:min-h-screen mt-12 sm:mt-100 lg:mt-10 mb-12 sm:mb-50 "
+      className="px-4 sm:px-6 md:px-12 lg:px-16 py-12 bg-linear-to-b min-h-0 sm:min-h-screen mt-8 sm:mt-12 lg:mt-16 mb-8 sm:mb-12"
     >
-      <div className="max-w-6xl mx-auto mt-10 sm:mt-100 md:mt-10 ">
+      <div className="max-w-6xl mx-auto mt-6 sm:mt-8 md:mt-10">
         {/* Section Header */}
         <div className="text-center mb-5">
           <h2 className="text-5xl font-bold mb-4">

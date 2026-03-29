@@ -64,7 +64,9 @@ export default function Home() {
             <Hero />
           </div>
           {/* Marquee */}
-          <Marquee />
+          <div className="mb-32 sm:mb-70">
+            <Marquee />
+          </div>
           {/* Features Section */}
 
           <StackedScrollSection>
