@@ -3,7 +3,7 @@ import React from "react";
 const LeftFooter = () => {
   return (
     <div>
-      <h1 className="text-orange-500 text-center mb-5 mt-5 text-2xl font-semibold sm:text-left sm:ml-3 sm:mr-0">
+      <h1 className="text-orange-500 text-center mb-5 mt-5 text-2xl font-semibold sm:text-left ml-1 sm:ml-3 sm:mr-0">
         MetricLy
       </h1>
 

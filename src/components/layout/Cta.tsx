@@ -49,7 +49,7 @@ const CtaSection = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid md:grid-cols-3 gap-8"
+        className="grid md:grid-cols-3 gap-15"
       >
         <ScrollReveal direction="left">
           <motion.div variants={cardVariants}>

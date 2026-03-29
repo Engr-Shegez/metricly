@@ -10,7 +10,7 @@ const FeatureSection = () => {
   return (
     <section
       id="features"
-      className="px-4 sm:px-6 md:px-12 lg:px-16 py-12 bg-linear-to-b min-h-0 sm:min-h-screen mt-8 sm:mt-12 lg:mt-16 mb-8 sm:mb-12"
+      className="px-4 sm:px-6 md:px-12 lg:px-16 py-12 bg-linear-to-b min-h-0 sm:min-h-screen mt-0 sm:mt-12 lg:mt-16 mb-8 sm:mb-12"
     >
       <div className="max-w-6xl mx-auto mt-6 sm:mt-8 md:mt-10">
         {/* Section Header */}

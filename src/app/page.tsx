@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-25 relative overflow-hidden text-lg sm:text-xl tracking-tight bg-white dark:bg-slate-950">
+      <section className="px-5 sm:px-6 md:px-12 lg:px-16 py-33 relative overflow-hidden text-lg sm:text-xl tracking-tight bg-white dark:bg-slate-950">
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-6 sm:space-y-0">
           {/* Hero */}

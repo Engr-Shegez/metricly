@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div onMouseMove={(e) => setPosition({ x: e.clientX, y: e.clientY })}>
       <div
-        className="pointer-events-none absolute w-50 h-50 bg-emerald-500 opacity-10 blur-3xl rounded-full transition-transform duration-300 mb-50 "
+        className="pointer-events-none absolute w-50 h-50 bg-emerald-500 opacity-10 blur-3xl rounded-full transition-transform duration-300 mb-30 "
         style={{
           transform: `translate(${position.x - 100}px, ${position.y - 100}px)`,
         }}
@@ -69,7 +69,7 @@ const Hero = () => {
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
 
-          <div className="rounded-2xl mx-auto relative z-10 overflow-hidden h-150 md:h-125 w-250 border shadow-2xl ">
+          <div className="rounded-2xl mx-auto relative z-10 overflow-hidden h-120 sm:h-72 md:h-105 lg:h-120 md:w-250 border shadow-2xl ">
             <iframe
               src="/dashboard"
               className="w-full border-0 md:scale-[0.9] pointer-events-none h-full "
