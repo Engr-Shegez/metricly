@@ -13,37 +13,46 @@ export default function Home() {
   return (
     <main className="min-h-[150vh] overflow-x-hidden pt-12 sm:pt-0">
       {/* NAVBAR */}
-      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
+      <nav className="w-full border-b bg-white/60 dark:bg-slate-900/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 border-gray-200 dark:border-slate-700 sm:sticky">
         <div className="max-w-6xl mx-auto px-2 sm:px-6 py-2 sm:py-4 flex items-center justify-between">
           {/* LOGO */}
-          <div className="text-lg mt-2 text-gray-900 font-semibold">
+          <div className="text-lg mt-2 text-gray-900 dark:text-white font-semibold">
             Ὡ Metricly
           </div>
 
           {/* LINKS */}
-          <div className="hidden md:flex items-center gap-8 text-lg text-gray-900">
-            <a href="#" className="hover:text-black">
+          <div className="hidden md:flex items-center gap-8 text-lg text-gray-900 dark:text-gray-200">
+            <a href="#" className="hover:text-black dark:hover:text-white">
               Home
             </a>
-            <a href="#features" className="hover:text-black">
+            <a
+              href="#features"
+              className="hover:text-black dark:hover:text-white"
+            >
               Features
             </a>
-            <a href="#pricing" className="hover:text-black">
+            <a
+              href="#pricing"
+              className="hover:text-black dark:hover:text-white"
+            >
               Pricing
             </a>
-            <a href="/dashboard" className="hover:text-black">
+            <a
+              href="/dashboard"
+              className="hover:text-black dark:hover:text-white"
+            >
               Dashboard
             </a>
-            <a href="#about" className="hover:text-black">
+            <a href="#about" className="hover:text-black dark:hover:text-white">
               About
             </a>
           </div>
           {/* right action */}
           <div className="flex items-center mt-4 justify-end gap-3  sm:gap-4 flex-wrap sm:flex-nowrap">
-            <div className="hidden md:flex">
+            <div className="flex md:flex">
               <ThemeToggle />
             </div>
-            <button className="text-sm sm:text-lg  text-gray-900 hover:text-gray-700">
+            <button className="text-sm sm:text-lg  text-gray-900 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-300">
               Login
             </button>
             <a
@@ -56,7 +65,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-25 relative overflow-hidden text-lg sm:text-xl tracking-tight">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-25 relative overflow-hidden text-lg sm:text-xl tracking-tight bg-white dark:bg-slate-950">
         {/* hero wrapper */}
         <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-6 sm:space-y-0">
           {/* Hero */}

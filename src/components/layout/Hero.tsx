@@ -15,7 +15,7 @@ const Hero = () => {
       ></div>
 
       {/* Badge */}
-      <div className="inline-block mb-6 px-4 py-2 text-md bg-orange-300 text-black font-semibold rounded-full">
+      <div className="inline-block mb-6 px-4 py-2 text-md bg-orange-300 dark:bg-orange-900 text-black dark:text-orange-100 font-semibold rounded-full">
         Modern Business Analytics Platform
       </div>
 
@@ -29,7 +29,7 @@ const Hero = () => {
       </h1>
 
       {/* Subheading */}
-      <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+      <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
         Track revenue,monitor transactions, and gain actionable insights with a
         powerful analytics dashboard built for modern business
       </p>
@@ -42,7 +42,7 @@ const Hero = () => {
         >
           Get Started
         </a>
-        <button className="px-6 py-3 border rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg">
+        <button className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-700 hover:-translate-y-2 hover:shadow-lg">
           View Demo
         </button>
       </div>
@@ -69,7 +69,7 @@ const Hero = () => {
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
 
-          <div className="rounded-2xl relative z-10 overflow-hidden h-150 md:h-125  w-full border shadow-2xl ">
+          <div className="rounded-2xl mx-auto relative z-10 overflow-hidden h-150 md:h-125 w-250 border shadow-2xl ">
             <iframe
               src="/dashboard"
               className="w-full border-0 md:scale-[0.9] pointer-events-none h-full "
