@@ -11,12 +11,12 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="min-h-[150vh] overflow-x-hidden pt-8 sm:pt-0">
+    <main className="min-h-[150vh] overflow-x-hidden pt-12 sm:pt-0">
       {/* NAVBAR */}
-      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 sm:pt-5 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
+      <nav className="w-full border-b bg-white/60 backdrop-blur-md fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 border-gray-200 sm:sticky">
         <div className="max-w-6xl mx-auto px-2 sm:px-6 py-2 sm:py-4 flex items-center justify-between">
           {/* LOGO */}
-          <div className="text-lg mt-4 text-gray-900 font-semibold">
+          <div className="text-lg mt-2 text-gray-900 font-semibold">
             Ὡ Metricly
           </div>
 
@@ -56,9 +56,9 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-32 relative overflow-hidden text-lg sm:text-xl tracking-tight">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-16 py-25 relative overflow-hidden text-lg sm:text-xl tracking-tight">
         {/* hero wrapper */}
-        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-4 sm:space-y-0">
+        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-6 sm:space-y-0">
           {/* Hero */}
           <div className="relative overflow-hidden">
             <Hero />

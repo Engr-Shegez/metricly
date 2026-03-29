@@ -1,3 +1,8 @@
+import BillingHistory from "./billing-history";
+import PaymentMethodCard from "./payment-method-card";
+import PlanCard from "./plan-card";
+import UsageCard from "./usage-card";
+
 const BillingPage = () => {
   return (
     <div className="max-w-4xl space-y-8">
