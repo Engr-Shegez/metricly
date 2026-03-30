@@ -116,7 +116,9 @@ const TeamPage = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Active Members</p>
-              <p className="text-2xl font-semibold mt-1">{teamMembers.length}</p>
+              <p className="text-2xl font-semibold mt-1">
+                {teamMembers.length}
+              </p>
             </div>
             <div className="p-3 bg-blue-50 rounded-lg">
               <Shield className="h-6 w-6 text-blue-600" />
@@ -185,8 +187,12 @@ const TeamPage = () => {
                 onChange={(e) => setInviteRole(e.target.value)}
                 className="w-full px-3 py-2 rounded-md border border-input"
               >
-                <option value="member">Member - Can view and manage data</option>
-                <option value="admin">Admin - Can manage team and settings</option>
+                <option value="member">
+                  Member - Can view and manage data
+                </option>
+                <option value="admin">
+                  Admin - Can manage team and settings
+                </option>
               </select>
             </div>
 
@@ -234,7 +240,7 @@ const TeamPage = () => {
                     <p className="text-sm font-medium">{member.name}</p>
                     <span
                       className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium border ${getRoleBadgeColor(
-                        member.role
+                        member.role,
                       )}`}
                     >
                       {member.role}
@@ -359,9 +365,7 @@ const TeamPage = () => {
           {/* Setting 2 */}
           <div className="flex items-center justify-between py-4 border-b border-border/50">
             <div className="flex-1">
-              <p className="text-sm font-medium">
-                Require email verification
-              </p>
+              <p className="text-sm font-medium">Require email verification</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Verify email addresses before granting access
               </p>
@@ -372,9 +376,7 @@ const TeamPage = () => {
           {/* Setting 3 */}
           <div className="flex items-center justify-between py-4">
             <div className="flex-1">
-              <p className="text-sm font-medium">
-                Enable SSO (Single Sign-On)
-              </p>
+              <p className="text-sm font-medium">Enable SSO (Single Sign-On)</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Allow team members to use company SSO credentials
               </p>
