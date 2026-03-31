@@ -40,7 +40,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
           <Link
             href="/"
             className={`flex text-xl pl-5 font-bold mb-8 mt-8 items-center gap-3 ${
-              pathname === "/dashboard" ? " text-black" : "text-orange-700"
+              pathname === "/dashboard" ? "" : "text-orange-700"
             }`}
           >
             <Omega size={26} />

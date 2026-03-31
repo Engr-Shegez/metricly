@@ -25,13 +25,11 @@ const PricingSection = () => {
           {/* STARTER PLAN */}
           <ScrollReveal direction="left">
             <div className="border w-70 h-100 mt-15 mx-auto rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <h3 className="text-xl text-gray-500 font-semibold mb-2">
-                Starter
-              </h3>
-              <p className="text-3xl text-gray-700  font-bold mb-6">
-                $19<span className="text-sm text-gray-700">/month</span>
+              <h3 className="text-xl font-semibold mb-2">Starter</h3>
+              <p className="text-3xl   font-bold mb-6">
+                $19<span className="text-sm ">/month</span>
               </p>
-              <ul className="space-y-3 text-sm text-gray-600 mb-3">
+              <ul className="space-y-3 text-sm  mb-3">
                 <li>✓ Basic analytics dashboard</li>
                 <li>✓ Up to 1,000 transactions</li>
                 <li>✓ Email support</li>
@@ -48,14 +46,14 @@ const PricingSection = () => {
           {/* pro plan (highlighted) */}
 
           <div className="border-2 border-emerald-500 rounded-xl p-8 shadow-lg relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-gray-500 text-sm px-3 py-1 rounded-full">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500  text-sm px-3 py-1 rounded-full">
               Most Popular
             </div>
-            <h3 className="text-2xl text-gray-700 font-bold mb-6">Pro</h3>
-            <p className="text-3xl  text-gray-700 font-bold mb-6">
-              $49<span className="text-sm text-gray-700">/month</span>
+            <h3 className="text-2xl  font-bold mb-6">Pro</h3>
+            <p className="text-3xl   font-bold mb-6">
+              $49<span className="text-sm ">/month</span>
             </p>
-            <ul className="space-y-3 text-sm text-gray-600 mb-8">
+            <ul className="space-y-3 text-sm  mb-8">
               <li>✓ Advanced analytics</li>
               <li>✓ Unlimited transactions</li>
               <li>✓ Priority support</li>
@@ -71,11 +69,9 @@ const PricingSection = () => {
           {/* ENTERPRIZE */}
           <ScrollReveal direction="right">
             <div className="border w-70 mt-15 h-100 mx-auto rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <h3 className="text-lg text-gray-500 font-bold mb-6">
-                Enterprise
-              </h3>
-              <p className="text-3xl text-gray-700 font-bold mb-6">Custom</p>
-              <ul className="space-y-3 text-sm text-gray-600 mb-4">
+              <h3 className="text-lg  font-bold mb-6">Enterprise</h3>
+              <p className="text-3xl  font-bold mb-6">Custom</p>
+              <ul className="space-y-3 text-sm  mb-4">
                 <li>✓ Dedictated infrastructure</li>
                 <li>✓ Custom reporting</li>
                 <li>✓ Dedicated account manager</li>

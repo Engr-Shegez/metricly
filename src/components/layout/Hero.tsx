@@ -69,7 +69,7 @@ const Hero = () => {
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
 
-          <div className="rounded-2xl mx-auto relative z-10 overflow-hidden h-120 sm:h-72 md:h-105 lg:h-120 md:w-250 border shadow-2xl ">
+          <div className="rounded-2xl mx-auto relative z-10 overflow-hidden h-100 sm:h-72 md:h-105 lg:h-120 w-85 md:w-full border shadow-2xl ">
             <iframe
               src="/dashboard"
               className="w-full border-0 md:scale-[0.9] pointer-events-none h-full "

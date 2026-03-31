@@ -18,7 +18,7 @@ const FeatureRow = ({
 }: Props) => {
   return (
     <div
-      className={`grid md:grid-cols-2 gap-20 items-center py-24 ${reverse ? "md:flex-row-reverse" : ""}`}
+      className={`grid md:grid-cols-2 gap-20 items-center md:py-24 py-18 ${reverse ? "md:flex-row-reverse" : ""}`}
     >
       {/* TEXT */}
       <div>

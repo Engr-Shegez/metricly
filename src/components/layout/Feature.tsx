@@ -14,7 +14,7 @@ const FeatureSection = () => {
     >
       <div className="max-w-6xl mx-auto mt-6 sm:mt-8 md:mt-10">
         {/* Section Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-1">
           <h2 className="text-5xl font-bold mb-4">
             Everything You Need to
             <span className="bg-linear-to-r from-emerald-500 to-red-600 bg-clip-text text-transparent">

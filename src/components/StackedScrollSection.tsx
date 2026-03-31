@@ -16,7 +16,7 @@ const StackedScrollSection = ({ children }: Props) => {
   });
 
   const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0.3, 0.9], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0.5, 0.9], [1.5, 0]);
 
   // Mobile: normal document flow to avoid sticky-section stacking overlaps.
   // Desktop (sm+): keep the sticky "stacked" effect.

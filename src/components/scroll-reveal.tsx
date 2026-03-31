@@ -15,8 +15,8 @@ const ScrollReveal = ({ children, direction = "left" }: Props) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: yStart }}
-      whileInView={{ opacity: 2, y: 0 }}
+      initial={{ opacity: 2, y: yStart }}
+      whileInView={{ opacity: 4, y: 0 }}
       transition={{ duration: 0.85, ease: "easeOut" }}
       viewport={{ once: false, amount: 0.2 }}
     >

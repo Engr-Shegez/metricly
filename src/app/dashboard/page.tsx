@@ -113,7 +113,7 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div className="space-y-8 p-6 max-w-7xl mx-auto">
+    <div className="space-y-8 p-6 max-w-8xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -293,7 +293,7 @@ const DashboardPage = () => {
                 borderRadius: "8px",
               }}
             />
-            <Bar dataKey="orders" fill="#8b5cf6" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="orders" fill="#3b82f6" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </Card>
@@ -311,7 +311,7 @@ const DashboardPage = () => {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
+                <th className="text-left py-3 px-4 text-sm font-semibold ">
                   Order ID
                 </th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">
@@ -334,23 +334,23 @@ const DashboardPage = () => {
                   key={order.id}
                   className="border-b border-gray-100 hover:bg-gray-50"
                 >
-                  <td className="py-3 px-4 text-sm font-medium text-gray-900">
+                  <td className="py-3 px-4 text-sm font-medium text-gray-400">
                     {order.id}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-600">
+                  <td className="py-3 px-4 text-sm text-gray-400">
                     {order.customer}
                   </td>
-                  <td className="py-3 px-4 text-sm text-gray-600">
+                  <td className="py-3 px-4 text-sm text-gray-400">
                     {order.product}
                   </td>
-                  <td className="py-3 px-4 text-sm font-semibold text-gray-900">
+                  <td className="py-3 px-4 text-sm font-semibold text-gray-500">
                     ${order.amount}
                   </td>
                   <td className="py-3 px-4">
                     <span
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         order.status === "completed"
-                          ? "bg-green-100 text-green-800"
+                          ? "bg-green-300 text-green-800"
                           : order.status === "pending"
                             ? "bg-amber-100 text-amber-800"
                             : "bg-red-100 text-red-800"

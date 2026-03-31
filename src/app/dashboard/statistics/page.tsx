@@ -115,7 +115,7 @@ const StatisticsPage = () => {
   ];
 
   return (
-    <div className="space-y-8 p-6 max-w-7xl mx-auto">
+    <div className="space-y-8 p-6 max-w-8xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
