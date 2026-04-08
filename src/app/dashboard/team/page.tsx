@@ -24,14 +24,6 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 
-// const teamMembers = [
-//   { id: 1, name: "John Doe", email: "john@company.com", role: "admin" },
-
-//   { id: 2, name: "Jane Smith", email: "jane@company.com", role: "member" },
-
-//   { id: 1, name: "Alex Lee", email: "alex@company.com", role: "viewer" },
-// ];
-
 type TeamMember = {
   id: number;
   name: string;

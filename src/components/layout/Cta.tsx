@@ -37,7 +37,7 @@ const CtaSection = () => {
       <ScrollReveal>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Insights & Inspiration</h2>
-          <p className="text-gray-600 text-2xl max-w-2xl mx-auto">
+          <p className="text-gray-400 text-2xl max-w-2xl mx-auto">
             Dive into the heart of innovation with our Coding Chronicles blog
             section. Explore a rich tapestry of articles, tutorials and insights
             that unravel
@@ -54,7 +54,7 @@ const CtaSection = () => {
         <ScrollReveal direction="left">
           <motion.div variants={cardVariants}>
             <CtaCard
-              image="/images/card-img-3.png"
+              image="/images/productdesign.png"
               title="Product design"
               description="Design beautiful, intuitive product interfaces that combine clarity, functionality, and modern aesthetics. We focus on user-centered design principles, seamless interactions, and responsive layouts to deliver engaging digital experiences that enhance usability, strengthen brand identity, and improve overall customer satisfaction."
             />
@@ -63,7 +63,7 @@ const CtaSection = () => {
 
         <motion.div variants={cardVariants}>
           <CtaCard
-            image="/images/card-img-5.png"
+            image="/images/webdesign.png"
             title="Web Design"
             description="Design and develop powerful, responsive websites that deliver seamless experiences across all devices and screen sizes. Our approach combines modern design principles with robust development practices to create fast, secure, and scalable digital platforms."
           />
@@ -72,7 +72,7 @@ const CtaSection = () => {
         <ScrollReveal direction="right">
           <motion.div variants={cardVariants}>
             <CtaCard
-              image="/images/card-img-6.png"
+              image="/images/analytics.png"
               title="Analytics"
               description="Monitor your product performance with real-time analytics, actionable insights, and clear reporting tools. Understand user behavior, measure growth metrics, and make data-driven decisions that drive continuous improvement and business success."
             />

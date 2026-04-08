@@ -42,9 +42,11 @@ const Hero = () => {
         >
           Get Started
         </a>
-        <button className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-700 hover:-translate-y-2 hover:shadow-lg">
-          View Demo
-        </button>
+        <a href="/dashboard">
+          <button className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-700 hover:-translate-y-2 hover:shadow-lg">
+            View Demo
+          </button>
+        </a>
       </div>
 
       {/* PRODUCT PREVIEW */}

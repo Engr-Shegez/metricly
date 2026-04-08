@@ -124,7 +124,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Date Filter */}
-        <div className="flex items-center gap-2">
+        <div className="md:flex items-center gap-2 hidden">
           {(["all", "30d", "90d"] as const).map((filter) => (
             <Button
               key={filter}
@@ -144,7 +144,7 @@ const DashboardPage = () => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid w-70 md:w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
           return (
@@ -180,7 +180,7 @@ const DashboardPage = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-70 md:w-full">
         {/* Revenue Chart */}
         <Card className="lg:col-span-2 p-6">
           <div className="mb-6">
@@ -270,8 +270,8 @@ const DashboardPage = () => {
       </div>
 
       {/* Orders Chart */}
-      <Card className="p-6">
-        <div className="mb-6">
+      <Card className="p-6 w-70 md:w-full">
+        <div className="mb-6 ">
           <h3 className="text-sm font-semibold">Orders Over Time</h3>
           <p className="text-xs text-muted-foreground mt-1">
             Number of orders processed monthly
@@ -293,13 +293,13 @@ const DashboardPage = () => {
                 borderRadius: "8px",
               }}
             />
-            <Bar dataKey="orders" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+            <Bar dataKey="orders" fill="#ef4444" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </Card>
 
       {/* Recent Orders */}
-      <Card className="p-6">
+      <Card className="p-6 w-70 md:w-full">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Recent Orders</h3>
           <p className="text-xs text-muted-foreground mt-1">
