@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <ThemeToggle />
         </header>
 
-        <div className="rounded-2xl  border-gray-200 shadow-2xl bg-card p-4 shadow-soft-card">
+        <div className="rounded-2xl  border-gray-200 md:shadow-2xl -ml-4 bg-card p-4 shadow-soft-card">
           {children}
         </div>
       </main>

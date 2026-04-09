@@ -147,14 +147,14 @@ const StatisticsPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-70 md:w-full  gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-75 md:w-full  gap-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <Card key={index} className="p-6">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-sm text-muted-foreground font-medium ">
                     {stat.label}
                   </p>
                   <p className="text-2xl font-bold mt-2">{stat.value}</p>
@@ -183,7 +183,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Revenue and Expenses Trend */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-70 md:w-full ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-75 md:w-full ">
         <Card className="p-6">
           <div className="mb-6">
             <h3 className="text-sm font-semibold">Revenue Trend</h3>
@@ -248,7 +248,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Revenue Distribution */}
-      <Card className="p-6 w-70 md:w-full ">
+      <Card className="p-6 w-75 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Revenue by Source</h3>
           <p className="text-xs text-muted-foreground mt-1">
@@ -306,7 +306,7 @@ const StatisticsPage = () => {
       </Card>
 
       {/* Performance Metrics */}
-      <Card className="p-6 w-70 md:w-full ">
+      <Card className="p-6 w-75 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Performance Metrics</h3>
           <p className="text-xs text-muted-foreground mt-1">
@@ -346,7 +346,7 @@ const StatisticsPage = () => {
       </Card>
 
       {/* Monthly Overview Table */}
-      <Card className="p-6 w-70 md:w-full ">
+      <Card className="p-6 w-75 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Monthly Overview</h3>
           <p className="text-xs text-muted-foreground mt-1">

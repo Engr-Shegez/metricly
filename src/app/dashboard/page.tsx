@@ -124,7 +124,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Date Filter */}
-        <div className="md: not-first:flex items-center gap-2 hidden">
+        <div className="md: md:flex items-center gap-2 hidden">
           {(["all", "30d", "90d"] as const).map((filter) => (
             <Button
               key={filter}
