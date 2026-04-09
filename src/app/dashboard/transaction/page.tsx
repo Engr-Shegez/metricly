@@ -205,7 +205,7 @@ export default function TransactionsPage() {
         </Card>
       </div>
 
-      <Card className="p-6">
+      <Card className="p-6 w-80 md:w-full">
         <h2 className="font-semibold mb-4">Revenue Trend</h2>
         <div className="h-90">
           <ResponsiveContainer width="100%" height="100%">
@@ -227,7 +227,7 @@ export default function TransactionsPage() {
       <Card className="p-6 border-none">
         <h2 className="font-semibold mb-4">Filters</h2>
 
-        <div className="grid grid-cols-4   gap-4">
+        <div className="grid grid-cols-4   gap-4 w-80 md:w-full">
           {/* Search */}
           <input
             type="text"
@@ -262,12 +262,12 @@ export default function TransactionsPage() {
       </Card>
 
       {/* Table Section */}
-      <Card className="p-6">
+      <Card className="p-6 ">
         <h2 className="font-semibold mb-4">Transaction History</h2>
 
-        <div className="overflow-w-auto">
+        <div className="overflow-w-auto ">
           <table className="w-full text-md">
-            <thead className="text-left border-b">
+            <thead className="text-left border-b ">
               <tr className="text-muted-foreground">
                 <th className="py-3">Transaction</th>
                 <th className="py-3">Customer</th>
