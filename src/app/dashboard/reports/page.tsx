@@ -118,7 +118,7 @@ const SalesPage = () => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-75 md:w-full">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
           return (
@@ -154,7 +154,7 @@ const SalesPage = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-75 md:w-full">
         {/* Revenue Trend */}
         <Card className="p-6">
           <div className="mb-6">
@@ -191,7 +191,7 @@ const SalesPage = () => {
         </Card>
 
         {/* Orders Trend */}
-        <Card className="p-6">
+        <Card className="p-6 ">
           <div className="mb-6">
             <h3 className="text-sm font-semibold">Orders Per Day</h3>
             <p className="text-xs text-muted-foreground mt-1">
@@ -221,7 +221,7 @@ const SalesPage = () => {
       </div>
 
       {/* Order Status Overview */}
-      <Card className="p-6">
+      <Card className="p-6 w-75 md:w-full">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Order Status Breakdown</h3>
           <p className="text-xs text-muted-foreground mt-1">
@@ -262,7 +262,7 @@ const SalesPage = () => {
       </Card>
 
       {/* Recent Orders Table */}
-      <Card className="p-6">
+      <Card className="p-6 ">
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h3 className="text-sm font-semibold">Recent Orders</h3>
@@ -368,7 +368,7 @@ const SalesPage = () => {
       </Card>
 
       {/* Monthly Revenue Summary */}
-      <Card className="p-6">
+      <Card className="p-6 w-75 md:w-full">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Monthly Revenue Summary</h3>
           <p className="text-xs text-muted-foreground mt-1">
