@@ -160,38 +160,46 @@ export default function TransactionsPage() {
 
         <button
           onClick={exportCSV}
-          className="px-4 py-2 text-sm border rounded-md hover:bg-muted"
+          className="px-4 py-2 text-sm border rounded-md hover:bg-muted mr-15 mb-5 md:mr-0"
         >
           Export CSV
         </button>
       </div>
 
       {/* Filters Section */}
-      <div className="grid grid-cols-4 gap-6">
-        <Card className="p-5">
-          <p className="text-md text-muted-foreground">Total Revenue</p>
-          <p className="text-2xl font-bold mt-2 text-orange-500 ">
-            ${totalRevenue}
+      <div className="grid w-85 md:w-full  grid-cols-4 gap-3">
+        <Card className="md:p-5 p-1">
+          <p className="text-sm text-muted-foreground md:text-xl md:text-left font-bold md:text-md text-center">
+            Total Revenue
+          </p>
+          <p className="text-xl font-semibold mt-6 md:mt-2 text-orange-500  ">
+            $,{totalRevenue}
           </p>
         </Card>
 
-        <Card className="p-5">
-          <p className="text-md text-muted-foreground">Successful Payments</p>
-          <p className="text-2xl font-bold mt-2 text-green-600 ">
+        <Card className="md:p-5 p-1">
+          <p className="text-sm text-muted-foreground md:text-md font-bold md:text-xl md:text-left text-center">
+            Successful Payments
+          </p>
+          <p className="text-2xl font-semibold ml-6 md:ml-12 text-green-600 mt-6 md:mt-2">
             {successfulPayments}
           </p>
         </Card>
 
-        <Card className="p-5">
-          <p className="text-md text-muted-foreground">Pending Payments</p>
-          <p className="text-2xl font-bold mt-2 text-yellow-500 ">
+        <Card className=" md:p-5 p-1">
+          <p className="text-sm text-muted-foreground font-bold md:text-md md:text-xl md:text-left text-center">
+            Pending Payments
+          </p>
+          <p className="text-2xl font-semibold mt-6 md:mt-2 text-yellow-500 ml-6 md:ml-12">
             {pendingPayments}
           </p>
         </Card>
 
-        <Card className="p-5">
-          <p className="text-md text-muted-foreground">Failed Payments</p>
-          <p className="text-2xl font-bold mt-2 text-red-600 ">
+        <Card className="md:p-5 p-1">
+          <p className="text-sm md:text-md font-bold text-muted-foreground md:text-xl md:text-left text-center">
+            Failed Payments
+          </p>
+          <p className="text-2xl font-semibold mt-6 md:mt-2 text-yellow-500 ml-6 md:ml-12">
             {failedPayments}
           </p>
         </Card>
