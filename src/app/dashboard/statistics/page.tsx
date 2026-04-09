@@ -121,12 +121,13 @@ const StatisticsPage = () => {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Statistics</h1>
           <p className="text-muted-foreground mt-1">
-            Detailed insights into revenue, performance, and growth metrics.
+            Detailed insights into revenue, performance,
+            <br /> and growth metrics.
           </p>
         </div>
 
         {/* Time Range Filter */}
-        <div className="flex items-center gap-2">
+        <div className="md:flex items-center gap-2 hidden">
           {["all", "30d", "90d"].map((range) => (
             <Button
               key={range}
@@ -146,7 +147,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-70 md:w-full  gap-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -182,7 +183,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Revenue and Expenses Trend */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-70 md:w-full ">
         <Card className="p-6">
           <div className="mb-6">
             <h3 className="text-sm font-semibold">Revenue Trend</h3>
@@ -247,7 +248,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Revenue Distribution */}
-      <Card className="p-6">
+      <Card className="p-6 w-70 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Revenue by Source</h3>
           <p className="text-xs text-muted-foreground mt-1">
@@ -305,7 +306,7 @@ const StatisticsPage = () => {
       </Card>
 
       {/* Performance Metrics */}
-      <Card className="p-6">
+      <Card className="p-6 w-70 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Performance Metrics</h3>
           <p className="text-xs text-muted-foreground mt-1">
@@ -345,7 +346,7 @@ const StatisticsPage = () => {
       </Card>
 
       {/* Monthly Overview Table */}
-      <Card className="p-6">
+      <Card className="p-6 w-70 md:w-full ">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Monthly Overview</h3>
           <p className="text-xs text-muted-foreground mt-1">
