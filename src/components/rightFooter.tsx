@@ -2,10 +2,11 @@ import React from "react";
 
 const RightFooter = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4  gap-y-20">
+    <div className="grid grid-cols-2 pr-10 md:pr-0 md:grid-cols-4 gap-y-20 mt-5 md:mt-0">
       {/* Column 1 */}
+
       <div className="space-y-5 min-w-35">
-        <h1 className="font-semibold whitespace-nowrap">Main Pages</h1>
+        <h1 className="font-semibold whitespace-nowrap ">Main Pages</h1>
         <div className=" space-y-5 text-gray-500">
           <p>Home</p>
           <p>About</p>
