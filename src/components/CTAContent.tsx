@@ -29,7 +29,7 @@ const CTAContent = () => {
       </p>
 
       {/* email form */}
-      <div className="flex mt-8 gap-3 justify-center sm:justify-start">
+      <div className="md:flex mt-8 gap-3 justify-center sm:justify-start">
         <input
           placeholder="Enter email here"
           value={email}
@@ -40,7 +40,7 @@ const CTAContent = () => {
         <button
           type="button"
           onClick={onGetStarted}
-          className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-md font-medium whitespace-nowrap"
+          className="bg-orange-500 hover:bg-orange-600 md:px-6 py-3 rounded-md md:mt-0 mt-5 p-4 font-medium whitespace-nowrap"
         >
           Get Started
         </button>
