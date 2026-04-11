@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import FeatureText from "../feature-text";
+// import FeatureText from "../feature-text";
 import FeatureVisual from "../feature-visual";
 import ScrollReveal from "../scroll-reveal";
 import FeatureRow from "../feature-row";
