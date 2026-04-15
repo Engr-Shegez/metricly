@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 function subscribe() {
   return () => {};
@@ -25,11 +26,20 @@ export function MarketingNavbar() {
       <div className="mx-auto max-w-7xl px-6 pt-2">
         <div className="relative rounded-full border border-black/6 bg-white/78 px-4 py-3 shadow-[0_18px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_18px_80px_rgba(0,0,0,0.28)]">
           <div className="flex items-center justify-between gap-4">
-            <Link
+            {/* <Link
               href="/"
               className="text-xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white"
             >
               Metricly
+            </Link> */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/metricly-logo.png"
+                alt="Metricly Logo"
+                width={80}
+                height={40}
+                priority
+              />
             </Link>
 
             {/* LINKS */}
