@@ -11,6 +11,7 @@ import {
   Omega,
   X,
 } from "lucide-react";
+import Image from "next/image";
 
 type Props = {
   open: boolean;
@@ -37,14 +38,14 @@ const Sidebar = ({ open, setOpen }: Props) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
-          <Link
-            href="/"
-            className={`flex text-xl pl-5 font-bold mb-8 mt-8 items-center gap-3 ${
-              pathname === "/dashboard" ? "" : "text-orange-700"
-            }`}
-          >
-            <Omega size={26} />
-            Metricly
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/metricly-logo.png"
+              alt="Metricly Logo"
+              width={200}
+              height={100}
+              priority
+            />
           </Link>
 
           {/* Close button mobile */}

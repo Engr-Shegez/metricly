@@ -36,8 +36,8 @@ export function MarketingNavbar() {
               <Image
                 src="/images/metricly-logo.png"
                 alt="Metricly Logo"
-                width={80}
-                height={40}
+                width={200}
+                height={100}
                 priority
               />
             </Link>
