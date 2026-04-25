@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Mail, Bell, MessageSquare, Lock, Zap } from "lucide-react";
 
+type EmailNotificationKey = "marketing" | "security" | "updates" | "digest";
+type InAppNotificationKey = "alerts" | "mentions" | "comments" | "activities";
+
 const NotificationsPage = () => {
   const [emailNotifications, setEmailNotifications] = useState({
     marketing: true,
@@ -23,21 +26,26 @@ const NotificationsPage = () => {
 
   const [notificationFrequency, setNotificationFrequency] = useState("instant");
 
-  const handleEmailToggle = (key: string) => {
+  const handleEmailToggle = (key: EmailNotificationKey) => {
     setEmailNotifications((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  const handleInAppToggle = (key: string) => {
+  const handleInAppToggle = (key: InAppNotificationKey) => {
     setInAppNotifications((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  const notificationTypes = [
+  const notificationTypes: Array<{
+    id: EmailNotificationKey;
+    title: string;
+    description: string;
+    icon: typeof Mail;
+  }> = [
     {
       id: "marketing",
       title: "Marketing & Promotions",
@@ -59,7 +67,11 @@ const NotificationsPage = () => {
     },
   ];
 
-  const inAppNotificationTypes = [
+  const inAppNotificationTypes: Array<{
+    id: InAppNotificationKey;
+    title: string;
+    description: string;
+  }> = [
     {
       id: "alerts",
       title: "System Alerts",
@@ -156,7 +168,7 @@ const NotificationsPage = () => {
             Email Notifications
           </h3>
           <p className="text-sm text-muted-foreground">
-            Choose which emails you'd like to receive
+            Choose which emails you&apos;d like to receive
           </p>
         </div>
 
@@ -212,7 +224,7 @@ const NotificationsPage = () => {
             In-App Notifications
           </h3>
           <p className="text-sm text-muted-foreground">
-            Notifications you'll see inside your account
+            Notifications you&apos;ll see inside your account
           </p>
         </div>
 
@@ -248,7 +260,7 @@ const NotificationsPage = () => {
           <div>
             <h3 className="text-sm font-semibold">Do Not Disturb</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Set a quiet time when you don't want to receive notifications
+              Set a quiet time when you don&apos;t want to receive notifications
             </p>
           </div>
 

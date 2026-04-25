@@ -58,7 +58,7 @@ const MyTeamPage = () => {
     setRole("member");
   };
 
-  const removeMember = (id) => {
+  const removeMember = (id: number) => {
     setTeamMembers((prev) => prev.filter((member) => member.id !== id));
   };
 

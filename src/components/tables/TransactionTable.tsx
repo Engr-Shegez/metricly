@@ -7,7 +7,6 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 import { MoreVertical } from "lucide-react";
 import ConfirmModal from "../ConfirmModal";
 import { toast } from "sonner";
-import { transactions } from "@/lib/mockData";
 
 interface TransactionTableProps {
   transactions: Transaction[];
@@ -28,7 +27,6 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
     return transactions;
   });
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
-  const [lastDeleted, setLastDeleted] = useState<Transaction | null>(null);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 5;
@@ -36,10 +34,6 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   const [openRowId, setOpenRowId] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [tableData, searchQuery]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -83,7 +77,8 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
   });
 
   const totalPages = Math.ceil(sortedTransactions.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const safeCurrentPage = Math.min(currentPage, Math.max(totalPages, 1));
+  const startIndex = (safeCurrentPage - 1) * itemsPerPage;
   const paginatedTransactions = sortedTransactions.slice(
     startIndex,
     startIndex + itemsPerPage,
@@ -98,7 +93,10 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           type="text"
           placeholder="Search transactions..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setCurrentPage(1);
+          }}
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-primary"
         />
       </div>
@@ -219,8 +217,6 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
               );
               if (!deletedItem) return;
 
-              setLastDeleted(deletedItem);
-
               setTableData((prev) =>
                 prev.filter((tx) => tx.id !== deleteTarget),
               );
@@ -247,13 +243,13 @@ const TransactionTable = ({ transactions }: TransactionTableProps) => {
           Previous
         </button>
         <span className="text-sm text-muted-foreground">
-          Page {currentPage} of {totalPages}
+          Page {safeCurrentPage} of {Math.max(totalPages, 1)}
         </span>
         <button
           onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            setCurrentPage((prev) => Math.min(prev + 1, Math.max(totalPages, 1)))
           }
-          disabled={currentPage === totalPages}
+          disabled={safeCurrentPage === Math.max(totalPages, 1)}
           className="px-4 py-2 border rounded-md disabled:opacity-50"
         >
           Next

@@ -22,7 +22,7 @@ export function calculateProfitMargin(revenue: number, netProfit: number) {
 }
 
 // Monthly Aggregation Function
-export const calculateMonthlyBreakdown = (transactions: any[]) => {
+export const calculateMonthlyBreakdown = (transactions: Transaction[]) => {
   const monthsOrder = [
     "Jan",
     "Feb",

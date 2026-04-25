@@ -1,141 +1,163 @@
 "use client";
+
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  FolderKanban,
   LayoutDashboard,
-  BarChart3,
-  ArrowLeftRight,
-  Users,
-  FileText,
   Settings,
-  Omega,
+  Sparkles,
+  Users,
   X,
 } from "lucide-react";
-import Image from "next/image";
+
+import { cn } from "@/lib/utils";
 
 type Props = {
   open: boolean;
   setOpen: (value: boolean) => void;
 };
 
+const navigation = [
+  {
+    href: "/dashboard",
+    label: "Overview",
+    icon: LayoutDashboard,
+    matches: (pathname: string) => pathname === "/dashboard",
+  },
+  {
+    href: "/dashboard#agile-view",
+    label: "Agile View",
+    icon: FolderKanban,
+    matches: (pathname: string) => pathname === "/dashboard",
+  },
+  {
+    href: "/dashboard/team",
+    label: "Team",
+    icon: Users,
+    matches: (pathname: string) => pathname.startsWith("/dashboard/team"),
+  },
+  {
+    href: "/dashboard/reports",
+    label: "Reports",
+    icon: Sparkles,
+    matches: (pathname: string) => pathname.startsWith("/dashboard/reports"),
+  },
+  {
+    href: "/dashboard/settings",
+    label: "Settings",
+    icon: Settings,
+    matches: (pathname: string) => pathname.startsWith("/dashboard/settings"),
+  },
+];
+
 const Sidebar = ({ open, setOpen }: Props) => {
   const pathname = usePathname();
 
   return (
     <>
-      {/* Overlay */}
-      {open && (
-        <div
+      {open ? (
+        <button
+          aria-label="Close navigation overlay"
+          className="fixed inset-0 z-40 bg-slate-950/30 backdrop-blur-sm lg:hidden"
           onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/40 lg:hidden"
+          type="button"
         />
-      )}
-      {/* Sidebar */}
+      ) : null}
+
       <aside
-        className={`fixed left-0 top-0 z-50 h-full w-64  p-8 transform transition-transform duration-300
-        ${open ? "translate-x-0 bg-white" : "-translate-x-full"}
-        lg:translate-x-0 lg:static`}
+        aria-label="Dashboard navigation"
+        className={cn(
+          "glass-strong fixed inset-y-4 left-4 z-50 flex w-[18rem] flex-col rounded-[32px] p-5 transition-transform duration-300 ease-out",
+          open ? "translate-x-0" : "-translate-x-[120%]",
+          "lg:translate-x-0",
+        )}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/metricly-logo.png"
-              alt="Metricly Logo"
-              width={200}
-              height={100}
-              priority
-            />
+        <div className="flex items-center justify-between">
+          <Link className="flex items-center gap-3" href="/">
+            <div className="rounded-2xl bg-white/70 p-2 shadow-sm dark:bg-white/10">
+              <Image
+                alt="Metricly logo"
+                className="h-7 w-auto"
+                height={32}
+                priority
+                src="/images/metricly-logo.png"
+                width={120}
+              />
+            </div>
           </Link>
 
-          {/* Close button mobile */}
           <button
+            aria-label="Close sidebar"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] text-foreground lg:hidden"
             onClick={() => setOpen(false)}
-            className="lg:hidden text-black"
+            type="button"
           >
-            <X size={24} />
+            <X className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="gap-10 m-5  pt-12 text-xl ">
-          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard"
-                  ? "font-semibold text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <LayoutDashboard size={25} />
-              Dashboard
-            </Link>
-          </nav>
-          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard/statistics"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard/statistics"
-                  ? "font-semibold  text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <BarChart3 size={25} />
-              Statistics
-            </Link>
-          </nav>
-          <nav className="flex mb-12 font-bold flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard/transaction"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard/transaction"
-                  ? "font-semibold  text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <ArrowLeftRight size={25} />
-              Transaction
-            </Link>
-          </nav>
-          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard/team"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard/team"
-                  ? "font-semibold  text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <Users size={25} />
-              My Team
-            </Link>
-          </nav>
-          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard/reports"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard/reports"
-                  ? "font-semibold  text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <FileText size={25} />
-              Sell Reports
-            </Link>
-          </nav>
-          <nav className="flex mb-12 font-bold  flex-col gap-4 text-xl">
-            <Link
-              href="/dashboard/settings"
-              className={`flex items-center gap-3 ${
-                pathname === "/dashboard/settings"
-                  ? "font-semibold text-orange-500"
-                  : "text-gray-500"
-              }`}
-            >
-              <Settings size={25} />
-              Settings
-            </Link>
-          </nav>
+        <div className="mt-6 rounded-[28px] border border-white/40 bg-white/60 p-4 shadow-sm dark:border-white/8 dark:bg-white/5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+            Workspace
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-foreground">
+            Delivery OS
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            World-class project operations with a dense agile workflow and calmer stakeholder visibility.
+          </p>
+        </div>
+
+        <nav className="mt-8 space-y-2" aria-label="Primary dashboard links">
+          {navigation.map((item) => {
+            const isActive = item.href.includes("#") ? false : item.matches(pathname);
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.label}
+                className={cn(
+                  "group flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition",
+                  isActive
+                    ? "bg-[rgba(109,77,42,0.14)] text-foreground shadow-sm dark:bg-white/10"
+                    : "text-muted-foreground hover:bg-white/50 hover:text-foreground dark:hover:bg-white/6",
+                )}
+                href={item.href}
+                onClick={() => setOpen(false)}
+              >
+                <span className="flex items-center gap-3">
+                  <span
+                    className={cn(
+                      "flex h-10 w-10 items-center justify-center rounded-2xl border transition",
+                      isActive
+                        ? "border-white/50 bg-white/70 dark:border-white/10 dark:bg-white/8"
+                        : "border-transparent bg-transparent group-hover:border-white/45 group-hover:bg-white/60 dark:group-hover:border-white/8 dark:group-hover:bg-white/6",
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  {item.label}
+                </span>
+                {isActive ? (
+                  <span className="h-2.5 w-2.5 rounded-full bg-primary" />
+                ) : null}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-auto rounded-[28px] border border-[var(--glass-border)] bg-[rgba(255,255,255,0.42)] p-4 dark:bg-white/5">
+          <div className="flex items-center justify-between">
+            <p className="text-sm font-semibold text-foreground">Sprint Pulse</p>
+            <span className="rounded-full bg-emerald-500/12 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300">
+              Healthy
+            </span>
+          </div>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            12 tasks closed this week. Cycle time is down 18% and client sentiment is trending upward.
+          </p>
         </div>
       </aside>
     </>

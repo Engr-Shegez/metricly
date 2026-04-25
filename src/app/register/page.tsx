@@ -1,24 +1,26 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const emailFromQuery = searchParams.get("email") ?? "";
 
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState(emailFromQuery);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (emailFromQuery) setEmail(emailFromQuery);
-  }, [emailFromQuery]);
+    const emailFromQuery =
+      new URLSearchParams(window.location.search).get("email") ?? "";
+
+    if (emailFromQuery) {
+      setEmail(emailFromQuery);
+    }
+  }, []);
 
   const isValidEmail = (value: string) => /\S+@\S+\.\S+/.test(value);
 

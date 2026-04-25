@@ -8,9 +8,8 @@ import { Trash2, Download, LogOut } from "lucide-react";
 
 const SecurityPage = () => {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [, setShowPasswordModal] = useState(false);
 
-  // Mock data for active sessions
   const activeSessions = [
     {
       id: 1,
@@ -38,7 +37,6 @@ const SecurityPage = () => {
     },
   ];
 
-  // Mock data for trusted devices
   const trustedDevices = [
     {
       id: 1,
@@ -56,7 +54,6 @@ const SecurityPage = () => {
 
   return (
     <div className="max-w-4xl space-y-8">
-      {/* Header */}
       <div>
         <h1 className="text-2xl font-semibold">Security</h1>
         <p className="text-muted-foreground mt-1">
@@ -64,7 +61,6 @@ const SecurityPage = () => {
         </p>
       </div>
 
-      {/* Password Section */}
       <Card className="p-6">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
@@ -83,7 +79,6 @@ const SecurityPage = () => {
         </div>
       </Card>
 
-      {/* Two-Factor Authentication Section */}
       <Card className="p-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
@@ -98,42 +93,39 @@ const SecurityPage = () => {
           />
         </div>
 
-        {twoFactorEnabled && (
-          <div className="mt-6 pt-6 border-t border-border/50">
+        {twoFactorEnabled ? (
+          <div className="mt-6 border-t border-border/50 pt-6">
             <div className="space-y-4">
               <div className="rounded-lg bg-muted/50 p-4">
-                <p className="text-sm font-medium mb-2">
+                <p className="mb-2 text-sm font-medium">
                   Authenticator App Setup
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Scan this QR code with your authenticator app to enable
                   two-factor authentication
                 </p>
-                <div className="mt-4 w-32 h-32 bg-white rounded-lg border border-border/50 flex items-center justify-center">
-                  <span className="text-xs text-muted-foreground">
-                    QR Code Here
-                  </span>
+                <div className="mt-4 flex h-32 w-32 items-center justify-center rounded-lg border border-border/50 bg-white">
+                  <span className="text-xs text-muted-foreground">QR Code Here</span>
                 </div>
-                <p className="text-xs text-muted-foreground mt-4">
-                  Can't scan? Enter this code manually:
-                  <code className="ml-2 font-mono bg-background px-2 py-1 rounded">
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Can&apos;t scan? Enter this code manually:
+                  <code className="ml-2 rounded bg-background px-2 py-1 font-mono">
                     ABCD-1234-5678-90EF
                   </code>
                 </p>
               </div>
               <Button variant="outline" size="sm">
-                Verify & Enable
+                Verify &amp; Enable
               </Button>
             </div>
           </div>
-        )}
+        ) : null}
       </Card>
 
-      {/* Active Sessions */}
       <Card className="p-6">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Active Sessions</h3>
-          <p className="text-sm text-muted-foreground mt-1">
+          <p className="mt-1 text-sm text-muted-foreground">
             Manage your active sessions across devices
           </p>
         </div>
@@ -142,25 +134,25 @@ const SecurityPage = () => {
           {activeSessions.map((session) => (
             <div
               key={session.id}
-              className="flex items-start justify-between py-4 border-b border-border/50 last:border-0"
+              className="flex items-start justify-between border-b border-border/50 py-4 last:border-0"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-medium">{session.device}</p>
-                  {session.current && (
+                  {session.current ? (
                     <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
                       Current
                     </span>
-                  )}
+                  ) : null}
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {session.location} • {session.ip}
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {session.location} {" • "} {session.ip}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Last active: {session.lastActive}
                 </p>
               </div>
-              {!session.current && (
+              {!session.current ? (
                 <Button
                   variant="ghost"
                   size="sm"
@@ -168,7 +160,7 @@ const SecurityPage = () => {
                 >
                   <LogOut className="h-4 w-4" />
                 </Button>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
@@ -182,12 +174,11 @@ const SecurityPage = () => {
         </Button>
       </Card>
 
-      {/* Trusted Devices */}
       <Card className="p-6">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Trusted Devices</h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            Devices that are trusted and don't require two-factor authentication
+          <p className="mt-1 text-sm text-muted-foreground">
+            Devices that are trusted and don&apos;t require two-factor authentication
           </p>
         </div>
 
@@ -195,12 +186,12 @@ const SecurityPage = () => {
           {trustedDevices.map((device) => (
             <div
               key={device.id}
-              className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:bg-muted/50 transition"
+              className="flex items-center justify-between rounded-lg border border-border/50 p-4 transition hover:bg-muted/50"
             >
               <div>
                 <p className="text-sm font-medium">{device.name}</p>
                 <p className="text-xs text-muted-foreground">
-                  {device.device} • Added {device.addedDate}
+                  {device.device} {" • "} Added {device.addedDate}
                 </p>
               </div>
               <Button
@@ -215,16 +206,15 @@ const SecurityPage = () => {
         </div>
       </Card>
 
-      {/* Security Audit Log */}
       <Card className="p-6">
         <div className="mb-6">
           <h3 className="text-sm font-semibold">Security Audit Log</h3>
-          <p className="text-sm text-muted-foreground mt-1">
+          <p className="mt-1 text-sm text-muted-foreground">
             Download a log of all security events on your account
           </p>
         </div>
 
-        <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50 border border-border/50">
+        <div className="flex items-center justify-between rounded-lg border border-border/50 bg-muted/50 p-4">
           <div>
             <p className="text-sm font-medium">Complete Audit Log</p>
             <p className="text-xs text-muted-foreground">
@@ -232,7 +222,7 @@ const SecurityPage = () => {
             </p>
           </div>
           <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="mr-2 h-4 w-4" />
             Download
           </Button>
         </div>
