@@ -6,63 +6,66 @@ import Hero from "@/components/layout/Hero";
 import Marquee from "@/components/layout/Marquee";
 import PricingSection from "@/components/layout/Pricing";
 import ScrollReveal from "@/components/scroll-reveal";
-import StackedScrollSection from "@/components/StackedScrollSection";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { MarketingNavbar } from "@/components/navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-[150vh]">
-      {/* NAVBAR */}
+    <main className="min-h-screen overflow-x-hidden bg-white dark:bg-slate-950">
       <MarketingNavbar />
 
-      <section className="px-5 sm:px-6 md:px-12 lg:px-16 py-10 relative overflow-hidden text-lg sm:text-xl tracking-tight bg-white dark:bg-slate-950">
-        {/* hero wrapper */}
-        <div className="max-w-6xl mx-auto text-center fade-up relative z-10 space-y-6 sm:space-y-0">
-          {/* Hero */}
-          <div className="relative overflow-hidden">
-            <Hero />
+      <div className="pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24">
+        <section className="px-5 sm:px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-6xl">
+            <ScrollReveal>
+              <Hero />
+            </ScrollReveal>
           </div>
-          {/* Marquee */}
-          <div className="mb-32 sm:mb-70">
+        </section>
+
+        <section className="mt-12 px-5 sm:mt-16 sm:px-6 md:px-12 lg:mt-20 lg:px-16">
+          <div className="mx-auto max-w-6xl">
             <Marquee />
           </div>
-          {/* Features Section */}
+        </section>
 
-          <StackedScrollSection>
+        <section className="mt-16 sm:mt-20 lg:mt-24">
+          <div className="mx-auto max-w-7xl">
             <ScrollReveal direction="left">
               <FeatureSection />
             </ScrollReveal>
-          </StackedScrollSection>
+          </div>
+        </section>
 
-          {/* Pricing section */}
-          <StackedScrollSection>
+        <section className="mt-16 sm:mt-20 lg:mt-24">
+          <div className="mx-auto max-w-7xl">
             <ScrollReveal direction="right">
               <PricingSection />
             </ScrollReveal>
-          </StackedScrollSection>
-          {/* Final Cta */}
+          </div>
+        </section>
 
-          <StackedScrollSection>
+        <section className="mt-16 px-4 sm:mt-20 sm:px-6 lg:mt-24">
+          <div className="mx-auto max-w-7xl">
             <ScrollReveal direction="right">
               <CtaSection />
             </ScrollReveal>
-          </StackedScrollSection>
+          </div>
+        </section>
 
-          <StackedScrollSection>
+        <section className="mt-16 px-4 sm:mt-20 sm:px-6 lg:mt-24">
+          <div className="mx-auto max-w-7xl">
             <ScrollReveal direction="right">
-              <section className="py-24 sm:py-32 px-4 sm:px-6">
-                <div className="max-w-7xl mx-auto">
-                  <FinalCta />
-                </div>
-              </section>
+              <FinalCta />
             </ScrollReveal>
-          </StackedScrollSection>
+          </div>
+        </section>
 
-          {/* Footer */}
-          <FooterSection />
-        </div>
-      </section>
+        <section className="mt-16 px-4 sm:mt-20 sm:px-6 lg:mt-24 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <FooterSection />
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

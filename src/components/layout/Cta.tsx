@@ -31,25 +31,24 @@ const cardVariants: Variants = {
 
 const CtaSection = () => {
   return (
-    <section id="about" className="py-20 sm:py-32 px-4 sm:px-6 mt-6 sm:mt-10">
-      {/* HEADER */}
-
+    <section id="about" className="px-4 py-16 sm:px-6 sm:py-20">
       <ScrollReveal>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Insights & Inspiration</h2>
-          <p className="text-gray-400 text-2xl max-w-2xl mx-auto">
+        <div className="mb-12 text-center sm:mb-16">
+          <h2 className="mb-4 text-4xl font-bold">Insights & Inspiration</h2>
+          <p className="mx-auto max-w-2xl text-lg text-gray-400 sm:text-2xl">
             Dive into the heart of innovation with our Coding Chronicles blog
             section. Explore a rich tapestry of articles, tutorials and insights
             that unravel
           </p>
         </div>
       </ScrollReveal>
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid md:grid-cols-3 gap-15"
+        className="grid gap-6 md:grid-cols-3 lg:gap-8"
       >
         <ScrollReveal direction="left">
           <motion.div variants={cardVariants}>

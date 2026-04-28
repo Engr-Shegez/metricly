@@ -4,19 +4,18 @@ import RightFooter from "../rightFooter";
 
 const FooterSection = () => {
   return (
-    <footer className="border-orange-500 mt-12 sm:mt-24 lg:mt-14 lg:px-10 ">
+    <footer className="mt-12 sm:mt-16 lg:px-6">
       <div className="border-t border-gray-200"></div>
 
-      <div className="grid md:grid-cols-2 items-center rounded-xl gap-5 justify-items-center text-center sm:justify-items-start sm:text-left ">
+      <div className="grid items-center gap-5 pt-8 text-center sm:text-left md:grid-cols-2">
         <LeftFooter />
-        <div className="sm:-ml-10">
+        <div className="justify-self-center md:justify-self-end">
           <RightFooter />
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="mt-10 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Metricly. All rights reserved.
+        Copyright {new Date().getFullYear()} Metricly. All rights reserved.
       </div>
     </footer>
   );

@@ -4,79 +4,67 @@ import Link from "next/link";
 
 const PricingSection = () => {
   return (
-    <section
-      id="pricing"
-      className="px-4 sm:px-6 md:px-12 lg:px-16 py-16 sm:py-20 backdrop-blur-sm mb-8 sm:mb-12 mt-8 sm:mt-32"
-    >
-      <div className="max-w-6xl mx-auto mt-6 sm:mt-8">
-        {/* HEADER */}
-
-        <div className="text-center  mb-16">
-          <h2 className="text-4xl font-bold mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-gray-600 text-2xl max-w-2xl mx-auto">
+    <section id="pricing" className="px-4 py-16 sm:px-6 sm:py-20 md:px-12 lg:px-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 text-center sm:mb-16">
+          <h2 className="mb-4 text-4xl font-bold">Simple, Transparent Pricing</h2>
+          <p className="mx-auto max-w-2xl text-lg text-gray-600 sm:text-2xl">
             Choose the plan that fits your business size and growth stage
           </p>
         </div>
 
-        {/* PRicing Grid */}
-        <div className="grid md:grid-cols-3 gap-8 fade-up">
-          {/* STARTER PLAN */}
+        <div className="grid gap-6 md:grid-cols-3 md:items-stretch lg:gap-8">
           <ScrollReveal direction="left">
-            <div className="border w-70 h-100 mt-15 mx-auto rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <h3 className="text-xl font-semibold mb-2">Starter</h3>
-              <p className="text-3xl   font-bold mb-6">
-                $19<span className="text-sm ">/month</span>
+            <div className="mx-auto flex h-full w-full max-w-sm flex-col rounded-xl border p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:p-8">
+              <h3 className="mb-2 text-xl font-semibold">Starter</h3>
+              <p className="mb-6 text-3xl font-bold">
+                $19<span className="text-sm">/month</span>
               </p>
-              <ul className="space-y-3 text-sm  mb-3">
-                <li>✓ Basic analytics dashboard</li>
-                <li>✓ Up to 1,000 transactions</li>
-                <li>✓ Email support</li>
+              <ul className="mb-6 space-y-3 text-sm">
+                <li>Basic analytics dashboard</li>
+                <li>Up to 1,000 transactions</li>
+                <li>Email support</li>
               </ul>
               <Link
                 href="/register"
-                className="block w-full text-center text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg"
+                className="mt-auto block w-full rounded-md border bg-emerald-600 py-2 text-center text-xl font-semibold text-black transition-all duration-300 hover:-translate-y-2 hover:bg-emerald-800 hover:shadow-lg"
               >
                 Get Started
               </Link>
             </div>
           </ScrollReveal>
 
-          {/* pro plan (highlighted) */}
-
-          <div className="border-2 border-emerald-500 rounded-xl p-8 shadow-lg relative transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500  text-sm px-3 py-1 rounded-full">
+          <div className="relative flex h-full flex-col rounded-xl border-2 border-emerald-500 p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:p-8">
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500 px-3 py-1 text-sm">
               Most Popular
             </div>
-            <h3 className="text-2xl  font-bold mb-6">Pro</h3>
-            <p className="text-3xl   font-bold mb-6">
-              $49<span className="text-sm ">/month</span>
+            <h3 className="mb-6 text-2xl font-bold">Pro</h3>
+            <p className="mb-6 text-3xl font-bold">
+              $49<span className="text-sm">/month</span>
             </p>
-            <ul className="space-y-3 text-sm  mb-8">
-              <li>✓ Advanced analytics</li>
-              <li>✓ Unlimited transactions</li>
-              <li>✓ Priority support</li>
+            <ul className="mb-8 space-y-3 text-sm">
+              <li>Advanced analytics</li>
+              <li>Unlimited transactions</li>
+              <li>Priority support</li>
             </ul>
             <Link
               href="/register"
-              className="block w-full text-center text-black font-semibold bg-emerald-600 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-emerald-800 hover:-translate-y-2 hover:shadow-lg"
+              className="mt-auto block w-full rounded-md border bg-emerald-600 py-2 text-center text-xl font-semibold text-black transition-all duration-300 hover:-translate-y-2 hover:bg-emerald-800 hover:shadow-lg"
             >
               Get Started
             </Link>
           </div>
 
-          {/* ENTERPRIZE */}
           <ScrollReveal direction="right">
-            <div className="border w-70 mt-15 h-100 mx-auto rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-              <h3 className="text-lg  font-bold mb-6">Enterprise</h3>
-              <p className="text-3xl  font-bold mb-6">Custom</p>
-              <ul className="space-y-3 text-sm  mb-4">
-                <li>✓ Dedictated infrastructure</li>
-                <li>✓ Custom reporting</li>
-                <li>✓ Dedicated account manager</li>
+            <div className="mx-auto flex h-full w-full max-w-sm flex-col rounded-xl border p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:p-8">
+              <h3 className="mb-6 text-lg font-bold">Enterprise</h3>
+              <p className="mb-6 text-3xl font-bold">Custom</p>
+              <ul className="mb-6 space-y-3 text-sm">
+                <li>Dedicated infrastructure</li>
+                <li>Custom reporting</li>
+                <li>Dedicated account manager</li>
               </ul>
-              <button className="w-full text-black font-semibold bg-orange-900 py-2 border rounded-md text-xl transition-all duration-300 hover:bg-orange-800 hover:-translate-y-2 hover:shadow-lg">
+              <button className="mt-auto w-full rounded-md border bg-orange-900 py-2 text-xl font-semibold text-black transition-all duration-300 hover:-translate-y-2 hover:bg-orange-800 hover:shadow-lg">
                 Contact sales
               </button>
             </div>

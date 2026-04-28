@@ -27,7 +27,7 @@ const CtaCard = ({ image, title, description }: Props) => {
         alt={title}
         width={500}
         height={500}
-        className="w-full h-170 object-cover border transition-transform duration-700 group-hover:scale-110 rounded-xl"
+        className="h-80 w-full rounded-xl border object-cover transition-transform duration-700 group-hover:scale-110 sm:h-96 lg:h-[34rem]"
       />
       {/* {TOPRIGHT ICON} */}
       <motion.div

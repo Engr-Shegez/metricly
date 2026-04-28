@@ -22,7 +22,7 @@ export function MarketingNavbar() {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-slate-950/90 backdrop-blur-md  left-0 right-0 px-2 sm:px-4 py-2 border-gray-200 dark:border-slate-700 ">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white/90 px-2 py-2 backdrop-blur-md dark:bg-slate-950/90 sm:px-4">
       <div className="mx-auto max-w-7xl px-6 pt-2">
         <div className="relative rounded-full border border-black/6 bg-white/78 px-4 py-3 shadow-[0_18px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_18px_80px_rgba(0,0,0,0.28)]">
           <div className="flex items-center justify-between gap-4">

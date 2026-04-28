@@ -10,26 +10,25 @@ const FeatureSection = () => {
   return (
     <section
       id="features"
-      className="px-4 sm:px-6 md:px-12 lg:px-16 py-12 bg-linear-to-b min-h-0 sm:min-h-screen mt-0 sm:mt-12 lg:mt-16 mb-8 sm:mb-12"
+      className="px-4 py-12 sm:px-6 sm:py-16 md:px-12 lg:px-16 lg:py-20"
     >
-      <div className="max-w-6xl mx-auto mt-6 sm:mt-8 md:mt-10">
-        {/* Section Header */}
-        <div className="text-center mb-1">
-          <h2 className="text-5xl font-bold mb-4">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 text-center sm:mb-12">
+          <h2 className="mb-4 text-4xl font-bold sm:text-5xl">
             Everything You Need to
             <span className="bg-linear-to-r from-emerald-500 to-red-600 bg-clip-text text-transparent">
               {" "}
               Scale Smarter
             </span>
           </h2>
-          <p className="text-gray-500 text-md font-bold max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-base font-bold text-gray-500 sm:text-lg">
             Powerful analytics tools designed to help you understand
             performance,tract growth, and make confident business decisions.
           </p>
         </div>
 
-        <section className="md:py-12 px-6 ">
-          <div className="max-w-7xl mx-auto text-left">
+        <section className="px-2 sm:px-4 md:px-6">
+          <div className="mx-auto max-w-7xl text-left">
             <ScrollReveal direction="right">
               <FeatureRow
                 title="Top Management to see the bigger picture"

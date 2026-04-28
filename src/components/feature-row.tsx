@@ -18,25 +18,26 @@ const FeatureRow = ({
 }: Props) => {
   return (
     <div
-      className={`grid md:grid-cols-2 gap-20 items-center md:py-24 py-18 ${reverse ? "md:flex-row-reverse" : ""}`}
+      className={`grid items-center gap-10 py-12 md:grid-cols-2 md:gap-16 md:py-20 ${reverse ? "md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1" : ""}`}
     >
-      {/* TEXT */}
-      <div>
-        <h3 className="text-3xl font-semibold leading-tight">{title}</h3>
-        <p className="text-muted-foreground mt-6 max-w-md">{description}</p>
+      <div className="min-w-0">
+        <h3 className="text-2xl font-semibold leading-tight sm:text-3xl">
+          {title}
+        </h3>
+        <p className="mt-6 max-w-md text-muted-foreground">{description}</p>
         <ul className="mt-8 space-y-3">
           {bullets.map((item, i) => (
             <li key={i} className="flex items-center gap-3">
-              <span className="bg-orange-500 w-5 h-5 rounded flex items-center justify-center text-white text-xs">
-                ✓
+              <span className="flex h-5 w-5 items-center justify-center rounded bg-orange-500 text-xs text-white">
+                +
               </span>
               {item}
             </li>
           ))}
         </ul>
       </div>
-      {/* Visual */}
-      <div>{visual}</div>
+
+      <div className="min-w-0">{visual}</div>
     </div>
   );
 };

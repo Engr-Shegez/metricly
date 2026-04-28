@@ -4,11 +4,9 @@ import { motion } from "framer-motion";
 
 export default function FeatureVisual() {
   return (
-    <div className="relative flex items-center justify-center">
-      {/* BIG AMBIENT GLOW */}
-      <div className="absolute w-125 h-125 bg-orange-500/20 blur-[10px] rounded-full" />
+    <div className="relative flex min-h-[22rem] items-center justify-center overflow-hidden rounded-2xl px-4">
+      <div className="absolute h-72 w-72 rounded-full bg-orange-500/20 blur-[10px] sm:h-96 sm:w-96" />
 
-      {/* ROTATING RING */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{
@@ -16,15 +14,14 @@ export default function FeatureVisual() {
           duration: 25,
           ease: "linear",
         }}
-        className="absolute w-95 h-95 rounded-full
+        className="absolute h-64 w-64 rounded-full
         bg-linear-to-r
         from-orange-500
         via-orange-300
         to-orange-600
-        opacity-40 blur-xl"
+        opacity-40 blur-xl sm:h-80 sm:w-80"
       />
 
-      {/* INNER RING */}
       <motion.div
         animate={{ rotate: -360 }}
         transition={{
@@ -32,12 +29,10 @@ export default function FeatureVisual() {
           duration: 35,
           ease: "linear",
         }}
-        className="absolute w-[320px] h-80 rounded-full
-        border border-orange-500/40"
+        className="absolute h-64 w-64 rounded-full border border-orange-500/40 sm:h-80 sm:w-80"
       />
 
-      {/* GLASS PRODUCT CARD */}
-      <div className="relative bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-xl p-8 w-[320px] shadow-2xl hover:scale-[1.02] transition">
+      <div className="relative w-full max-w-[320px] rounded-xl border border-white/10 bg-zinc-900/80 p-6 shadow-2xl transition hover:scale-[1.02] sm:p-8">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-orange-500 rounded-lg" />
