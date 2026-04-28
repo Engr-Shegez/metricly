@@ -13,12 +13,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 import { toast } from "sonner";
 
 import { KanbanBoard } from "@/components/dashboard/KanbanBoard";
@@ -97,7 +92,10 @@ function reorderTasks(
     task.status === targetStatus && currentColumnIndex < targetIndex
       ? targetIndex - 1
       : targetIndex;
-  const safeIndex = Math.max(0, Math.min(adjustedIndex, targetColumnTasks.length));
+  const safeIndex = Math.max(
+    0,
+    Math.min(adjustedIndex, targetColumnTasks.length),
+  );
   const nextTask = { ...task, status: targetStatus };
   const targetTask = targetColumnTasks[safeIndex];
 
@@ -149,7 +147,9 @@ function SentimentTooltip({
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<KanbanTask[]>(dashboardTasks);
   const [syncingTaskId, setSyncingTaskId] = useState<string | null>(null);
-  const [activeProjectId, setActiveProjectId] = useState(dashboardProjects[0].id);
+  const [activeProjectId, setActiveProjectId] = useState(
+    dashboardProjects[0].id,
+  );
   const [createTaskOpen, setCreateTaskOpen] = useState(false);
   const [draftTask, setDraftTask] = useState<DraftTaskState>({
     title: "",
@@ -165,7 +165,10 @@ export default function DashboardPage() {
   useEffect(() => {
     const openCreateTask = () => setCreateTaskOpen(true);
     const jumpToAgile = () =>
-      agileViewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      agileViewRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     const focusProject = (event: Event) => {
       const projectId = (event as CustomEvent<string>).detail;
 
@@ -200,13 +203,16 @@ export default function DashboardPage() {
     (project) => project.id === activeProjectId,
   );
   const moodScore =
-    clientSentimentSeries.reduce((total, item) => total + item.feedbackScore, 0) /
-    clientSentimentSeries.length;
+    clientSentimentSeries.reduce(
+      (total, item) => total + item.feedbackScore,
+      0,
+    ) / clientSentimentSeries.length;
   const mood = getMood(moodScore);
   const openTaskCount = tasks.filter((task) => task.status !== "done").length;
   const doneTaskCount = tasks.filter((task) => task.status === "done").length;
   const userTaskCount = tasks.filter(
-    (task) => task.assigneeId === currentDashboardUser.id && task.status !== "done",
+    (task) =>
+      task.assigneeId === currentDashboardUser.id && task.status !== "done",
   ).length;
 
   const handleMoveTask = (
@@ -214,7 +220,9 @@ export default function DashboardPage() {
     targetStatus: TaskStatus,
     targetIndex: number,
   ) => {
-    setTasks((current) => reorderTasks(current, taskId, targetStatus, targetIndex));
+    setTasks((current) =>
+      reorderTasks(current, taskId, targetStatus, targetIndex),
+    );
     setSyncingTaskId(taskId);
 
     window.setTimeout(() => {
@@ -231,7 +239,9 @@ export default function DashboardPage() {
     const task: KanbanTask = {
       id: `t-${crypto.randomUUID()}`,
       title: draftTask.title.trim(),
-      description: draftTask.description.trim() || "New task created from the command palette.",
+      description:
+        draftTask.description.trim() ||
+        "New task created from the command palette.",
       status: "backlog",
       priority: draftTask.priority,
       projectId: draftTask.projectId,
@@ -255,7 +265,10 @@ export default function DashboardPage() {
     toast.success("Task created and added to backlog.");
 
     window.setTimeout(() => {
-      agileViewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      agileViewRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }, 80);
   };
 
@@ -271,15 +284,18 @@ export default function DashboardPage() {
           >
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-2xl">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[var(--glass-border)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+                <span className="inline-flex items-center gap-2 rounded-full border-(--glass-border) px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                   <Layers3 className="h-3.5 w-3.5" />
                   Senior-level architecture
                 </span>
                 <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                  A calmer, faster delivery cockpit for your projects and clients.
+                  A calmer, faster delivery cockpit for your projects and
+                  clients.
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
-                  The workspace is now shaped around dense agile execution, real-time presence, and executive clarity without losing the warmth of a polished product experience.
+                  The workspace is now shaped around dense agile execution,
+                  real-time presence, and executive clarity without losing the
+                  warmth of a polished product experience.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -306,7 +322,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="grid w-full gap-3 sm:grid-cols-3 lg:max-w-xl">
+              <div className="grid w-full  gap-4 sm:grid-cols-3 lg:max-w-xl">
                 {[
                   {
                     label: "Open work",
@@ -329,7 +345,7 @@ export default function DashboardPage() {
                 ].map((metric) => (
                   <div
                     key={metric.label}
-                    className="rounded-[26px] border border-white/45 bg-white/70 p-4 shadow-sm dark:border-white/8 dark:bg-white/5"
+                    className="rounded-[26px] border border-white/45 bg-white/70 p-2 shadow-sm dark:border-white/8 dark:bg-white/5"
                   >
                     <metric.icon className="h-5 w-5 text-primary" />
                     <p className="mt-4 text-3xl font-semibold text-foreground">
@@ -338,7 +354,9 @@ export default function DashboardPage() {
                     <p className="mt-1 text-sm font-medium text-foreground">
                       {metric.label}
                     </p>
-                    <p className="text-xs text-muted-foreground">{metric.detail}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {metric.detail}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -372,10 +390,13 @@ export default function DashboardPage() {
                   <div>
                     <p className="text-sm font-semibold text-foreground">
                       Due{" "}
-                      {new Date(nextActionTask.dueDate).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      {new Date(nextActionTask.dueDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        },
+                      )}
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">
                       {nextActionTask.storyPoints} story points
@@ -429,7 +450,8 @@ export default function DashboardPage() {
             </div>
 
             <p className="mt-4 text-sm leading-7 text-muted-foreground">
-              Client confidence is strengthening week over week, with the latest feedback highlighting clarity and faster turnaround.
+              Client confidence is strengthening week over week, with the latest
+              feedback highlighting clarity and faster turnaround.
             </p>
           </motion.article>
         </section>
@@ -504,7 +526,9 @@ export default function DashboardPage() {
                   <div className="mt-5 flex items-center justify-between">
                     <div className="flex -space-x-2">
                       {project.members.map((memberId) => {
-                        const user = dashboardUsers.find((item) => item.id === memberId);
+                        const user = dashboardUsers.find(
+                          (item) => item.id === memberId,
+                        );
 
                         return (
                           <Avatar
@@ -583,7 +607,9 @@ export default function DashboardPage() {
                       <p className="text-sm font-semibold text-foreground">
                         {user.name}
                       </p>
-                      <p className="text-xs text-muted-foreground">{user.role}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {user.role}
+                      </p>
                     </div>
                   </div>
                   <p className="mt-3 text-xs font-medium text-muted-foreground">
@@ -661,13 +687,17 @@ export default function DashboardPage() {
                 Create a task
               </DialogTitle>
               <DialogDescription className="text-sm leading-6 text-muted-foreground">
-                Add work to the backlog instantly. The board will update optimistically and stay aligned with the rest of the dashboard.
+                Add work to the backlog instantly. The board will update
+                optimistically and stay aligned with the rest of the dashboard.
               </DialogDescription>
             </DialogHeader>
 
             <div className="mt-6 space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground" htmlFor="task-title">
+                <label
+                  className="text-sm font-medium text-foreground"
+                  htmlFor="task-title"
+                >
                   Task title
                 </label>
                 <Input
@@ -778,7 +808,10 @@ export default function DashboardPage() {
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-2">
-                <Button onClick={() => setCreateTaskOpen(false)} variant="outline">
+                <Button
+                  onClick={() => setCreateTaskOpen(false)}
+                  variant="outline"
+                >
                   Cancel
                 </Button>
                 <Button onClick={handleCreateTask}>

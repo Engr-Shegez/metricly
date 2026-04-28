@@ -241,15 +241,15 @@ function BoardColumn({
       >
         <div ref={setNodeRef} className="space-y-3 rounded-3xl">
           {tasks.length > 0 ? (
-            tasks.map((task) => (
+            tasks.map((task) =>
               sortable ? (
                 <SortableTaskCard key={task.id} task={task} users={users} />
               ) : (
                 <StaticTaskCard key={task.id} task={task} users={users} />
-              )
-            ))
+              ),
+            )
           ) : (
-            <div className="rounded-3xl border border-dashed border-[var(--glass-border)] px-4 py-8 text-center text-xs text-muted-foreground">
+            <div className="rounded-3xl border border-dashed border-(--glass-border) px-4 py-8 text-center text-xs text-muted-foreground">
               Drop a task here
             </div>
           )}

@@ -75,7 +75,7 @@ export function CommandPalette() {
       {open ? (
         <motion.div
           aria-hidden="true"
-          className="fixed inset-0 z-[70] bg-slate-950/30 backdrop-blur-sm"
+          className="fixed inset-0 z-70 bg-slate-950/30 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -98,7 +98,7 @@ export function CommandPalette() {
               className="overflow-hidden"
               label="Search projects and run dashboard commands"
             >
-              <div className="flex items-center gap-3 border-b border-[var(--glass-border)] px-5 py-4">
+              <div className="flex items-center gap-3 border-b bg-(--glass-strong) px-5 py-4">
                 <Search className="h-4 w-4 text-muted-foreground" />
                 <Command.Input
                   autoFocus
@@ -107,20 +107,17 @@ export function CommandPalette() {
                   placeholder="Search projects, actions, and views..."
                   value={search}
                 />
-                <span className="rounded-full border border-[var(--glass-border)] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                <span className="rounded-full border bg-(--glass-strong) px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                   Cmd K
                 </span>
               </div>
 
-              <Command.List className="max-h-[420px] overflow-y-auto p-3">
+              <Command.List className="max-h-105 overflow-y-auto p-3">
                 <Command.Empty className="px-3 py-10 text-center text-sm text-muted-foreground">
                   No matching projects or actions.
                 </Command.Empty>
 
-                <Command.Group
-                  className="space-y-1"
-                  heading="Projects"
-                >
+                <Command.Group className="space-y-1" heading="Projects">
                   <div className="px-2 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                     Projects
                   </div>
@@ -134,7 +131,11 @@ export function CommandPalette() {
                       onSelect={() => {
                         router.push("/dashboard#project-overview");
                         window.setTimeout(
-                          () => emitDashboardEvent("metricly:focus-project", project.id),
+                          () =>
+                            emitDashboardEvent(
+                              "metricly:focus-project",
+                              project.id,
+                            ),
                           80,
                         );
                         closePalette();
@@ -157,10 +158,7 @@ export function CommandPalette() {
                   ))}
                 </Command.Group>
 
-                <Command.Group
-                  className="space-y-1"
-                  heading="Actions"
-                >
+                <Command.Group className="space-y-1" heading="Actions">
                   <div className="px-2 pb-2 pt-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                     Actions
                   </div>

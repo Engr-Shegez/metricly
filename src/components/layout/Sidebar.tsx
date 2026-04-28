@@ -76,7 +76,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
       >
         <div className="flex items-center justify-between">
           <Link className="flex items-center gap-3" href="/">
-            <div className="rounded-2xl bg-white/70 p-2 shadow-sm dark:bg-white/10">
+            <div className="rounded-2xl bg-white/70  p-2 shadow-sm dark:bg-white/10">
               <Image
                 alt="Metricly logo"
                 className="h-7 w-auto"
@@ -90,7 +90,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
 
           <button
             aria-label="Close sidebar"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] text-foreground lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--glass-border)text-foreground lg:hidden"
             onClick={() => setOpen(false)}
             type="button"
           >
@@ -106,13 +106,16 @@ const Sidebar = ({ open, setOpen }: Props) => {
             Delivery OS
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            World-class project operations with a dense agile workflow and calmer stakeholder visibility.
+            World-class project operations with a dense agile workflow and
+            calmer stakeholder visibility.
           </p>
         </div>
 
         <nav className="mt-8 space-y-2" aria-label="Primary dashboard links">
           {navigation.map((item) => {
-            const isActive = item.href.includes("#") ? false : item.matches(pathname);
+            const isActive = item.href.includes("#")
+              ? false
+              : item.matches(pathname);
             const Icon = item.icon;
 
             return (
@@ -150,13 +153,16 @@ const Sidebar = ({ open, setOpen }: Props) => {
 
         <div className="mt-auto rounded-[28px] border border-[var(--glass-border)] bg-[rgba(255,255,255,0.42)] p-4 dark:bg-white/5">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-foreground">Sprint Pulse</p>
+            <p className="text-sm font-semibold text-foreground">
+              Sprint Pulse
+            </p>
             <span className="rounded-full bg-emerald-500/12 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300">
               Healthy
             </span>
           </div>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            12 tasks closed this week. Cycle time is down 18% and client sentiment is trending upward.
+            12 tasks closed this week. Cycle time is down 18% and client
+            sentiment is trending upward.
           </p>
         </div>
       </aside>

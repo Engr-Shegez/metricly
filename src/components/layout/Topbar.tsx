@@ -20,11 +20,7 @@ function openPalette() {
   window.dispatchEvent(new Event("metricly:open-command-palette"));
 }
 
-export default function Topbar({
-  onMenuClick,
-}: {
-  onMenuClick: () => void;
-}) {
+export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
   const breadcrumbItems = segments.map((segment, index) => ({
@@ -35,13 +31,13 @@ export default function Topbar({
   return (
     <header
       aria-label="Dashboard top bar"
-      className="fixed left-0 right-0 top-0 z-30 px-4 pt-4 lg:left-[18rem] lg:px-6"
+      className="fixed left-0 right-0 top-0 z-30 px-4 pt-4 lg:left-72 lg:px-6"
     >
-      <div className="glass-strong mx-auto flex max-w-[1600px] items-center justify-between rounded-[30px] px-4 py-3 sm:px-5">
+      <div className="glass-strong mx-auto flex max-w-400items-center justify-between rounded-[30px] px-4 py-3 sm:px-5">
         <div className="flex items-center gap-3">
           <button
             aria-label="Open navigation"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] text-foreground lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--glass-border)text-foreground lg:hidden"
             onClick={onMenuClick}
             type="button"
           >
@@ -87,7 +83,7 @@ export default function Topbar({
 
           <ThemeToggle />
 
-          <div className="flex items-center gap-3 rounded-full border border-[var(--glass-border)] bg-white/60 px-2 py-2 shadow-sm dark:bg-white/6">
+          <div className="flex items-center gap-3 rounded-full border border-(--glass-border) bg-white/60 px-2 py-2 shadow-sm dark:bg-white/6">
             <Avatar className="h-10 w-10">
               <AvatarFallback
                 className={`${currentDashboardUser.avatarColor} text-sm font-semibold text-white`}
