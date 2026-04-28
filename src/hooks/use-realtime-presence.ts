@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { dashboardUsers } from "@/lib/project-dashboard-data";
 import type { PresenceCursor } from "@/types/project-dashboard";
@@ -57,6 +57,21 @@ export function useRealtimePresence() {
     return new BroadcastChannel(CHANNEL_NAME);
   }, []);
 
+  const postPresenceMessage = useCallback(
+    (message: PresenceMessage) => {
+      if (!channel) {
+        return;
+      }
+
+      try {
+        channel.postMessage(message);
+      } catch {
+        // Ignore teardown races when React unmounts effects in a different order.
+      }
+    },
+    [channel],
+  );
+
   useEffect(() => {
     if (!channel) {
       return;
@@ -90,10 +105,14 @@ export function useRealtimePresence() {
     channel.addEventListener("message", handleMessage);
 
     return () => {
+      postPresenceMessage({
+        type: "leave",
+        payload: { id: localUser.id },
+      });
       channel.removeEventListener("message", handleMessage);
       channel.close();
     };
-  }, [channel, localUser.id]);
+  }, [channel, localUser.id, postPresenceMessage]);
 
   useEffect(() => {
     if (!channel || typeof window === "undefined") {
@@ -109,7 +128,7 @@ export function useRealtimePresence() {
 
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        channel.postMessage({
+        postPresenceMessage({
           type: "cursor",
           payload: {
             id: localUser.id,
@@ -124,7 +143,7 @@ export function useRealtimePresence() {
     };
 
     const cleanup = () => {
-      channel.postMessage({
+      postPresenceMessage({
         type: "leave",
         payload: { id: localUser.id },
       } satisfies PresenceMessage);
@@ -138,11 +157,10 @@ export function useRealtimePresence() {
         window.cancelAnimationFrame(frame);
       }
 
-      cleanup();
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("beforeunload", cleanup);
     };
-  }, [channel, localUser]);
+  }, [channel, localUser, postPresenceMessage]);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
