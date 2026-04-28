@@ -20,7 +20,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { motion } from "framer-motion";
 import { Circle, Signal, Sparkles } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 
 import { getProjectById } from "@/lib/project-dashboard-data";
 import { cn } from "@/lib/utils";
@@ -81,7 +81,8 @@ function TaskCard({
       layout
       className={cn(
         "group rounded-3xl border border-white/55 bg-white/80 p-3 text-left shadow-[0_18px_40px_rgba(60,44,21,0.10)] backdrop-blur-xl dark:border-white/8 dark:bg-[rgba(32,40,51,0.88)] dark:shadow-[0_18px_40px_rgba(0,0,0,0.28)]",
-        dragOverlay && "rotate-[1.5deg] shadow-[0_22px_48px_rgba(15,23,42,0.22)]",
+        dragOverlay &&
+          "rotate-[1.5deg] shadow-[0_22px_48px_rgba(15,23,42,0.22)]",
       )}
       transition={{ type: "spring", stiffness: 320, damping: 26 }}
     >
@@ -94,7 +95,9 @@ function TaskCard({
                 priority.badge,
               )}
             >
-              <Circle className={cn("h-2.5 w-2.5 fill-current", priority.dot)} />
+              <Circle
+                className={cn("h-2.5 w-2.5 fill-current", priority.dot)}
+              />
               {priority.label}
             </span>
             <span className="rounded-full border border-[var(--glass-border)] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
@@ -102,7 +105,9 @@ function TaskCard({
             </span>
           </div>
 
-          <h4 className="text-sm font-semibold text-foreground">{task.title}</h4>
+          <h4 className="text-sm font-semibold text-foreground">
+            {task.title}
+          </h4>
           <p className="line-clamp-2 text-xs leading-5 text-muted-foreground">
             {task.description}
           </p>
@@ -123,7 +128,8 @@ function TaskCard({
       <div className="mt-4 flex items-end justify-between">
         <div className="space-y-1">
           <div className="text-[11px] font-medium text-muted-foreground">
-            Due {new Date(task.dueDate).toLocaleDateString("en-US", {
+            Due{" "}
+            {new Date(task.dueDate).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
             })}
@@ -131,7 +137,10 @@ function TaskCard({
           <div className="flex items-center gap-2">
             <Avatar className="h-6 w-6 border border-white/70 shadow-sm dark:border-white/10">
               <AvatarFallback
-                className={cn("text-[10px] font-semibold text-white", assignee?.avatarColor)}
+                className={cn(
+                  "text-[10px] font-semibold text-white",
+                  assignee?.avatarColor,
+                )}
               >
                 {assignee?.initials ?? "?"}
               </AvatarFallback>
@@ -185,14 +194,26 @@ function SortableTaskCard({
   );
 }
 
+function StaticTaskCard({
+  task,
+  users,
+}: {
+  task: KanbanTask;
+  users: DashboardUser[];
+}) {
+  return <TaskCard task={task} users={users} />;
+}
+
 function BoardColumn({
   status,
   tasks,
   users,
+  sortable = true,
 }: {
   status: TaskStatus;
   tasks: KanbanTask[];
   users: DashboardUser[];
+  sortable?: boolean;
 }) {
   const meta = columns.find((column) => column.id === status);
   const { setNodeRef } = useDroppable({ id: status });
@@ -204,7 +225,9 @@ function BoardColumn({
     >
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-sm font-semibold text-foreground">{meta?.label}</h3>
+          <h3 className="text-sm font-semibold text-foreground">
+            {meta?.label}
+          </h3>
           <p className="text-xs text-muted-foreground">{meta?.hint}</p>
         </div>
         <div className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-secondary-foreground">
@@ -219,7 +242,11 @@ function BoardColumn({
         <div ref={setNodeRef} className="space-y-3 rounded-3xl">
           {tasks.length > 0 ? (
             tasks.map((task) => (
-              <SortableTaskCard key={task.id} task={task} users={users} />
+              sortable ? (
+                <SortableTaskCard key={task.id} task={task} users={users} />
+              ) : (
+                <StaticTaskCard key={task.id} task={task} users={users} />
+              )
             ))
           ) : (
             <div className="rounded-3xl border border-dashed border-[var(--glass-border)] px-4 py-8 text-center text-xs text-muted-foreground">
@@ -244,6 +271,11 @@ export function KanbanBoard({
   onMoveTask: (taskId: string, status: TaskStatus, targetIndex: number) => void;
 }) {
   const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -256,7 +288,9 @@ export function KanbanBoard({
     () =>
       columns.reduce(
         (accumulator, column) => {
-          accumulator[column.id] = tasks.filter((task) => task.status === column.id);
+          accumulator[column.id] = tasks.filter(
+            (task) => task.status === column.id,
+          );
           return accumulator;
         },
         {
@@ -270,7 +304,7 @@ export function KanbanBoard({
   );
 
   const activeTask = activeTaskId
-    ? tasks.find((task) => task.id === activeTaskId) ?? null
+    ? (tasks.find((task) => task.id === activeTaskId) ?? null)
     : null;
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -298,7 +332,8 @@ export function KanbanBoard({
 
     if (
       activeItem.status === targetStatus &&
-      targetColumnTasks.findIndex((task) => task.id === activeItem.id) === targetIndex
+      targetColumnTasks.findIndex((task) => task.id === activeItem.id) ===
+        targetIndex
     ) {
       return;
     }
@@ -318,7 +353,8 @@ export function KanbanBoard({
             High-density sprint board
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Optimistic task moves keep the board feeling instant while state syncs in the background.
+            Optimistic task moves keep the board feeling instant while state
+            syncs in the background.
           </p>
         </div>
 
@@ -328,12 +364,31 @@ export function KanbanBoard({
         </div>
       </div>
 
-      <DndContext
-        collisionDetection={closestCorners}
-        onDragEnd={handleDragEnd}
-        onDragStart={(event) => setActiveTaskId(String(event.active.id))}
-        sensors={sensors}
-      >
+      {isMounted ? (
+        <DndContext
+          collisionDetection={closestCorners}
+          onDragEnd={handleDragEnd}
+          onDragStart={(event) => setActiveTaskId(String(event.active.id))}
+          sensors={sensors}
+        >
+          <div className="grid gap-4 xl:grid-cols-4">
+            {columns.map((column) => (
+              <BoardColumn
+                key={column.id}
+                status={column.id}
+                tasks={tasksByColumn[column.id]}
+                users={users}
+              />
+            ))}
+          </div>
+
+          <DragOverlay>
+            {activeTask ? (
+              <TaskCard dragOverlay task={activeTask} users={users} />
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+      ) : (
         <div className="grid gap-4 xl:grid-cols-4">
           {columns.map((column) => (
             <BoardColumn
@@ -341,14 +396,11 @@ export function KanbanBoard({
               status={column.id}
               tasks={tasksByColumn[column.id]}
               users={users}
+              sortable={false}
             />
           ))}
         </div>
-
-        <DragOverlay>
-          {activeTask ? <TaskCard dragOverlay task={activeTask} users={users} /> : null}
-        </DragOverlay>
-      </DndContext>
+      )}
     </section>
   );
 }

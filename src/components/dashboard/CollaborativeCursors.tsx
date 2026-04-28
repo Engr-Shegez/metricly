@@ -1,5 +1,6 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { MousePointer2, Users2 } from "lucide-react";
 
@@ -7,7 +8,16 @@ import { useRealtimePresence } from "@/hooks/use-realtime-presence";
 import { cn } from "@/lib/utils";
 
 export function CollaborativeCursors() {
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const { localUser, remoteCursors } = useRealtimePresence();
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
