@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { dashboardUsers } from "@/lib/project-dashboard-data";
+import type { AuthenticatedUser } from "@/lib/auth-client";
 import type { PresenceCursor } from "@/types/project-dashboard";
 
 const CHANNEL_NAME = "metricly-dashboard-presence";
@@ -12,41 +12,20 @@ type PresenceMessage =
   | { type: "cursor"; payload: PresenceCursor }
   | { type: "leave"; payload: { id: string } };
 
-function getSessionUser() {
-  if (typeof window === "undefined") {
-    const fallbackUser = dashboardUsers[0];
-
-    return {
-      id: fallbackUser.id,
-      name: fallbackUser.name,
-      color: fallbackUser.cursorColor,
-    };
+function getPresenceUser(user: AuthenticatedUser | null) {
+  if (!user) {
+    return null;
   }
 
-  const existing = window.sessionStorage.getItem("metricly-presence-user");
-
-  if (existing) {
-    return JSON.parse(existing) as { id: string; name: string; color: string };
-  }
-
-  const randomUser =
-    dashboardUsers[Math.floor(Math.random() * dashboardUsers.length)];
-  const sessionUser = {
-    id: `${randomUser.id}-${crypto.randomUUID()}`,
-    name: randomUser.name,
-    color: randomUser.cursorColor,
+  return {
+    id: user.id,
+    name: user.name,
+    color: "text-emerald-500",
   };
-
-  window.sessionStorage.setItem(
-    "metricly-presence-user",
-    JSON.stringify(sessionUser),
-  );
-
-  return sessionUser;
 }
 
-export function useRealtimePresence() {
-  const [localUser] = useState(getSessionUser);
+export function useRealtimePresence(user: AuthenticatedUser | null) {
+  const localUser = useMemo(() => getPresenceUser(user), [user]);
   const [remoteCursors, setRemoteCursors] = useState<PresenceCursor[]>([]);
 
   const channel = useMemo(() => {
@@ -73,7 +52,7 @@ export function useRealtimePresence() {
   );
 
   useEffect(() => {
-    if (!channel) {
+    if (!channel || !localUser) {
       return;
     }
 
@@ -91,7 +70,7 @@ export function useRealtimePresence() {
         return;
       }
 
-      if (message.payload.id === localUser.id) {
+      if (!localUser || message.payload.id === localUser.id) {
         return;
       }
 
@@ -112,10 +91,10 @@ export function useRealtimePresence() {
       channel.removeEventListener("message", handleMessage);
       channel.close();
     };
-  }, [channel, localUser.id, postPresenceMessage]);
+  }, [channel, localUser, postPresenceMessage]);
 
   useEffect(() => {
-    if (!channel || typeof window === "undefined") {
+    if (!channel || !localUser || typeof window === "undefined") {
       return;
     }
 

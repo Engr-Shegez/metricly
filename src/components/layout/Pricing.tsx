@@ -1,8 +1,15 @@
+"use client";
+
 import React from "react";
 import ScrollReveal from "../scroll-reveal";
 import Link from "next/link";
+import { useCurrentUser } from "@/lib/auth-client";
 
 const PricingSection = () => {
+  const currentUser = useCurrentUser();
+  const ctaHref = currentUser ? "/dashboard" : "/register";
+  const ctaLabel = currentUser ? "Open Dashboard" : "Get Started";
+
   return (
     <section id="pricing" className="px-4 py-16 sm:px-6 sm:py-20 md:px-12 lg:px-16">
       <div className="mx-auto max-w-6xl">
@@ -26,10 +33,10 @@ const PricingSection = () => {
                 <li>Email support</li>
               </ul>
               <Link
-                href="/register"
+                href={ctaHref}
                 className="mt-auto block w-full rounded-md border bg-emerald-600 py-2 text-center text-xl font-semibold text-black transition-all duration-300 hover:-translate-y-2 hover:bg-emerald-800 hover:shadow-lg"
               >
-                Get Started
+                {ctaLabel}
               </Link>
             </div>
           </ScrollReveal>
@@ -48,10 +55,10 @@ const PricingSection = () => {
               <li>Priority support</li>
             </ul>
             <Link
-              href="/register"
+              href={ctaHref}
               className="mt-auto block w-full rounded-md border bg-emerald-600 py-2 text-center text-xl font-semibold text-black transition-all duration-300 hover:-translate-y-2 hover:bg-emerald-800 hover:shadow-lg"
             >
-              Get Started
+              {ctaLabel}
             </Link>
           </div>
 

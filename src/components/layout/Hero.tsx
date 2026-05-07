@@ -2,9 +2,14 @@
 import React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
+import { useCurrentUser } from "@/lib/auth-client";
 
 const Hero = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const currentUser = useCurrentUser();
+
   return (
     <section
       className="relative overflow-hidden px-1 pt-4 text-center"
@@ -32,17 +37,17 @@ const Hero = () => {
       </p>
 
       <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="/register"
+        <Link
+          href={currentUser ? "/dashboard" : "/register"}
           className="px-6 py-3 bg-orange-400 text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 hover:-translate-y-2 hover:shadow-lg"
         >
-          Get Started
-        </a>
-        <a href="/dashboard">
+          {currentUser ? "Open Dashboard" : "Get Started"}
+        </Link>
+        <Link href="/dashboard">
           <button className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg text-sm font-bold transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-700 hover:-translate-y-2 hover:shadow-lg">
             View Demo
           </button>
-        </a>
+        </Link>
       </div>
 
       <motion.div
