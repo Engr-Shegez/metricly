@@ -1,20 +1,22 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-import {
-  currentDashboardUser,
-  dashboardUsers,
-} from "@/lib/project-dashboard-data";
-import type { DashboardUser } from "@/types/project-dashboard";
+import { createClient } from "@/lib/supabase/client";
 
-const SESSION_KEY = "metricly.currentUser";
-const REGISTERED_USERS_KEY = "metricly.registeredUsers";
-const AUTH_EVENT = "metricly:auth-changed";
-const DEMO_PASSWORD = "metricly123";
+export type AuthenticatedUser = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  initials: string;
+  avatarColor: string;
+};
 
-type StoredRegisteredUser = DashboardUser & {
-  password: string;
+type ProfileRow = {
+  full_name: string | null;
+  role: string | null;
 };
 
 const avatarColors = [
@@ -25,17 +27,9 @@ const avatarColors = [
   "bg-violet-500",
 ];
 
-function isBrowser() {
-  return typeof window !== "undefined";
-}
-
-function normalizeEmail(email: string) {
-  return email.trim().toLowerCase();
-}
-
-function makeInitials(name: string) {
-  const initials = name
-    .trim()
+function makeInitials(name: string, email: string) {
+  const source = name.trim() || email.split("@")[0] || "Metricly User";
+  const initials = source
     .split(/\s+/)
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase())
@@ -44,168 +38,83 @@ function makeInitials(name: string) {
   return initials || "MU";
 }
 
-function notifyAuthChanged() {
-  window.dispatchEvent(new Event(AUTH_EVENT));
+function colorFromId(id: string) {
+  const index = id
+    .split("")
+    .reduce((total, character) => total + character.charCodeAt(0), 0);
+
+  return avatarColors[index % avatarColors.length];
 }
 
-function readRegisteredUsers(): StoredRegisteredUser[] {
-  if (!isBrowser()) {
-    return [];
-  }
+async function getAuthenticatedUser(
+  supabase: SupabaseClient,
+): Promise<AuthenticatedUser | null> {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  try {
-    const stored = window.localStorage.getItem(REGISTERED_USERS_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeRegisteredUsers(users: StoredRegisteredUser[]) {
-  window.localStorage.setItem(REGISTERED_USERS_KEY, JSON.stringify(users));
-}
-
-function toSessionUser({ password, ...user }: StoredRegisteredUser) {
-  void password;
-  return user;
-}
-
-function storeSession(user: DashboardUser) {
-  window.localStorage.setItem(SESSION_KEY, JSON.stringify(user));
-  notifyAuthChanged();
-}
-
-export function getCurrentUser(): DashboardUser | null {
-  if (!isBrowser()) {
+  if (!user) {
     return null;
   }
 
-  try {
-    const stored = window.localStorage.getItem(SESSION_KEY);
-    return stored ? JSON.parse(stored) : null;
-  } catch {
-    return null;
-  }
-}
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name, role")
+    .eq("id", user.id)
+    .maybeSingle<ProfileRow>();
 
-export function getDemoLoginHint() {
+  const email = user.email ?? "";
+  const name =
+    profile?.full_name ??
+    (typeof user.user_metadata.full_name === "string"
+      ? user.user_metadata.full_name
+      : "") ??
+    email;
+
   return {
-    email: currentDashboardUser.email,
-    password: DEMO_PASSWORD,
+    id: user.id,
+    name: name || email,
+    email,
+    role: profile?.role ?? "Workspace member",
+    initials: makeInitials(name, email),
+    avatarColor: colorFromId(user.id),
   };
 }
 
-export function authenticateUser(
-  email: string,
-  password: string,
-): { user: DashboardUser; error?: never } | { user?: never; error: string } {
-  const normalizedEmail = normalizeEmail(email);
-  const registeredUser = readRegisteredUsers().find(
-    (user) => normalizeEmail(user.email) === normalizedEmail,
-  );
-
-  if (registeredUser) {
-    if (registeredUser.password !== password) {
-      return { error: "That password does not match this account." };
-    }
-
-    const user = toSessionUser(registeredUser);
-    storeSession(user);
-    return { user };
-  }
-
-  const demoUser = dashboardUsers.find(
-    (user) => normalizeEmail(user.email) === normalizedEmail,
-  );
-
-  if (!demoUser) {
-    return { error: "We could not find an account for that email." };
-  }
-
-  if (password !== DEMO_PASSWORD) {
-    return { error: "Use the demo password shown on this page." };
-  }
-
-  storeSession(demoUser);
-  return { user: demoUser };
-}
-
-export function registerAndLoginUser({
-  fullName,
-  email,
-  password,
-}: {
-  fullName: string;
-  email: string;
-  password: string;
-}) {
-  const normalizedEmail = normalizeEmail(email);
-  const existingDemoUser = dashboardUsers.find(
-    (user) => normalizeEmail(user.email) === normalizedEmail,
-  );
-
-  if (existingDemoUser) {
-    storeSession(existingDemoUser);
-    return existingDemoUser;
-  }
-
-  const registeredUsers = readRegisteredUsers();
-  const existingIndex = registeredUsers.findIndex(
-    (user) => normalizeEmail(user.email) === normalizedEmail,
-  );
-  const color = avatarColors[registeredUsers.length % avatarColors.length];
-  const registeredUser: StoredRegisteredUser = {
-    id:
-      existingIndex >= 0
-        ? registeredUsers[existingIndex].id
-        : `local-${Date.now()}`,
-    name: fullName.trim(),
-    role: "Workspace member",
-    email: normalizedEmail,
-    initials: makeInitials(fullName),
-    avatarColor: color,
-    cursorColor: "text-emerald-500",
-    focusHours: "09:00 - 17:00",
-    password,
-  };
-
-  if (existingIndex >= 0) {
-    registeredUsers[existingIndex] = registeredUser;
-  } else {
-    registeredUsers.push(registeredUser);
-  }
-
-  writeRegisteredUsers(registeredUsers);
-  const sessionUser = toSessionUser(registeredUser);
-  storeSession(sessionUser);
-  return sessionUser;
-}
-
-export function signOutUser() {
-  if (!isBrowser()) {
-    return;
-  }
-
-  window.localStorage.removeItem(SESSION_KEY);
-  notifyAuthChanged();
+export async function signOutUser() {
+  const supabase = createClient();
+  await supabase.auth.signOut();
+  window.location.href = "/sign-in";
 }
 
 export function useCurrentUser() {
-  return useSyncExternalStore(
-    (onStoreChange) => {
-      if (!isBrowser()) {
-        return () => {};
+  const [user, setUser] = useState<AuthenticatedUser | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const supabase = createClient();
+
+    async function loadUser() {
+      const currentUser = await getAuthenticatedUser(supabase);
+
+      if (isMounted) {
+        setUser(currentUser);
       }
+    }
 
-      window.addEventListener(AUTH_EVENT, onStoreChange);
-      window.addEventListener("storage", onStoreChange);
+    void loadUser();
 
-      return () => {
-        window.removeEventListener(AUTH_EVENT, onStoreChange);
-        window.removeEventListener("storage", onStoreChange);
-      };
-    },
-    getCurrentUser,
-    () => null,
-  );
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(() => {
+      void loadUser();
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  return user;
 }

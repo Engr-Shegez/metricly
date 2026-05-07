@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { registerAndLoginUser } from "@/lib/auth-client";
+import { createClient } from "@/lib/supabase/client";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -14,15 +14,6 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    const emailFromQuery =
-      new URLSearchParams(window.location.search).get("email") ?? "";
-
-    if (emailFromQuery) {
-      setEmail(emailFromQuery);
-    }
-  }, []);
 
   const isValidEmail = (value: string) => /\S+@\S+\.\S+/.test(value);
 
@@ -50,10 +41,33 @@ export default function RegisterPage() {
     }
 
     setIsSubmitting(true);
+    const supabase = createClient();
+
     try {
-      const user = registerAndLoginUser({ fullName, email, password });
-      toast.success(`Logged in as ${user.name}.`);
-      router.push("/dashboard");
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName.trim(),
+          },
+        },
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      if (data.session) {
+        toast.success("Account created. You are now logged in.");
+        router.push("/dashboard");
+        router.refresh();
+        return;
+      }
+
+      toast.success("Account created. Check your email to confirm your login.");
+      router.push("/sign-in");
     } finally {
       setIsSubmitting(false);
     }

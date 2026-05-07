@@ -7,21 +7,17 @@ import { ArrowRight, LogIn } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import {
-  authenticateUser,
-  getDemoLoginHint,
-  useCurrentUser,
-} from "@/lib/auth-client";
+import { useCurrentUser } from "@/lib/auth-client";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SignInPage() {
   const router = useRouter();
   const currentUser = useCurrentUser();
-  const demoLogin = getDemoLoginHint();
-  const [email, setEmail] = useState(demoLogin.email);
-  const [password, setPassword] = useState(demoLogin.password);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!/\S+@\S+\.\S+/.test(email)) {
@@ -35,16 +31,28 @@ export default function SignInPage() {
     }
 
     setIsSubmitting(true);
-    const result = authenticateUser(email, password);
-    setIsSubmitting(false);
+    const supabase = createClient();
 
-    if ("error" in result) {
-      toast.error(result.error);
-      return;
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success("Logged in successfully.");
+      const redirectTo =
+        new URLSearchParams(window.location.search).get("redirectedFrom") ??
+        "/dashboard";
+      router.push(redirectTo);
+      router.refresh();
+    } finally {
+      setIsSubmitting(false);
     }
-
-    toast.success(`Logged in as ${result.user.name}.`);
-    router.push("/dashboard");
   };
 
   return (
@@ -56,7 +64,7 @@ export default function SignInPage() {
           </div>
           <h1 className="text-3xl font-bold text-foreground">Login</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Sign in with a demo profile or an account you created locally.
+            Sign in with your Metricly account.
           </p>
         </div>
 
@@ -101,12 +109,6 @@ export default function SignInPage() {
             <ArrowRight className="h-4 w-4" />
           </Button>
         </form>
-
-        <div className="mt-6 rounded-lg border border-black/8 bg-zinc-50 px-4 py-3 text-sm text-zinc-700 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200">
-          Demo login: <span className="font-semibold">{demoLogin.email}</span>{" "}
-          with password{" "}
-          <span className="font-semibold">{demoLogin.password}</span>.
-        </div>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           New to Metricly?{" "}

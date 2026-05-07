@@ -3,7 +3,6 @@
 import { LogOut, Menu, PanelTop, Search, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-import { currentDashboardUser } from "@/lib/project-dashboard-data";
 import { signOutUser, useCurrentUser } from "@/lib/auth-client";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -24,7 +23,6 @@ function openPalette() {
 export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = usePathname();
   const loggedInUser = useCurrentUser();
-  const displayUser = loggedInUser ?? currentDashboardUser;
   const segments = pathname.split("/").filter(Boolean);
   const breadcrumbItems = segments.map((segment, index) => ({
     label: segmentLabels[segment] ?? segment,
@@ -89,17 +87,17 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           <div className="flex items-center gap-3 rounded-full border border-(--glass-border) bg-white/60 px-2 py-2 shadow-sm dark:bg-white/6">
             <Avatar className="h-10 w-10">
               <AvatarFallback
-                className={`${displayUser.avatarColor} text-sm font-semibold text-white`}
+                className={`${loggedInUser?.avatarColor ?? "bg-zinc-500"} text-sm font-semibold text-white`}
               >
-                {displayUser.initials}
+                {loggedInUser?.initials ?? "MU"}
               </AvatarFallback>
             </Avatar>
             <div className="hidden pr-2 text-left sm:block">
               <p className="text-sm font-semibold text-foreground">
-                {displayUser.name}
+                {loggedInUser?.name ?? "Loading account"}
               </p>
               <p className="text-xs text-muted-foreground">
-                {loggedInUser ? "Logged in" : displayUser.role}
+                {loggedInUser?.role ?? "Logged in"}
               </p>
             </div>
           </div>
