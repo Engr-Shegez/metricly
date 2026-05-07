@@ -4,6 +4,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+import { registerAndLoginUser } from "@/lib/auth-client";
+
 export default function RegisterPage() {
   const router = useRouter();
 
@@ -49,9 +51,8 @@ export default function RegisterPage() {
 
     setIsSubmitting(true);
     try {
-      // No backend/auth is configured yet in this repo.
-      // Treat this as a "professional sign-up UI" and redirect for now.
-      toast.success("Account details saved. Redirecting...");
+      const user = registerAndLoginUser({ fullName, email, password });
+      toast.success(`Logged in as ${user.name}.`);
       router.push("/dashboard");
     } finally {
       setIsSubmitting(false);

@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { LogOut, Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { signOutUser, useCurrentUser } from "@/lib/auth-client";
 
 function subscribe() {
   return () => {};
@@ -15,6 +16,7 @@ function subscribe() {
 export function MarketingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const currentUser = useCurrentUser();
   const mounted = useSyncExternalStore(
     subscribe,
     () => true,
@@ -87,19 +89,41 @@ export function MarketingNavbar() {
                   )}
                 </button>
               ) : null}
-              <Button
-                asChild
-                variant="ghost"
-                className="border border-black/8 bg-zinc-50 px-4 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
-              >
-                <Link href="/sign-in">Login</Link>
-              </Button>
-              <Button
-                asChild
-                className="bg-zinc-950 px-4 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-              >
-                <Link href="/register">Get Started</Link>
-              </Button>
+              {currentUser ? (
+                <>
+                  <Link
+                    className="max-w-44 truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+                    href="/dashboard"
+                    title={`Logged in as ${currentUser.name}`}
+                  >
+                    {currentUser.name}
+                  </Link>
+                  <Button
+                    aria-label="Log out"
+                    className="border border-black/8 bg-zinc-50 px-3 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
+                    onClick={signOutUser}
+                    variant="ghost"
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="border border-black/8 bg-zinc-50 px-4 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
+                  >
+                    <Link href="/sign-in">Login</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="bg-zinc-950 px-4 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
+                  >
+                    <Link href="/register">Get Started</Link>
+                  </Button>
+                </>
+              )}
             </div>
 
             <button
@@ -135,23 +159,48 @@ export function MarketingNavbar() {
                       {theme === "dark" ? "Light mode" : "Dark mode"}
                     </button>
                   ) : null}
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="justify-center border border-black/8 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
-                  >
-                    <Link href="/sign-in" onClick={() => setIsOpen(false)}>
-                      Login
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    className="justify-center bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                  >
-                    <Link href="/register" onClick={() => setIsOpen(false)}>
-                      Get Started
-                    </Link>
-                  </Button>
+                  {currentUser ? (
+                    <>
+                      <Link
+                        className="rounded-2xl border border-black/8 bg-zinc-50 px-4 py-3 text-center text-sm font-semibold text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100"
+                        href="/dashboard"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Logged in as {currentUser.name}
+                      </Link>
+                      <Button
+                        className="justify-center border border-black/8 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
+                        onClick={() => {
+                          signOutUser();
+                          setIsOpen(false);
+                        }}
+                        variant="ghost"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Logout
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="justify-center border border-black/8 bg-zinc-50 text-zinc-900 hover:bg-zinc-100 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10"
+                      >
+                        <Link href="/sign-in" onClick={() => setIsOpen(false)}>
+                          Login
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        className="justify-center bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
+                      >
+                        <Link href="/register" onClick={() => setIsOpen(false)}>
+                          Get Started
+                        </Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </motion.div>
             ) : null}

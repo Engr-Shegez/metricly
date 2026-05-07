@@ -1,9 +1,10 @@
 "use client";
 
-import { Menu, PanelTop, Search, Sparkles } from "lucide-react";
+import { LogOut, Menu, PanelTop, Search, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { currentDashboardUser } from "@/lib/project-dashboard-data";
+import { signOutUser, useCurrentUser } from "@/lib/auth-client";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -22,6 +23,8 @@ function openPalette() {
 
 export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = usePathname();
+  const loggedInUser = useCurrentUser();
+  const displayUser = loggedInUser ?? currentDashboardUser;
   const segments = pathname.split("/").filter(Boolean);
   const breadcrumbItems = segments.map((segment, index) => ({
     label: segmentLabels[segment] ?? segment,
@@ -86,20 +89,31 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           <div className="flex items-center gap-3 rounded-full border border-(--glass-border) bg-white/60 px-2 py-2 shadow-sm dark:bg-white/6">
             <Avatar className="h-10 w-10">
               <AvatarFallback
-                className={`${currentDashboardUser.avatarColor} text-sm font-semibold text-white`}
+                className={`${displayUser.avatarColor} text-sm font-semibold text-white`}
               >
-                {currentDashboardUser.initials}
+                {displayUser.initials}
               </AvatarFallback>
             </Avatar>
             <div className="hidden pr-2 text-left sm:block">
               <p className="text-sm font-semibold text-foreground">
-                {currentDashboardUser.name}
+                {displayUser.name}
               </p>
               <p className="text-xs text-muted-foreground">
-                {currentDashboardUser.role}
+                {loggedInUser ? "Logged in" : displayUser.role}
               </p>
             </div>
           </div>
+
+          {loggedInUser ? (
+            <button
+              aria-label="Log out"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] bg-white/60 text-foreground transition hover:bg-white/80 dark:bg-white/6 dark:hover:bg-white/10"
+              onClick={signOutUser}
+              type="button"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          ) : null}
         </div>
       </div>
     </header>
