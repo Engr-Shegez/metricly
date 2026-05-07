@@ -47,7 +47,7 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.96 0.018 84);
+  --background: oklch(0.94 0.026 82);
   --foreground: oklch(0.27 0.024 252);
   --card: oklch(0.985 0.008 84);
   --card-foreground: oklch(0.27 0.024 252);
@@ -136,9 +136,9 @@
     color: var(--foreground);
     font-family: "Aptos", "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
     background:
-      radial-gradient(circle at top left, rgba(214, 186, 140, 0.22), transparent 32%),
-      radial-gradient(circle at top right, rgba(132, 154, 180, 0.18), transparent 28%),
-      linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(247, 240, 231, 0.96)),
+      radial-gradient(circle at top left, rgba(214, 186, 140, 0.2), transparent 32%),
+      radial-gradient(circle at top right, rgba(132, 154, 180, 0.12), transparent 28%),
+      linear-gradient(180deg, rgba(249, 242, 230, 0.96), rgba(239, 228, 210, 0.98)),
       var(--background);
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;

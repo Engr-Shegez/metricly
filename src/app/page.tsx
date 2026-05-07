@@ -10,7 +10,7 @@ import { MarketingNavbar } from "@/components/navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white dark:bg-slate-950">
+    <main className="min-h-screen overflow-x-hidden bg-background dark:bg-slate-950">
       <MarketingNavbar />
 
       <div className="pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24">

@@ -24,9 +24,9 @@ export function MarketingNavbar() {
   );
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/90 px-2 py-2 backdrop-blur-md dark:bg-slate-950/90 sm:px-4">
+    <header className="fixed inset-x-0 top-0 z-50 bg-[#f1e6d3]/90 px-2 py-2 backdrop-blur-md dark:bg-slate-950/90 sm:px-4">
       <div className="mx-auto max-w-7xl px-6 pt-2">
-        <div className="relative rounded-full border border-black/6 bg-white/78 px-4 py-3 shadow-[0_18px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_18px_80px_rgba(0,0,0,0.28)]">
+        <div className="relative rounded-full border border-black/6 bg-[#f8efe0]/78 px-4 py-3 shadow-[0_18px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_18px_80px_rgba(0,0,0,0.28)]">
           <div className="flex items-center justify-between gap-4">
             {/* <Link
               href="/"
